@@ -1,0 +1,17 @@
+#blog-selection button {
+  color: #212121;
+  background: #fff;
+  border: 0;
+}
+#blog-selection button.active {
+  border-bottom: 2px solid #fe0072;
+}
+#blog-selection button:hover {
+  border-bottom: 2px solid #fe0072;
+}
+#blog-selection button:focus {
+  outline-width: 0;
+}
+#topic {
+  color: #fff;
+}

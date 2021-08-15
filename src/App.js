@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, HashRouter, Switch } from "react-router-dom";
+
+// CSS
+import "./App.css";
+
+// COMPONENTS
+import Home from "./components/home-page/Home";
+import ContactPage from "./components/contact-page/contact";
+import Clients from "./components/clients-page/clients";
+import Blog from "./components/blog-page/blog";
+import CaseStudy from "./components/case-sturdies-page/case_study";
+import About from "./components/about-page/about";
+import BlogDetails from "./components/blog-details-page/blog-details";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <HashRouter>
+      <Switch>
+        <Route exact path="/blog-details" component={BlogDetails} />
+        <Route exact path="/about" component={About} />
+        <Route exact path="/case-study" component={CaseStudy} />
+        <Route exact path="/blog" component={Blog} />
+        <Route exact path="/clients" component={Clients} />
+        <Route exact path="/contact" component={ContactPage} />
+        <Route exact path="/" component={Home} />
+      </Switch>
+    </HashRouter>
   );
 }
 

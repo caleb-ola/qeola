@@ -1,0 +1,36 @@
+import "./project_row.css";
+
+const ProjectRow2 = (props) => {
+  return (
+    <div className="row align-items-center justify-contents-center text-center text-md-start  my-md-5 p-0 mx-auto">
+      <div className="col-md-8">
+        <img
+          src={props.image}
+          alt="Project image"
+          className="img-fluid rounded-3"
+        />
+      </div>
+      <div className="col-md-4 ">
+        <div
+          className={
+            window.location.hash == "#/case-study"
+              ? "card border-0"
+              : "card project-card"
+          }
+        >
+          <div className="card-body">
+            <h2 className="card-title fw-bold fs-3 fs-md-2 py-2">
+              {props.title}
+            </h2>
+            <p className="card-text">{props.content}</p>
+            <a href="#" className="btn more-clients-btn shadow-none p-0">
+              See Project <i class="fas fa-arrow-right m-2"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ProjectRow2;

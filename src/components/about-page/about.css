@@ -1,0 +1,32 @@
+#process {
+  background: #e5e5e5;
+}
+.process-header {
+  width: 75%;
+  margin: auto;
+}
+.media-header {
+  width: 75%;
+  margin: auto;
+}
+#quote {
+  color: #fff;
+}
+#quote .quote-cta {
+  color: #fff;
+}
+#quote .quote-cta:hover {
+  color: #fe0072;
+}
+
+@media only screen and (min-width: 1024px) {
+  .process-header {
+    width: 50%;
+    margin: 0;
+    margin-left: auto;
+  }
+  .media-header {
+    width: 50%;
+    margin: 0;
+  }
+}

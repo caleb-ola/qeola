@@ -1,0 +1,34 @@
+.more-articles {
+  color: #fff;
+  width: 100%;
+}
+.more-articles-header {
+  color: #212121;
+}
+#blog-body .blog-passage {
+  width: 100%;
+}
+#blog-body .blog-details-header .category {
+  color: #0839d8;
+}
+#blog-body .blog-details-header {
+  width: 80%;
+  margin: 0;
+  margin-right: auto;
+}
+
+@media only screen and (min-width: 1024px) {
+  #blog-body .blog-passage {
+    width: 80%;
+    margin: auto;
+  }
+  .more-articles {
+    width: 80%;
+    margin: auto;
+  }
+  #blog-body .blog-details-header {
+    width: 70%;
+    margin: 0;
+    margin-right: auto;
+  }
+}
