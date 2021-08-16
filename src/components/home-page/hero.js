@@ -18,7 +18,7 @@ const Hero = () => {
       />
       <div className="overlay">
         <div className="container">
-          <div className="w-50  hero-text mx-auto ms-md-0 align-text-center justify-content-center text-center text-md-start">
+          <div className="hero-text mx-auto ms-md-0 align-text-center justify-content-center text-center text-md-start">
             <h1 className="fw-bold fs-1">
               Your business is safe in our hands.
             </h1>

@@ -6,7 +6,7 @@ const MoreArticles = () => {
           <h3 className="fw-bold fs-2 ">More Articles</h3>
         </div>
         <div className="row">
-          <div className="col-12 col-md-3 ">
+          <div className="col-12 col-md-4 col-lg-3 my-3">
             <div
               className="article d-flex-column justify-content-between p-3 rounded-3"
               style={{
@@ -21,7 +21,7 @@ const MoreArticles = () => {
             </div>
           </div>
 
-          <div className="col-12 col-md-3 ">
+          <div className="col-12 col-md-4 col-lg-3 my-3">
             <div
               className="article d-flex-column justify-content-between p-3 rounded-3"
               style={{
@@ -36,7 +36,7 @@ const MoreArticles = () => {
             </div>
           </div>
 
-          <div className="col-12 col-md-3 ">
+          <div className="col-12 col-md-4 col-lg-3 my-3">
             <div
               className="article d-flex-column justify-content-between p-3 rounded-3"
               style={{
@@ -51,7 +51,7 @@ const MoreArticles = () => {
             </div>
           </div>
 
-          <div className="col-12 col-md-3 ">
+          <div className="col-12 col-md-4 col-lg-3 my-3">
             <div
               className="article d-flex-column justify-content-between p-3 rounded-3"
               style={{

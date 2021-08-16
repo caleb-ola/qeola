@@ -4,7 +4,7 @@ const OtherHero = (props) => {
   return (
     <section id="other-hero">
       <div className="container">
-        <div className="text-center  w-75 mx-auto my-3 mt-5 my-sm-5 pt-2 py-sm-3">
+        <div className="hero-header text-center mx-auto my-3 mt-5 my-sm-5 pt-2 py-sm-3">
           <h1 className="mt-3 mb-3 fs-1 fw-bold">{props.title}</h1>
           <p className="mt-2 mb-3">{props.text}</p>
           <Link

@@ -1,0 +1,9 @@
+.hero-header {
+  width: 90%;
+}
+
+@media only screen and (min-width: 1024px) {
+  .hero-header {
+    width: 70%;
+  }
+}

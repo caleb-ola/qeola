@@ -4,7 +4,7 @@ const Contact = (props) => {
   return (
     <section id="contact" className="py-3">
       <div className="container">
-        <div className="Section-header py-3 w-75 w-sm-75 mx-auto">
+        <div className="contact-header py-3 mx-auto">
           <h1 className="fs-2 fs-sm-1 fw-bold text-center">{props.title}</h1>
         </div>
         <div>

@@ -18,9 +18,12 @@
 }
 .hero-text {
   position: relative;
-  top: 250px;
+  top: 270px;
+  /* height: 200px; */
+  /* margin: auto; */
   font-weight: bolder;
   color: #fff;
+  width: 100%;
 }
 .hero-cta {
   color: #fff;
@@ -29,7 +32,17 @@
   color: #fe0072;
   font-weight: 500;
 }
-/* i.fa-arrow-right:hover {
-  transform: scale(1.1);
-  color: #fe0072;
-} */
+
+@media only screen and (min-width: 728px) {
+  .hero-text {
+    top: 300px;
+    width: 50%;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .hero-text {
+    top: 255px;
+    width: 50%;
+  }
+}
