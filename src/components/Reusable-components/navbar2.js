@@ -26,7 +26,7 @@ const NavBar2 = () => {
           <div class="container">
             <Link class="navbar-brand me-auto" to="/">
               <img
-                src="images/logo/logo.PNG"
+                src={"images/logo.png"}
                 alt="Qeola's logo"
                 className="img-fluid w-50"
               />

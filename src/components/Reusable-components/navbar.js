@@ -26,7 +26,7 @@ const Header = () => {
           <div class="container">
             <Link class="navbar-brand me-auto" to="/">
               <img
-                src="images/logo/white_logo.PNG"
+                src={"images/white_logo.png"}
                 alt="Qeola's logo"
                 className="img-fluid w-50"
               />
