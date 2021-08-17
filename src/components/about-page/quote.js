@@ -4,7 +4,7 @@ const Quote = () => {
   return (
     <section
       id="quote"
-      className="py-5"
+      className="py-5 my-2"
       style={{
         backgroundImage: `url("images/About/banner_image.jpg")`,
         backgroundAttachment: "fixed",
@@ -12,7 +12,7 @@ const Quote = () => {
       }}
     >
       <div className="container">
-        <p className="fw-bold fs-4 text-center pt-5 mt-4 pb-3">
+        <p className="fw-bold fs-4 text-center pt-5 mt-5 pb-3 lh-base">
           We strive to create technological solutions that will help advance our
           client's business and solve real-life problems. But we go beyond and
           provide strategic guidance through advancements in technology.

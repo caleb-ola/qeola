@@ -4,6 +4,10 @@
 nav {
   z-index: 1;
 }
+nav.navbar.active {
+  background: #000103 !important;
+}
+
 nav div ul li a {
   color: #fff !important;
   font-weight: 400;
@@ -11,6 +15,18 @@ nav div ul li a {
 nav div ul li a:hover {
   color: #fe0072 !important;
   font-weight: 500;
+}
+nav div ul li a.proj {
+  color: rgb(231, 231, 231) !important;
+  font-weight: 400;
+}
+nav div ul li a.proj:hover {
+  color: #fff !important;
+  font-weight: 500;
+}
+nav div ul li a.proj.active {
+  color: #fff !important;
+  font-weight: 600;
 }
 nav div ul li a.cta {
   background-color: #fe0072 !important;
@@ -22,7 +38,7 @@ nav div ul li a.cta {
 nav div ul li a.cta:hover {
   background-color: #fe007200 !important;
   color: #fff !important;
-  font-weight: 400;
+  font-weight: 500;
   border-radius: 50px;
   border: 1px solid #fe0072;
 }
@@ -112,4 +128,11 @@ nav div ul li a.cta:hover {
   -moz-transform: rotate(-135deg);
   -o-transform: rotate(-135deg);
   transform: rotate(-135deg);
+}
+
+@media only screen and (min-width: 1024px) {
+  nav div ul li a.proj.active {
+    font-weight: 600;
+    border-bottom: 2px solid rgb(197, 197, 197);
+  }
 }

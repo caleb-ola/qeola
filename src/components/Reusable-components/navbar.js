@@ -4,7 +4,8 @@ import "./navbar.css";
 
 const Header = () => {
   const [hamburger, setHamburger] = useState(false);
-  const [navbg, setNavbg] = useState("");
+  const [navbg, setNavbg] = useState(false);
+  // const [proj, setProj] = useState("proj");
 
   const ToggleHamburger = (e) => {
     setHamburger(hamburger ? false : true);
@@ -14,14 +15,26 @@ const Header = () => {
     setNavbg(window.pageYOffset > 100 ? "bg-dark" : "");
   };
 
+  const ChangeBg = () => {
+    if (window.scrollY >= 100) {
+      setNavbg(true);
+    } else {
+      setNavbg(false);
+    }
+  };
+
+  window.addEventListener("scroll", ChangeBg);
   // useEffect(window.addEventListener("scroll", ToggleNavBg));
 
   return (
     <section id="navbar">
       <div className="">
         <nav
-          class={`navbar fixed-top navbar-expand-lg navbar-light bg-light py-sm-4 bg-transparent ${navbg}`}
-          onScroll={ToggleNavBg}
+          class={
+            navbg
+              ? `navbar fixed-top navbar-expand-lg navbar-light bg-light py-sm-4 bg-transparent active`
+              : `navbar fixed-top navbar-expand-lg navbar-light bg-light py-sm-4 bg-transparent`
+          }
         >
           <div class="container">
             <Link class="navbar-brand me-auto" to="/">
@@ -50,17 +63,39 @@ const Header = () => {
             <div class="collapse navbar-collapse " id="navbarNavDropdown">
               <ul class="navbar-nav ms-auto">
                 <li class="nav-item px-2">
-                  <Link class="nav-link active" aria-current="page" to="/about">
+                  <Link
+                    class={
+                      window.location.hash == "#/about"
+                        ? "nav-link proj active"
+                        : "nav-link proj"
+                    }
+                    aria-current="page"
+                    to="/about"
+                  >
                     About Us
                   </Link>
                 </li>
                 <li class="nav-item px-2">
-                  <Link class="nav-link" to="/case-study">
+                  <Link
+                    class={
+                      window.location.hash == "#/project"
+                        ? "nav-link proj active"
+                        : "nav-link proj"
+                    }
+                    to="/case-study"
+                  >
                     Case Sturdies
                   </Link>
                 </li>
                 <li class="nav-item px-2">
-                  <Link class="nav-link" to="/blog">
+                  <Link
+                    class={
+                      window.location.hash == "#/blog"
+                        ? "nav-link proj active"
+                        : "nav-link proj"
+                    }
+                    to="/blog"
+                  >
                     Blog
                   </Link>
                 </li>

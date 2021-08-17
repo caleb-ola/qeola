@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 
+import "./otherHero.css";
+
 const OtherHero = (props) => {
   return (
     <section id="other-hero">

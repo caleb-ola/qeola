@@ -16,6 +16,24 @@
   margin: 0;
   margin-right: auto;
 }
+#pagination nav ul li {
+  background-color: none;
+}
+.page-item.active .page-link {
+  background-color: #fff;
+  border: 0;
+  color: #0839d8;
+}
+.page-item .page-link {
+  background-color: #fff;
+  border: 0;
+  color: #696a6d;
+}
+.page-item .page-link:hover {
+  background-color: #fff;
+  border: 0;
+  color: #0839d8;
+}
 
 @media only screen and (min-width: 1024px) {
   #blog-body .blog-passage {

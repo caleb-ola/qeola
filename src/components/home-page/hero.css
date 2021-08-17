@@ -1,7 +1,7 @@
 .hero-container {
   position: relative;
   width: 100%;
-  height: 90vh;
+  height: 600px;
   position: relative;
 }
 .hero-container video {
@@ -13,7 +13,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 90vh;
+  height: 600px;
   background-color: rgba(0, 0, 0, 0.7);
 }
 .hero-text {
@@ -25,12 +25,16 @@
   color: #fff;
   width: 100%;
 }
-.hero-cta {
+.hero-cta,
+.hero-para {
   color: #fff;
 }
 .hero-cta:hover {
   color: #fe0072;
   font-weight: 500;
+}
+.hero-para:hover {
+  color: #fff;
 }
 
 @media only screen and (min-width: 728px) {

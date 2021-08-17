@@ -3,7 +3,7 @@
 const CardIndustry = (props) => {
   return (
     <div>
-      <div className="card industry-card px-2 px-md-4 px-lg-5 pl-0">
+      <div className="card industry-card px-2 px-md-4 px-lg-5 pl-0 ">
         <div className="card-body  my-3 my-sm-0">
           <img
             src={props.image}

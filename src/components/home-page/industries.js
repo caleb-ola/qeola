@@ -9,62 +9,62 @@ const Industries = () => {
           <h1 className="fs-2 fs-sm-1 fw-bold">Industries we have served</h1>
         </div>
         <div className="row align-items-center ">
-          <div className="col-6 col-lg-3 col-md-4 ">
+          <div className="col-6 col-lg-3 col-md-4 px-1 p-3">
             <CardIndustry
               title={"Eduaction"}
               image={"images/Home/icons/education.png"}
             />
           </div>
-          <div className="col-6 col-lg-3 col-md-4 ">
+          <div className="col-6 col-lg-3 col-md-4 px-1 ">
             <CardIndustry
               title={"Health"}
               image={"images/Home/icons/health.png"}
             />
           </div>
-          <div className="col-6 col-lg-3 col-md-4 ">
+          <div className="col-6 col-lg-3 col-md-4 px-1 ">
             <CardIndustry
               title={"Agriculture"}
               image={"images/Home/icons/agriculture.png"}
             />
           </div>
-          <div className="col-6 col-lg-3 col-md-4 ">
+          <div className="col-6 col-lg-3 col-md-4 px-1 ">
             <CardIndustry
               title={"Startup and Venture Capital"}
               image={"images/Home/icons/startup_and_venture_capital.png"}
             />
           </div>
 
-          <div className="col-6 col-lg-3 col-md-4">
+          <div className="col-6 col-lg-3 col-md-4 px-1">
             <CardIndustry
               title={"Faith"}
               image={"images/Home/icons/faith.png"}
             />
           </div>
-          <div className="col-6 col-lg-3 col-md-4 ">
+          <div className="col-6 col-lg-3 col-md-4 px-1 ">
             <CardIndustry
               title={"Consulting"}
               image={"images/Home/icons/consulting.png"}
             />
           </div>
-          <div className="col-6 col-lg-3 col-md-4 ">
+          <div className="col-6 col-lg-3 col-md-4 px-1 ">
             <CardIndustry
               title={"Social Impact"}
               image={"images/Home/icons/social_impact.png"}
             />
           </div>
-          <div className="col-6 col-lg-3 col-md-4 ">
+          <div className="col-6 col-lg-3 col-md-4 px-1 ">
             <CardIndustry
               title={"Startup and Venture Capital"}
               image={"images/Home/icons/finance_and_insurance.png"}
             />
           </div>
-          <div className="col-6 col-lg-3 col-md-4 ">
+          <div className="col-6 col-lg-3 col-md-4 px-1 ">
             <CardIndustry
               title={"Real Estate"}
               image={"images/Home/icons/real_estate.png"}
             />
           </div>
-          <div className="col-6 col-lg-3 col-md-4 ">
+          <div className="col-6 col-lg-3 col-md-4 px-1 ">
             <CardIndustry
               title={"Talent Outsourcing"}
               image={"images/Home/icons/talent_outsourcing.png"}

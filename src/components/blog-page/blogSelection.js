@@ -13,7 +13,7 @@ const BlogSelection = () => {
 
   const [topics, setTopics] = useState(
     <div>
-      <Link to="/blog-details">
+      <Link to="/blog-details" className="text-decoration-none">
         <BlogPost
           image={"images/Blog/img1.jpg"}
           category={"Branding"}
@@ -69,7 +69,7 @@ const BlogSelection = () => {
     });
     setTopics(
       <div>
-        <Link to="/blog-details">
+        <Link to="/blog-details" className="text-decoration-none">
           <BlogPost
             image={"images/Blog/img1.jpg"}
             category={"Branding"}
@@ -124,7 +124,7 @@ const BlogSelection = () => {
     });
     setTopics(
       <div>
-        <Link to="/blog-details">
+        <Link to="/blog-details" className="text-decoration-none">
           <BlogPost
             image={"images/Blog/img1.jpg"}
             category={"Branding"}

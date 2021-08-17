@@ -1,0 +1,27 @@
+.prev-btn,
+.next-btn {
+  color: #696a6d;
+}
+.prev-btn:hover,
+.next-btn:hover {
+  color: #fe0072;
+}
+
+#visual-identity {
+  background: #f3f3f3;
+}
+.first-header {
+  width: 90%;
+}
+.second-header {
+  width: 90%;
+}
+
+@media only screen and (min-width: 1024px) {
+  .first-header {
+    width: 40%;
+  }
+  .second-header {
+    width: 40%;
+  }
+}
