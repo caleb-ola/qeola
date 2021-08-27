@@ -1,14 +1,11 @@
 #contact input {
   border-bottom: 2px solid;
 }
-#contact select:focus {
+#contact select:focus,
+#contact input:focus {
   outline-width: 0;
 }
 #contact select option.branding:hover {
-}
-
-#contact input:focus {
-  outline-width: 0;
 }
 
 .contact-submit {
@@ -27,7 +24,18 @@
 #contact .shrink {
   transform: scale(0.9);
 }
-
+.form-control:focus {
+  box-shadow: none !important;
+}
+.input-group input.form-control,
+.input-group button {
+  border: 0;
+  border-bottom: 2px solid #dbdbdb !important;
+}
+.attach-btn:hover {
+  color: #fe0072;
+  /* width: 20%; */
+}
 @media only screen and (min-width: 1024px) {
   #contact .contact-header {
     width: 70%;

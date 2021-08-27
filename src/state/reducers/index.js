@@ -1,8 +1,13 @@
 import { combineReducers } from "redux";
-import clientReducer from "./firstReducers";
+// import briefReducer from "./firstReducers";
+import briefReducer from "./firstReducers";
+import mainReducer from "./mainReducer";
+import displayReducer from "./displayReducer";
 
 const reducers = combineReducers({
-  clients: clientReducer,
+  brief: briefReducer,
+  mainState: mainReducer,
+  output: displayReducer,
 });
 
 export default reducers;

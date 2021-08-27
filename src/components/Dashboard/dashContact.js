@@ -1,7 +1,7 @@
 import { useState } from "react";
-import "./contact.css";
+// import "./contact.css";
 
-const Contact = (props) => {
+const DashContact = (props) => {
   const [shrink, setShrink] = useState({
     mail: "",
     name: "",
@@ -40,29 +40,6 @@ const Contact = (props) => {
           <form>
             <div className="row pt-4 pb-2">
               <div
-                className={`col-12 col-md-6 my-3`}
-                onFocus={ShrinkMail}
-                onBlur={Enlarge}
-              >
-                <label
-                  for="email"
-                  className={
-                    shrink.mail == "shrink"
-                      ? `fs-6 fw-bold ${shrink.mail}`
-                      : `fs-6 fw-bold `
-                  }
-                >
-                  Email Address*
-                </label>
-                <br />
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="youremail@domain.com"
-                  className="w-100 p-2 my-1 border-0 border-2 border-bottom"
-                />
-              </div>
-              <div
                 className="col-12 col-md-6 my-3"
                 onFocus={ShrinkName}
                 onBlur={Enlarge}
@@ -75,40 +52,17 @@ const Contact = (props) => {
                       : `fs-6 fw-bold`
                   }
                 >
-                  Name*
+                  Client Name*
                 </label>
                 <br />
                 <input
                   type="name"
                   name="name"
-                  placeholder="Chukuema Adekunle"
+                  placeholder="Name of the client you want to add"
                   className="w-100 p-2 my-1 border-0 border-2 border-bottom"
                 />
               </div>
 
-              <div
-                className="col-12 col-md-6 my-3"
-                onFocus={ShrinkNum}
-                onBlur={Enlarge}
-              >
-                <label
-                  for="number"
-                  className={
-                    shrink.Num == "shrink"
-                      ? `fs-6 fw-bold ${shrink.Num}`
-                      : `fs-6 fw-bold`
-                  }
-                >
-                  Phone Number*
-                </label>
-                <br />
-                <input
-                  type="text"
-                  name="text"
-                  placeholder="0801 234 5678"
-                  className="w-100 p-2 my-1 border-0 border-2 border-bottom "
-                />
-              </div>
               <div
                 className="col-12 col-md-6 my-3"
                 onFocus={ShrinkProj}
@@ -122,7 +76,7 @@ const Contact = (props) => {
                       : `fs-6 fw-bold`
                   }
                 >
-                  Project Type*
+                  Category
                 </label>
                 <br />
                 <select
@@ -157,7 +111,7 @@ const Contact = (props) => {
                       : `fs-6 fw-bold `
                   }
                 >
-                  Project Brief*
+                  Client Logo{" "}
                 </label>
                 <br />
                 <div className="input-group my-1">
@@ -165,7 +119,7 @@ const Contact = (props) => {
                     type="text"
                     id="project-brief"
                     className="form-control rounded-0"
-                    placeholder={`Tell us about your project, the more details the better or attach a file containing your brief`}
+                    placeholder={`Attach the client's logo here `}
                     aria-label="Text input with attach button "
                   />
                   <button
@@ -186,12 +140,12 @@ const Contact = (props) => {
                 </div>
               </div>
 
-              <div className="col-12 col-md-12 my-2">
+              <div className="col-12 col-md-12 my-2 text-center">
                 <button
                   type="submit"
-                  className="contact-submit shadow-none btn rounded-pill py-3 my-4 w-100"
+                  className="contact-submit shadow-none btn rounded-pill py-3 my-4 w-50 fw-bold"
                 >
-                  Send us a brief
+                  Post
                 </button>
               </div>
             </div>
@@ -202,4 +156,4 @@ const Contact = (props) => {
   );
 };
 
-export default Contact;
+export default DashContact;

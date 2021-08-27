@@ -1,16 +1,12 @@
-const clientReducer = (state = null, action) => {
+import Welcome from "../../components/Dashboard/welcome";
+
+const briefReducer = (state = "helloo", action) => {
   switch (action.type) {
-    case "ALL_IMAGE":
-      return action.payload;
-    case "BRANDING":
-      return action.payload;
-    case "MOBILE_APP":
-      return action.payload;
-    case "MARKETING":
-      return action.payload;
+    case "BRIEF":
+      return <Welcome />;
     default:
       return state;
   }
 };
 
-export default clientReducer;
+export default briefReducer;

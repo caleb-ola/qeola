@@ -10,35 +10,35 @@ const Media = () => {
           </p>
         </div>
         <div className="row align-items-center justify-content-center text-center">
-          <div className=" col-12 col-md-4 p-2 p-md-3">
+          <div className=" col-6 col-md-4 p-2 p-md-3 my-1 ">
             <img
               src="images/About/awwwards_logo.png"
               alt=""
-              className="img-fluid"
+              className="img-fluid "
             />
           </div>
-          <div className=" col-12 col-md-4 p-2 p-md-3">
+          <div className=" col-6 col-md-4 p-2 p-md-3 my-1">
             <img
               src="images/About/the_guardian.png"
               alt=""
-              className="img-fluid"
+              className="img-fluid "
             />
           </div>
-          <div className=" col-12 col-md-4 p-2 p-md-3">
+          <div className=" col-6 col-md-4 p-2 p-md-3 my-1">
             <img
               src="images/About/tech_crunch.png"
               alt=""
-              className="img-fluid"
+              className="img-fluid "
             />
           </div>
-          <div className=" col-12 col-md-4 p-2 p-md-3">
+          <div className=" col-6 col-md-4 p-2 p-md-3 my-1">
             <img src="images/About/bbc.png" alt="" className="img-fluid w-75" />
           </div>
-          <div className=" col-12 col-md-4 p-2 p-md-3">
-            <img src="images/About/cbn.png" alt="" className="img-fluid w-75" />
+          <div className=" col-6 col-md-4 p-2 p-md-3 my-1">
+            <img src="images/About/cbn.png" alt="" className="img-fluid w-50" />
           </div>
-          <div className=" col-12 col-md-4 p-2 p-md-3">
-            <img src="images/About/sky.png" alt="" className="img-fluid w-75" />
+          <div className=" col-6 col-md-4 p-2 p-md-3 my-1">
+            <img src="images/About/sky.png" alt="" className="img-fluid w-50" />
           </div>
         </div>
       </div>

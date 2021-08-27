@@ -73,7 +73,7 @@ const NavBar2 = () => {
                     }
                     to="/case-study"
                   >
-                    Case Sturdies
+                    Case Studies
                   </Link>
                 </li>
                 <li class="nav-item px-2">

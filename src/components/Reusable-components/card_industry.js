@@ -10,7 +10,7 @@ const CardIndustry = (props) => {
             alt="Industry Icon"
             className="img-fluid w-50"
           />
-          <h2 className="card-title industry-text fw-normal fs-5 fs-md-5 m-0 py-2 py-sm-3">
+          <h2 className="card-title industry-text fw-normal fs-6 fs-md-5 m-0 py-2 py-sm-3">
             {props.title}
           </h2>
           {/* <p className="card-text m-0 py-1 py-sm-2">{props.content}</p>
