@@ -1,6 +1,7 @@
 import ReactPlayer from "react-player";
 import HeroVideo from "./vid.mp4";
-import Typist from "react-typist";
+import Typical from "react-typical";
+// import Typist from "react-typist";
 // import { Link } from "react-router-dom";
 
 import "./hero.css";
@@ -29,7 +30,24 @@ const Hero = () => {
         <div className="container">
           <div className="hero-text mx-auto ms-md-0 align-text-center justify-content-center text-center text-md-start">
             <h1 className="fw-bold fs-1">
-              {count ? (
+              We Will Make Your Brand{" "}
+              <Typical
+                steps={[
+                  "Visible",
+                  2000,
+                  "Memorable",
+                  2000,
+                  "Lovable",
+                  2000,
+                  "Accessible",
+                  2000,
+                  "Powerful",
+                  2000,
+                ]}
+                loop={Infinity}
+                wrapper="span"
+              />
+              {/* {count ? (
                 <Typist avgTypingDelay={60} onTypingDone={() => setCount(0)}>
                   We Will Make Your Brand <span> Visible</span>
                   <Typist.Backspace count={7} delay={2500} />
@@ -44,7 +62,7 @@ const Hero = () => {
                 </Typist>
               ) : (
                 ""
-              )}
+              )} */}
             </h1>
 
             <a href="#" className="btn hero-cta p-0 m-0 my-2 shadow-none">
