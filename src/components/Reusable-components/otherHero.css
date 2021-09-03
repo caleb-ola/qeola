@@ -1,9 +1,27 @@
+#other-hero {
+  /* height: 600px; */
+}
 .hero-header {
   width: 90%;
 }
-
+.hero-header h1 {
+  font-size: 2.4rem;
+}
+@media only screen and (min-width: 768px) {
+  .hero-header {
+    width: 80%;
+  }
+  .hero-header h1 {
+    font-size: 2.8rem;
+    width: 90%;
+  }
+}
 @media only screen and (min-width: 1024px) {
   .hero-header {
-    width: 70%;
+    width: 80%;
+  }
+  .hero-header h1 {
+    font-size: 3rem;
+    width: 75%;
   }
 }

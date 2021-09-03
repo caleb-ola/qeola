@@ -5,7 +5,7 @@ import "./navbar.css";
 const Header = () => {
   const [hamburger, setHamburger] = useState(false);
   const [navbg, setNavbg] = useState(false);
-  // const [proj, setProj] = useState("proj");
+  const [proj, setProj] = useState(false);
 
   const ToggleHamburger = (e) => {
     setHamburger(hamburger ? false : true);
@@ -26,8 +26,70 @@ const Header = () => {
   window.addEventListener("scroll", ChangeBg);
   // useEffect(window.addEventListener("scroll", ToggleNavBg));
 
+  const OpenNav = () => {
+    // document.getElementById("myNav").style.width = "100%";
+    setProj(true);
+  };
+
+  const CloseNav = () => {
+    // document.getElementById("myNav").style.width = "0%";
+    setProj(false);
+  };
   return (
-    <section id="navbar">
+    <section id="navbar" className="m-0">
+      <div id="myNav" className={proj ? "over visible" : "over hidden"}>
+        <div className="row align-items-center justify-content-center">
+          <div
+            className="col-12 col-md-8 left"
+            style={{
+              objectFit: "cover",
+              height: "100vh",
+            }}
+          >
+            <img
+              src="images/Home/menu.jpg"
+              alt="menu image"
+              className=" menu-img img-fluid"
+              style={{
+                objectFit: "cover",
+                // height: "100vh",
+              }}
+            />
+          </div>
+          <div
+            className="col-12 col-md-4 position-relative d-flex flex-column"
+            style={{
+              objectFit: "cover",
+              height: "100vh",
+            }}
+          >
+            <a
+              href="javascript:void(0)"
+              className="closebtn fw-bold nav-link nav-linkB fs-5"
+              onClick={CloseNav}
+            >
+              CLOSE {"  "} <i class="fas fa-times px-2"></i>
+            </a>
+            <div class="over-content text-center ">
+              <a href="#" className="fw-bold my-3 fs-3 nav-linkB">
+                CLIENTS
+              </a>
+              <a href="#" className="fw-bold my-3 fs-3 nav-linkB ">
+                INDUSTRIES
+              </a>
+              <a href="#" className="fw-bold my-3 fs-3 nav-linkB ">
+                BLOG
+              </a>
+            </div>
+            <div className="row d-inline-block my-2 fs-4 text-center mt-auto ">
+              <i className="fab fa-behance d-inline mx-2 social-icons"></i>
+              <i className="fab fa-instagram d-inline mx-2 social-icons"></i>
+              <i className="fab fa-twitter d-inline mx-2 social-icons"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div className="">
         <nav
           class={
@@ -62,7 +124,7 @@ const Header = () => {
             </button>
             <div class="collapse navbar-collapse " id="navbarNavDropdown">
               <ul class="navbar-nav ms-auto">
-                <li class="nav-item px-2">
+                <li class="nav-item px-2 mx-2 fs-6">
                   <Link
                     class={
                       window.location.hash == "#/about"
@@ -75,7 +137,7 @@ const Header = () => {
                     About Us
                   </Link>
                 </li>
-                <li class="nav-item px-2">
+                <li class="nav-item px-2 mx-2 fs-6">
                   <Link
                     class={
                       window.location.hash == "#/project"
@@ -87,7 +149,7 @@ const Header = () => {
                     Case Studies
                   </Link>
                 </li>
-                <li class="nav-item px-2">
+                <li class="nav-item px-2 mx-2 fs-6">
                   <Link
                     class={
                       window.location.hash == "#/blog"
@@ -99,12 +161,19 @@ const Header = () => {
                     Blog
                   </Link>
                 </li>
-                <li class="nav-item ps-md-4 py-3 py-md-0">
-                  <Link
-                    class="nav-link cta px-5 py-2 text-center"
+                <li class="nav-item ps-md-3  px-3 px-sm-0 py-md-0 fs-6 ">
+                  {/* <Link
+                    class=""
                     to="/contact"
                   >
                     Talk to us
+                  </Link> */}
+                  <Link
+                    style={{ cursor: "pointer" }}
+                    className="nav-link "
+                    onClick={OpenNav}
+                  >
+                    Menu &#9776;
                   </Link>
                 </li>
               </ul>

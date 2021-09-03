@@ -10,6 +10,7 @@ const About = () => {
   return (
     <div id="about-section">
       <NavBar2 />
+
       <OtherHero
         title={"Qeola exists to make you look your best!"}
         text={

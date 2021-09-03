@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 const NavBar2 = () => {
   const [hamburger, setHamburger] = useState(false);
   const [navbg, setNavbg] = useState("");
+  const [proj, setProj] = useState(false);
 
   const ToggleHamburger = (e) => {
     setHamburger(hamburger ? false : true);
@@ -14,10 +15,71 @@ const NavBar2 = () => {
     setNavbg(window.pageYOffset > 100 ? "bg-dark" : "");
   };
 
+  const OpenNav = () => {
+    // document.getElementById("myNav").style.width = "100%";
+    setProj(true);
+  };
+
+  const CloseNav = () => {
+    // document.getElementById("myNav").style.width = "0%";
+    setProj(false);
+  };
   // useEffect(window.addEventListener("scroll", ToggleNavBg));
 
   return (
     <section id="navbar2">
+      <div id="myNav" className={proj ? "over visible" : "over hidden"}>
+        <div className="row align-items-center justify-content-center">
+          <div
+            className="col-12 col-md-8 left"
+            style={{
+              objectFit: "cover",
+              height: "100vh",
+            }}
+          >
+            <img
+              src="images/Home/menu.jpg"
+              alt="menu image"
+              className=" menu-img img-fluid"
+              style={{
+                objectFit: "cover",
+                // height: "100vh",
+              }}
+            />
+          </div>
+          <div
+            className="col-12 col-md-4 position-relative d-flex flex-column"
+            style={{
+              objectFit: "cover",
+              height: "100vh",
+            }}
+          >
+            <a
+              href="javascript:void(0)"
+              className="closebtn fw-bold nav-link nav-linkB fs-5"
+              onClick={CloseNav}
+            >
+              CLOSE {"  "} <i class="fas fa-times px-2"></i>
+            </a>
+            <div class="over-content text-center ">
+              <Link to="/clients" className="fw-bold my-3 fs-3 nav-linkB">
+                CLIENTS
+              </Link>
+              <Link to="/industries" className="fw-bold my-3 fs-3 nav-linkB ">
+                INDUSTRIES
+              </Link>
+              <Link to="/blog" className="fw-bold my-3 fs-3 nav-linkB ">
+                BLOG
+              </Link>
+            </div>
+            <div className="row d-inline-block my-2 fs-4 text-center mt-auto ">
+              <i className="fab fa-behance d-inline mx-2 social-icons"></i>
+              <i className="fab fa-instagram d-inline mx-2 social-icons"></i>
+              <i className="fab fa-twitter d-inline mx-2 social-icons"></i>
+            </div>
+          </div>
+        </div>
+      </div>
       <div className="">
         <nav
           class={`navbar  navbar-expand-lg navbar-light bg-transparent py-sm-4  ${navbg}`}
@@ -51,7 +113,7 @@ const NavBar2 = () => {
             </button>
             <div class="collapse navbar-collapse " id="navbarNavDropdown">
               <ul class="navbar-nav ms-auto">
-                <li class="nav-item px-2">
+                <li class="nav-item px-2 mx-2">
                   <Link
                     class={
                       window.location.hash == "#/about"
@@ -64,7 +126,7 @@ const NavBar2 = () => {
                     About Us
                   </Link>
                 </li>
-                <li class="nav-item px-2">
+                <li class="nav-item px-2 mx-2">
                   <Link
                     class={
                       window.location.hash == "#/case-study"
@@ -76,7 +138,7 @@ const NavBar2 = () => {
                     Case Studies
                   </Link>
                 </li>
-                <li class="nav-item px-2">
+                <li class="nav-item px-2 mx-2">
                   <Link
                     class={
                       window.location.hash == "#/blog" ||
@@ -84,17 +146,24 @@ const NavBar2 = () => {
                         ? "nav-link active"
                         : "nav-link"
                     }
-                    to="/blog"
-                  >
-                    Blog
-                  </Link>
-                </li>
-                <li class="nav-item ps-md-4 py-3 py-md-0">
-                  <Link
-                    class="nav-link cta px-5 py-2 text-center"
                     to="/contact"
                   >
                     Talk to us
+                  </Link>
+                </li>
+                <li class="nav-item ps-md-3  px-3 px-sm-0 py-md-0 fs-6 ">
+                  {/* <Link
+                    class=""
+                    to="/contact"
+                  >
+                    Talk to us
+                  </Link> */}
+                  <Link
+                    style={{ cursor: "pointer" }}
+                    className="nav-link "
+                    onClick={OpenNav}
+                  >
+                    Menu &#9776;
                   </Link>
                 </li>
               </ul>

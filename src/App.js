@@ -14,11 +14,13 @@ import BlogDetails from "./components/blog-details-page/blog-details";
 import Project from "./components/project-page/project";
 import Login from "./components/Dashboard/login";
 import Admin from "./components/Dashboard/admin";
+import Industries from "./components/industries-page/industries";
 
 function App() {
   return (
     <HashRouter>
       <Switch>
+        <Route exact path="/industries" component={Industries} />
         <Route exact path="/dashboard" component={Admin} />
         <Route exact path="/admin-login" component={Login} />
         <Route exact path="/project" component={Project} />

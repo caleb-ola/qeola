@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import Cta2 from "../Reusable-components/cta2";
 import "./more_clients.css";
 
 const MoreClients = () => {
@@ -42,12 +43,11 @@ const MoreClients = () => {
             />
           </div>
           <div className="col-lg-2 col-md-6  align-self-center text-center m-0 p-0">
-            <Link
-              to="/clients"
-              className="btn more-clients-btn p-0 m-0 my-2 fw-bold shadow-none"
-            >
-              See more clients <i class="fas fa-arrow-right mx-1"></i>
-            </Link>
+            <Cta2
+              path={"/clients"}
+              text={"See more clients"}
+              xclass={"fw-bold"}
+            />
           </div>
         </div>
       </div>

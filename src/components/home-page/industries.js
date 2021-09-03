@@ -1,4 +1,6 @@
+import { Link } from "react-router-dom";
 import CardIndustry from "../Reusable-components/card_industry";
+import Cta2 from "../Reusable-components/cta2";
 import "./industries.css";
 
 const Industries = () => {
@@ -9,32 +11,45 @@ const Industries = () => {
           <h1 className="fs-2 fs-sm-1 fw-bold">Industries we have served</h1>
         </div>
         <div className="row align-items-center ">
-          <div className="col-6 col-lg-3 col-md-4 px-1 p-3">
+          <div className="col-6 col-lg-3 col-md-3 px-1 p-3">
             <CardIndustry
               title={"Eduaction"}
               image={"images/Home/icons/education.png"}
             />
           </div>
-          <div className="col-6 col-lg-3 col-md-4 px-1 ">
+          <div className="col-6 col-lg-3 col-md-3 px-1 ">
             <CardIndustry
               title={"Health"}
               image={"images/Home/icons/health.png"}
             />
           </div>
-          <div className="col-6 col-lg-3 col-md-4 px-1 ">
+          <div className="col-6 col-lg-3 col-md-3 px-1 ">
             <CardIndustry
               title={"Agriculture"}
               image={"images/Home/icons/agriculture.png"}
             />
           </div>
-          <div className="col-6 col-lg-3 col-md-4 px-1 ">
+          <div className="col-6 col-lg-3 col-md-3 px-1 ">
             <CardIndustry
               title={"Startup and Venture Capital"}
               image={"images/Home/icons/startup_and_venture_capital.png"}
             />
           </div>
 
-          <div className="col-6 col-lg-3 col-md-4 px-1">
+          <div className="text-center my-3 my-md-5">
+            {/* <Link
+              to="/case-study"
+              className="btn more-clients-btn p-0 fw-bold shadow-none"
+            >
+              View more Industries <i class="fas fa-arrow-right m-2"></i>
+            </Link> */}
+            <Cta2
+              text={"View more Industries"}
+              path={"/industries"}
+              xclass={"fw-bold"}
+            />
+          </div>
+          {/* <div className="col-6 col-lg-3 col-md-4 px-1">
             <CardIndustry
               title={"Faith"}
               image={"images/Home/icons/faith.png"}
@@ -69,7 +84,7 @@ const Industries = () => {
               title={"Talent Outsourcing"}
               image={"images/Home/icons/talent_outsourcing.png"}
             />
-          </div>
+          </div> */}
 
           {/* <div className="col text-start p-3">
             {" "}

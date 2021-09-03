@@ -1,8 +1,79 @@
 /* #navbar {
   position: absolute;
 } */
+
+/* MENU OVERLAY */
+
+.over {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 5;
+  top: 0;
+  left: 0;
+  /* background-color: rgb(0, 0, 0); */
+  background-color: #fff;
+  overflow-x: hidden;
+  transition: 0.5s;
+}
+#myNav.over.visible {
+  width: 100%;
+}
+#myNav.over.hidden {
+  width: 0%;
+}
+
+.over-content {
+  position: relative;
+  top: 25%;
+  width: 100%;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.over a {
+  padding: 8px;
+  text-decoration: none;
+  font-size: 36px;
+  color: #c4c4c4;
+  display: block;
+  transition: 0.3s;
+}
+.over img.menu-img {
+  object-fit: cover;
+}
+
+.over a:hover,
+.over a:focus {
+  color: #f1f1f1;
+}
+
+.over .closebtn {
+  position: absolute;
+  top: 20px;
+  right: 45px;
+  /* font-size: 60px; */
+}
+
+div.row div.left {
+  display: none;
+}
+/* NAVBAR */
+#myNav a.nav-linkB {
+  color: #212121;
+}
+#myNav a.nav-linkB:hover {
+  color: #fe0072;
+}
+#myNav i.social-icons {
+  color: #212121bf;
+}
+#myNav i.social-icons:hover {
+  color: #212121;
+}
+
 nav {
-  z-index: 1;
+  z-index: 1 !important;
 }
 nav.navbar.active {
   background: #000103 !important;
@@ -134,5 +205,8 @@ nav div ul li a.cta:hover {
   nav div ul li a.proj.active {
     font-weight: 600;
     border-bottom: 2px solid rgb(197, 197, 197);
+  }
+  div.row div.left {
+    display: flex;
   }
 }

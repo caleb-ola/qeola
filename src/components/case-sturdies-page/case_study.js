@@ -12,7 +12,7 @@ const CaseStudy = () => {
     <div>
       <NavBar2 />
       <OtherHero
-        title={"Case Sturdies"}
+        title={"Case Studies"}
         text={"Have a feel of what we could do for you."}
       />
       <CaseSelection />

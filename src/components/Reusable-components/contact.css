@@ -5,8 +5,8 @@
 #contact input:focus {
   outline-width: 0;
 }
-#contact select option.branding:hover {
-}
+/* #contact select option.branding:hover {
+} */
 
 .contact-submit {
   background-color: #fe0072;
@@ -19,6 +19,9 @@
 
 #contact .contact-header {
   width: 90%;
+}
+#contact .contact-form {
+  width: 100%;
 }
 
 #contact .shrink {
@@ -36,8 +39,19 @@
   color: #fe0072;
   /* width: 20%; */
 }
+@media only screen and (min-width: 728px) {
+  #contact .contact-header {
+    width: 90%;
+  }
+  #contact .contact-form {
+    width: 85%;
+  }
+}
 @media only screen and (min-width: 1024px) {
   #contact .contact-header {
-    width: 70%;
+    width: 90%;
+  }
+  #contact .contact-form {
+    width: 75%;
   }
 }

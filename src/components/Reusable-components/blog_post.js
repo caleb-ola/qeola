@@ -11,7 +11,7 @@ const BlogPost = (props) => {
       }}
     >
       <div className="pb-5 mb-5">
-        <p className="fw-bold">{props.category}</p>
+        <p className="fw-bold fst-italic">{props.category}</p>
       </div>
       <div className="mt-5 pt-5 w-75">
         <h1 className="fw-bold fs-1">{props.title}</h1>

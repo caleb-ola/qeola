@@ -34,9 +34,9 @@ const Contact = (props) => {
     <section id="contact" className="py-3">
       <div className="container">
         <div className="contact-header py-3 mx-auto">
-          <h1 className="fs-2 fs-sm-1 fw-bold text-center">{props.title}</h1>
+          <h1 className="fs-2 fw-bold text-center">{props.title}</h1>
         </div>
-        <div>
+        <div className="contact-form mx-auto">
           <form>
             <div className="row pt-4 pb-2">
               <div
@@ -137,7 +137,7 @@ const Contact = (props) => {
                     Branding
                   </option>
                   <option value="UI/UX Design">UI/UX Design</option>
-                  <option value="Case Sturd">Case Sturdy</option>
+                  <option value="Case Sturd">Case Study</option>
                   <option value="Software Development">
                     Software Development
                   </option>

@@ -1,5 +1,22 @@
 #process {
-  background: #e5e5e5;
+  background: #f1f4fe8c;
+  /* height: 600px; */
+  color: #212121;
+}
+#about-section .card {
+  border-bottom: 7px solid #0839d8;
+  border-radius: 7px;
+  max-height: 17rem;
+  min-height: 17rem;
+  transition: background-color 0.5s;
+}
+#about-section .card:hover {
+  background-color: #0839d8;
+  color: #fff;
+  border-bottom: 0px solid #0839d8;
+  border-radius: 7px;
+  max-height: 17rem;
+  min-height: 17rem;
 }
 .process-header {
   width: 75%;
@@ -23,7 +40,7 @@
   .process-header {
     width: 50%;
     margin: 0;
-    margin-left: auto;
+    /* margin-left: auto; */
   }
   .media-header {
     width: 50%;

@@ -25,3 +25,13 @@ footer#footer i {
 footer#footer i:hover {
   color: #fe0072;
 }
+
+footer .subscribe input {
+  border-bottom-left-radius: 50px;
+  border-top-left-radius: 50px;
+}
+footer .subscribe button {
+  border-bottom-right-radius: 50px;
+  border-top-right-radius: 50px;
+  color: #fff;
+}

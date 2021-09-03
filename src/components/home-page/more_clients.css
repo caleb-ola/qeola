@@ -2,5 +2,49 @@
   color: #fe0072;
 }
 .more-clients-btn:hover {
-  color: #c00358;
+  color: #ee0080;
+}
+a i.animate {
+  /* width: 100px; */
+  /* height: 100px; */
+  /* background-color: red; */
+  position: relative;
+  animation-name: example;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+}
+a i.animateA {
+  /* width: 100px; */
+  /* height: 100px; */
+  /* background-color: red; */
+  position: relative;
+  animation-name: exampleA;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+}
+@keyframes example {
+  0% {
+    /* background-color: red; */
+    left: 6px;
+    top: 0px;
+  }
+
+  100% {
+    /* background-color: red; */
+    left: 6px;
+    top: 0px;
+  }
+}
+@keyframes exampleA {
+  0% {
+    /* background-color: red; */
+    right: 6px;
+    top: 0px;
+  }
+
+  100% {
+    /* background-color: red; */
+    right: 6px;
+    top: 0px;
+  }
 }

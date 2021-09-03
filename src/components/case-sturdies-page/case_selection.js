@@ -12,35 +12,35 @@ const CaseSelection = () => {
   });
   const [sturdies, setSturdies] = useState(
     <div>
-      <ProjectRow
+      <ProjectRow2
         title={"Eridan"}
         content={
           "Eridan is a unique venture-building company located in Lagos."
         }
         image={"images/Case-study/eridan.jpg"}
       />
-      <ProjectRow2
+      <ProjectRow
         title={"Trifold App"}
         content={
           "Trifold is an all-encompassing marriage app that gives curated faith-based answers to prevailing issues."
         }
         image={"images/Case-study/trifold.jpg"}
       />
-      <ProjectRow
+      <ProjectRow2
         title={"The Soul Clinic"}
         content={
           "The Soul Clinic is a company created to serve as a funnel for emotional health and mental rejuvenation."
         }
         image={"images/Case-study/tsc.jpg"}
       />
-      <ProjectRow2
+      <ProjectRow
         title={"Challengerec"}
         content={
           "ChallengeRec: Creating an Online Presence for a FinTech Recruitment Agency"
         }
         image={"images/Case-study/challengerec.jpg"}
       />
-      <ProjectRow
+      <ProjectRow2
         title={"R.O's Branding"}
         content={
           "Remi Odunsi is a Nigerian Social Entrepreneur and Philanthropist, with business interests in the FMCG, Financial Services (banking and insurance), and automobile sectors."
@@ -60,35 +60,35 @@ const CaseSelection = () => {
     });
     setSturdies(
       <div>
-        <ProjectRow
+        <ProjectRow2
           title={"Eridan"}
           content={
             "Eridan is a unique venture-building company located in Lagos."
           }
           image={"images/Case-study/eridan.jpg"}
         />
-        <ProjectRow2
+        <ProjectRow
           title={"Trifold App"}
           content={
             "Trifold is an all-encompassing marriage app that gives curated faith-based answers to prevailing issues."
           }
           image={"images/Case-study/trifold.jpg"}
         />
-        <ProjectRow
+        <ProjectRow2
           title={"The Soul Clinic"}
           content={
             "The Soul Clinic is a company created to serve as a funnel for emotional health and mental rejuvenation."
           }
           image={"images/Case-study/tsc.jpg"}
         />
-        <ProjectRow2
+        <ProjectRow
           title={"Challengerec"}
           content={
             "ChallengeRec: Creating an Online Presence for a FinTech Recruitment Agency"
           }
           image={"images/Case-study/challengerec.jpg"}
         />
-        <ProjectRow
+        <ProjectRow2
           title={"R.O's Branding"}
           content={
             "Remi Odunsi is a Nigerian Social Entrepreneur and Philanthropist, with business interests in the FMCG, Financial Services (banking and insurance), and automobile sectors."
@@ -109,7 +109,7 @@ const CaseSelection = () => {
     });
     setSturdies(
       <div>
-        <ProjectRow
+        <ProjectRow2
           title={"Eridan"}
           content={
             "Eridan is a unique venture-building company located in Lagos."
@@ -117,7 +117,7 @@ const CaseSelection = () => {
           image={"images/Case-study/eridan.jpg"}
         />
 
-        <ProjectRow2
+        <ProjectRow
           title={"R.O's Branding"}
           content={
             "Remi Odunsi is a Nigerian Social Entrepreneur and Philanthropist, with business interests in the FMCG, Financial Services (banking and insurance), and automobile sectors."
@@ -138,21 +138,21 @@ const CaseSelection = () => {
     });
     setSturdies(
       <div>
-        <ProjectRow2
+        <ProjectRow
           title={"Trifold App"}
           content={
             "Trifold is an all-encompassing marriage app that gives curated faith-based answers to prevailing issues."
           }
           image={"images/Case-study/trifold.jpg"}
         />
-        <ProjectRow
+        <ProjectRow2
           title={"The Soul Clinic"}
           content={
             "The Soul Clinic is a company created to serve as a funnel for emotional health and mental rejuvenation."
           }
           image={"images/Case-study/tsc.jpg"}
         />
-        <ProjectRow2
+        <ProjectRow
           title={"Challengerec"}
           content={
             "ChallengeRec: Creating an Online Presence for a FinTech Recruitment Agency"
@@ -173,7 +173,7 @@ const CaseSelection = () => {
     });
     setSturdies(
       <div>
-        <ProjectRow2
+        <ProjectRow
           title={"Trifold App"}
           content={
             "Trifold is an all-encompassing marriage app that gives curated faith-based answers to prevailing issues."
@@ -194,21 +194,21 @@ const CaseSelection = () => {
     });
     setSturdies(
       <div>
-        <ProjectRow
+        <ProjectRow2
           title={"Trifold App"}
           content={
             "Trifold is an all-encompassing marriage app that gives curated faith-based answers to prevailing issues."
           }
           image={"images/Case-study/trifold.jpg"}
         />
-        <ProjectRow2
+        <ProjectRow
           title={"The Soul Clinic"}
           content={
             "The Soul Clinic is a company created to serve as a funnel for emotional health and mental rejuvenation."
           }
           image={"images/Case-study/tsc.jpg"}
         />
-        <ProjectRow
+        <ProjectRow2
           title={"R.O's Branding"}
           content={
             "Remi Odunsi is a Nigerian Social Entrepreneur and Philanthropist, with business interests in the FMCG, Financial Services (banking and insurance), and automobile sectors."

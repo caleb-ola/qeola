@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import Cta2 from "./cta2";
 import "./project_row.css";
 
 const ProjectRow2 = (props) => {
@@ -24,12 +25,13 @@ const ProjectRow2 = (props) => {
               {props.title}
             </h2>
             <p className="card-text">{props.content}</p>
-            <Link
+            {/* <Link
               to="/project"
               className="btn more-clients-btn shadow-none p-0 text-decoration-none"
             >
               See Project <i class="fas fa-arrow-right m-2"></i>
-            </Link>
+            </Link> */}
+            <Cta2 xclass={"fw-bold"} text={"See Project"} path={"/project"} />
           </div>
         </div>
       </div>
