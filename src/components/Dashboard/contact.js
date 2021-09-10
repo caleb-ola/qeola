@@ -1,10 +1,9 @@
-import { useEffect, useState } from "react";
 import axios from "axios";
+import { useState } from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-// import "./contact.css";
+import "./contact.css";
 
-const DashContact = (props) => {
+const Contact = (props) => {
   const [shrink, setShrink] = useState({
     mail: "",
     name: "",
@@ -12,17 +11,16 @@ const DashContact = (props) => {
     proj: "",
     brief: "",
   });
-  const [name, setName] = useState();
-  const [category, setCategory] = useState();
-  const [image, setImage] = useState();
-  const [cat, setCat] = useState();
-  const [catId, setCatId] = useState();
-  const [dataForm, setDataForm] = useState();
 
+  const ShrinkMail = () => {
+    setShrink({ mail: "shrink", name: "", Num: "", proj: "", brief: "" });
+  };
   const ShrinkName = () => {
     setShrink({ mail: "", name: "shrink", Num: "", proj: "", brief: "" });
   };
-
+  const ShrinkNum = () => {
+    setShrink({ mail: "", name: "", Num: "shrink", proj: "", brief: "" });
+  };
   const ShrinkProj = () => {
     setShrink({ mail: "", name: "", Num: "", proj: "shrink", brief: "" });
   };
@@ -34,56 +32,19 @@ const DashContact = (props) => {
     setShrink("");
   };
 
+  const [brief, setBrief] = useState();
+  const [name, setName] = useState();
+  const [category, setCategory] = useState();
+  const [email, setEmail] = useState();
+  const [phone, setPhone] = useState();
+  const [briefTxt, setBriefTxt] = useState();
+  const [cat, setCat] = useState();
   let token = "";
   const Tokena = useSelector((state) => state.output);
   if (Tokena) {
     token = Tokena.token;
   }
 
-  const config = {
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "Content-Type": "multipart/form-data",
-    },
-  };
-
-  const Submit = (e) => {
-    e.preventDefault();
-
-    let formData = new FormData();
-    formData.append("image", image);
-    formData.append("name", name);
-    formData.append("category", category);
-
-    // setDataForm(formData);
-    // console.log(formData.keys());
-
-    axios
-      .post(
-        "https://qeola-api.herokuapp.com/api/v1/clients",
-        {
-          formData,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      )
-      .then(
-        (response) => {
-          console.log(response);
-        },
-        (error) => {
-          console.log(error);
-          console.log(error.response.data);
-          console.log(error.response.status);
-          console.log(error.response.headers);
-        }
-      );
-  };
-  console.log(image, name, category);
   const Options = () => {
     axios.get("https://qeola-api.herokuapp.com/api/v1/categories").then(
       (response) => {
@@ -105,17 +66,73 @@ const DashContact = (props) => {
       }
     );
   };
-  useEffect(() => {});
-  // Options();
+  console.log({ brief, name, category, email, phone, briefTxt });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    let formData = new FormData();
+    formData.append("briefFile", brief);
+    formData.append("name", name);
+    formData.append("category", category);
+    formData.append("email", email);
+    formData.append("phone", phone);
+    formData.append("briefText", briefTxt);
+
+    axios
+      .post(
+        "https://qeola-api.herokuapp.com/api/v1/briefs",
+        { formData },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      )
+      .then(
+        (response) => {
+          console.log(response);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+  };
+
   return (
     <section id="contact" className="py-3">
       <div className="container">
         <div className="contact-header py-3 mx-auto">
-          <h1 className="fs-2 fs-sm-1 fw-bold text-center">{props.title}</h1>
+          <h1 className="fs-2 fw-bold text-center">{props.title}</h1>
         </div>
-        <div>
-          <form onSubmit={Submit}>
+        <div className="contact-form mx-auto">
+          <form onSubmit={handleSubmit}>
             <div className="row pt-4 pb-2">
+              <div
+                className={`col-12 col-md-6 my-3`}
+                onFocus={ShrinkMail}
+                onBlur={Enlarge}
+              >
+                <label
+                  for="email"
+                  className={
+                    shrink.mail == "shrink"
+                      ? `fs-6 fw-bold ${shrink.mail}`
+                      : `fs-6 fw-bold `
+                  }
+                >
+                  Email Address*
+                </label>
+                <br />
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="youremail@domain.com"
+                  className="w-100 p-2 my-1 border-0 border-2 border-bottom"
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
               <div
                 className="col-12 col-md-6 my-3"
                 onFocus={ShrinkName}
@@ -129,18 +146,42 @@ const DashContact = (props) => {
                       : `fs-6 fw-bold`
                   }
                 >
-                  Client Name*
+                  Name*
                 </label>
                 <br />
                 <input
                   type="name"
                   name="name"
-                  placeholder="Name of the client you want to add"
+                  placeholder="Chukuema Adekunle"
                   className="w-100 p-2 my-1 border-0 border-2 border-bottom"
                   onChange={(e) => setName(e.target.value)}
                 />
               </div>
 
+              <div
+                className="col-12 col-md-6 my-3"
+                onFocus={ShrinkNum}
+                onBlur={Enlarge}
+              >
+                <label
+                  for="number"
+                  className={
+                    shrink.Num == "shrink"
+                      ? `fs-6 fw-bold ${shrink.Num}`
+                      : `fs-6 fw-bold`
+                  }
+                >
+                  Phone Number*
+                </label>
+                <br />
+                <input
+                  type="text"
+                  name="text"
+                  placeholder="0801 234 5678"
+                  className="w-100 p-2 my-1 border-0 border-2 border-bottom"
+                  onChange={(e) => setPhone(e.target.value)}
+                />
+              </div>
               <div
                 className="col-12 col-md-6 my-3"
                 onFocus={ShrinkProj}
@@ -154,28 +195,20 @@ const DashContact = (props) => {
                       : `fs-6 fw-bold`
                   }
                 >
-                  Category
+                  Project Type*
                 </label>
                 <br />
                 <select
                   id="project-type"
                   name="project-type"
                   className="w-100 p-2 my-2 border-0 border-2 border-bottom"
-                  onChange={(e) => setCategory(e.target.value)}
                   onClick={Options}
+                  onChange={(e) => setCategory(e.target.value)}
                 >
                   <option value="" disabled selected className="primary">
                     Make your selection
                   </option>
                   {cat}
-                  {/* <option value="Branding" className="branding">
-                    Branding
-                  </option>
-                  <option value="UI/UX Design">UI/UX Design</option>
-                  <option value="Case Sturd">Case Sturdy</option>
-                  <option value="Software Development">
-                    Software Development
-                  </option> */}
                 </select>
               </div>
 
@@ -192,7 +225,7 @@ const DashContact = (props) => {
                       : `fs-6 fw-bold `
                   }
                 >
-                  Client Logo{" "}
+                  Project Brief*
                 </label>
                 <br />
                 <div className="input-group my-1">
@@ -200,9 +233,9 @@ const DashContact = (props) => {
                     type="text"
                     id="project-brief"
                     className="form-control rounded-0"
-                    placeholder={`Attach the client's logo here `}
+                    placeholder={`Tell us about your project, the more details the better or attach a file containing your brief`}
                     aria-label="Text input with attach button "
-                    onChange={(e) => setImage(e.target.value)}
+                    onChange={(e) => setBriefTxt(e.target.value)}
                   />
                   <button
                     type="button"
@@ -216,19 +249,19 @@ const DashContact = (props) => {
                         type="file"
                         name="myfile"
                         style={{ display: "none" }}
-                        onChange={(e) => setImage(e.target.value)}
+                        onChange={(e) => setBrief(e.target.value)}
                       />
                     </label>
                   </button>
                 </div>
               </div>
 
-              <div className="col-12 col-md-12 my-2 text-center">
+              <div className="col-12 col-md-12 my-2">
                 <button
                   type="submit"
-                  className="contact-submit shadow-none btn rounded-pill py-3 my-4 w-50 fw-bold"
+                  className="contact-submit shadow-none btn rounded-pill py-3 my-4 w-100"
                 >
-                  Post
+                  Send us a brief
                 </button>
               </div>
             </div>
@@ -239,4 +272,4 @@ const DashContact = (props) => {
   );
 };
 
-export default DashContact;
+export default Contact;

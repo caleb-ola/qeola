@@ -15,7 +15,7 @@ const Main = () => {
   //   console.log(briefs);
   const Main = useSelector((state) => state.mainState);
 
-  console.log(Main);
+  // console.log(Main);
   return <div>{Main}</div>;
 };
 

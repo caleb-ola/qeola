@@ -1,13 +1,41 @@
+import axios from "axios";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { bindActionCreators } from "redux";
 import { actionCreators } from "../../state";
+import propTypes from "prop-types";
 
-const Aside = () => {
+const Aside = ({ setToken }) => {
   const dispatch = useDispatch();
-  const { mainWelcome, welcome, briefing, caseStudy, client, industry, media } =
-    bindActionCreators(actionCreators, dispatch);
+  const {
+    mainWelcome,
+    welcome,
+    briefing,
+    caseStudy,
+    client,
+    industry,
+    media,
+    category,
+    Logout,
+  } = bindActionCreators(actionCreators, dispatch);
+
+  const cred = useSelector((state) => state.output);
+
+  const handleLogout = (e) => {
+    e.preventDefault();
+    Logout();
+    // return cred.logout.data.status === "success" && setToken();
+    // axios.post("https://qeola-api.herokuapp.com/api/v1/auth/logout").then(
+    //   (response) => {
+    //     console.log(response);
+    //     setToken();
+    //   },
+    //   (error) => {
+    //     console.log(error);
+    //   }
+    // );
+  };
 
   const [active, setActive] = useState({
     blog: "",
@@ -16,6 +44,7 @@ const Aside = () => {
     client: "",
     industry: "",
     media: "",
+    category: "",
   });
 
   const activeBlog = () => {
@@ -26,6 +55,7 @@ const Aside = () => {
       client: "",
       industry: "",
       media: "",
+      category: "",
     });
     mainWelcome();
   };
@@ -38,6 +68,7 @@ const Aside = () => {
       client: "",
       industry: "",
       media: "",
+      category: "",
     });
     briefing();
   };
@@ -50,6 +81,7 @@ const Aside = () => {
       client: "",
       industry: "",
       media: "",
+      category: "",
     });
     caseStudy();
   };
@@ -62,6 +94,7 @@ const Aside = () => {
       client: "active",
       industry: "",
       media: "",
+      category: "",
     });
     client();
   };
@@ -74,6 +107,7 @@ const Aside = () => {
       client: "",
       industry: "active",
       media: "",
+      category: "",
     });
     industry();
   };
@@ -86,12 +120,25 @@ const Aside = () => {
       client: "",
       industry: "",
       media: "active",
+      category: "",
     });
     media();
   };
+  const activeCategory = () => {
+    setActive({
+      blog: "",
+      brief: "",
+      case: "",
+      client: "",
+      industry: "",
+      media: "",
+      category: "active",
+    });
+    category();
+  };
 
   return (
-    <aside className="m-0 ">
+    <aside className="m-0 position-fixed">
       <div
         className="d-flex flex-column align-items-center mb-auto py-2"
         style={{ height: "100vh" }}
@@ -155,7 +202,7 @@ const Aside = () => {
           }
           onClick={activeIndustry}
         >
-          <i class="fas fa-industry me-2 p-0 ms-0"></i>Industry
+          <i class="fas fa-industry me-2 p-0 ms-0"></i>Users
         </a>
         <a
           className={
@@ -167,9 +214,20 @@ const Aside = () => {
         >
           <i class="fas fa-medal me-2 p-0 ms-0"></i>Media mentions
         </a>
+        <a
+          className={
+            active
+              ? `btn dash-btn  d-flex align-items-center w-100 rounded-0 ${active.category}`
+              : "btn dash-btn  d-flex align-items-center w-100 rounded-0"
+          }
+          onClick={activeCategory}
+        >
+          <i class="fas fa-medal me-2 p-0 ms-0"></i>Category
+        </a>
         <Link
           to="/"
           className="btn mt-auto logout-btn align-self-start d-flex align-items-center w-100 rounded-0 d-flex align-items-center fw-bold text-decoration-none shadow-none"
+          onClick={handleLogout}
         >
           <i class="material-icons me-2 p-0 ms-0">logout</i> Logout
         </Link>
@@ -177,5 +235,8 @@ const Aside = () => {
     </aside>
   );
 };
+// Aside.propTypes = {
+//   setToken: propTypes.func.isRequired,
+// };
 
 export default Aside;

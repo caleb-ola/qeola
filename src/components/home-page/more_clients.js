@@ -1,8 +1,23 @@
-import { Link } from "react-router-dom";
 import Cta2 from "../Reusable-components/cta2";
 import "./more_clients.css";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 const MoreClients = () => {
+  const [client, setClient] = useState();
+  const [appState, setAppState] = useState();
+
+  useEffect(() => {
+    setAppState({ loading: true, clients: "" });
+
+    const url = "https://qeola-api.herokuapp.com/api/v1/clients?page=1&limit=5";
+
+    axios.get(url).then((clients) => {
+      const Allclients = clients.data;
+      setAppState({ loading: false, clients: Allclients });
+      console.log(Allclients);
+    });
+  }, [setAppState]);
   return (
     <section id="more-clients" className="my-4">
       <div className="container">

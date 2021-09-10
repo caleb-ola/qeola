@@ -1,0 +1,57 @@
+#contact input {
+  border-bottom: 2px solid;
+}
+#contact select:focus,
+#contact input:focus {
+  outline-width: 0;
+}
+/* #contact select option.branding:hover {
+} */
+
+.contact-submit {
+  background-color: #fe0072;
+  color: #fff;
+}
+.contact-submit:hover {
+  background-color: #ce055f;
+  color: #fff;
+}
+
+#contact .contact-header {
+  width: 90%;
+}
+#contact .contact-form {
+  width: 100%;
+}
+
+#contact .shrink {
+  transform: scale(0.9);
+}
+.form-control:focus {
+  box-shadow: none !important;
+}
+.input-group input.form-control,
+.input-group button {
+  border: 0;
+  border-bottom: 2px solid #dbdbdb !important;
+}
+.attach-btn:hover {
+  color: #fe0072;
+  /* width: 20%; */
+}
+@media only screen and (min-width: 728px) {
+  #contact .contact-header {
+    width: 90%;
+  }
+  #contact .contact-form {
+    width: 85%;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  #contact .contact-header {
+    width: 90%;
+  }
+  #contact .contact-form {
+    width: 75%;
+  }
+}

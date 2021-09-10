@@ -1,8 +1,9 @@
-import axios from "axios";
 import { useState } from "react";
 // import "./contact.css";
+import axios from "axios";
+import { useSelector } from "react-redux";
 
-const DashContact2 = (props) => {
+const DashContact3 = (props) => {
   const [shrink, setShrink] = useState({
     mail: "",
     name: "",
@@ -10,52 +11,7 @@ const DashContact2 = (props) => {
     proj: "",
     brief: "",
   });
-  const [email, setEmail] = useState();
-  const [Output, setOutput] = useState();
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    axios
-      .post(`https://qeola-api.herokuapp.com/api/v1/users/get-user`, { email })
-      .then(
-        (response) => {
-          console.log(response);
-          const data = response.data.data;
-          setOutput(
-            response && (
-              <div>
-                <table>
-                  <tr>
-                    <th>S/N</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Date Registered</th>
-                  </tr>
-                  <tr>
-                    <td>1</td>
-                    <td>{data.name}</td>
-                    <td>{data.email}</td>
-                    <td>{data.createdAt}</td>
-                  </tr>
-                </table>
-              </div>
-            )
-          );
-        },
-        (error) => {
-          console.log(error);
-          setOutput(
-            error && (
-              <div className="text-center">
-                <h3 className="fw-bold">
-                  USER NOT FOUND, PLEASE ENSURE THE EMAIL IS CORRECT, THANK YOU.
-                </h3>
-              </div>
-            )
-          );
-        }
-      );
-  };
+  const [name, setName] = useState();
 
   const ShrinkName = () => {
     setShrink({ mail: "", name: "shrink", Num: "", proj: "", brief: "" });
@@ -63,6 +19,28 @@ const DashContact2 = (props) => {
 
   const Enlarge = () => {
     setShrink("");
+  };
+
+  let token = "";
+  const Tokena = useSelector((state) => state.output);
+  if (Tokena) {
+    token = Tokena.token;
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios
+      .post(
+        "https://qeola-api.herokuapp.com/api/v1/categories",
+        { name },
+        { headers: { Authorization: `Bearer ${token}` } }
+      )
+      .then(
+        (response) => {
+          console.log(response);
+        },
+        (error) => console.log(error)
+      );
   };
 
   return (
@@ -87,16 +65,15 @@ const DashContact2 = (props) => {
                       : `fs-6 fw-bold`
                   }
                 >
-                  {props.email}
+                  {props.name}
                 </label>
                 <br />
                 <input
-                  type="email"
-                  name="email"
-                  placeholder="Enter the user's email "
+                  type="name"
+                  name="name"
+                  placeholder="Name of the category you want to add"
                   className="w-100 p-2 my-1 border-0 border-2 border-bottom"
-                  required
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={(e) => setName(e.target.value)}
                 />
               </div>
 
@@ -108,7 +85,6 @@ const DashContact2 = (props) => {
                   {props.btn}
                 </button>
               </div>
-              <div className="col-12 col-md-12 my-2 text-center">{Output}</div>
             </div>
           </form>
         </div>
@@ -117,4 +93,4 @@ const DashContact2 = (props) => {
   );
 };
 
-export default DashContact2;
+export default DashContact3;

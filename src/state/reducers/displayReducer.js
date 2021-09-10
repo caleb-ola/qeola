@@ -1,16 +1,10 @@
-import MainSpace from "../../components/Dashboard/mainSpace";
-import Output from "../../components/Dashboard/output";
-
-const displayReducer = (state = "", action) => {
+const displayReducer = (state = null, action) => {
   switch (action.type) {
-    // case "SHOW_BLOGS":
-    //   return (
-    //     <MainSpace
-    //       texta={"Edit/ show blogs"}
-    //       textb={"Add new blog"}
-    //       output={<Output />}
-    //     />
-    //   );
+    case "LOGIN":
+      return { ...state, login: action.payload, token: action.token };
+    case "LOGOUT":
+      return { ...state, logout: action.payload, token: action.token };
+
     default:
       return state;
   }

@@ -15,13 +15,32 @@ import Project from "./components/project-page/project";
 import Login from "./components/Dashboard/login";
 import Admin from "./components/Dashboard/admin";
 import Industries from "./components/industries-page/industries";
+import { useState } from "react";
+import Register from "./components/Dashboard/register";
+import { useSelector } from "react-redux";
 
 function App() {
+  // const [Token, setToken] = useState();
+  const Tokenizer = useSelector((state) => state.output);
+
+  let Token = "";
+  if (Tokenizer) {
+    Token = Tokenizer.token;
+  }
+  // else if ((Tokenizer.logout.data.status = "success")) {
+  //   Token = false;
+  // }
+  // setToken(Tokenizer);
+
+  console.log(Tokenizer);
+
   return (
     <HashRouter>
       <Switch>
+        <Route path="/dashboard">{!Token ? <Login /> : <Admin />}</Route>
+        <Route export path="/register" component={Register} />
         <Route exact path="/industries" component={Industries} />
-        <Route exact path="/dashboard" component={Admin} />
+        {/* <Route exact path="/dashboard" component={Admin} /> */}
         <Route exact path="/admin-login" component={Login} />
         <Route exact path="/project" component={Project} />
         <Route exact path="/blog-details" component={BlogDetails} />

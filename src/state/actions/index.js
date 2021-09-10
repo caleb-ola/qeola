@@ -1,4 +1,5 @@
 // import Admin from "../../components/Dashboard/admin";
+import axios from "axios";
 
 export const allWorks = () => {
   return (dispatch) => {
@@ -26,6 +27,14 @@ export const mainWelcome = () => {
 };
 export const welcome = () => {
   return (dispatch) => {
+    // const api = axios.get("https://qeola-api.herokuapp.com/api/v1/users").then(
+    //   (response) => {
+    //     console.log(response);
+    //   },
+    //   (error) => {
+    //     console.log(error);
+    //   }
+    // );
     dispatch({
       type: "WELCOME",
       payload: "",
@@ -70,6 +79,40 @@ export const media = () => {
       type: "MEDIA",
       payload: "",
     });
+  };
+};
+export const category = () => {
+  return (dispatch) => {
+    dispatch({
+      type: "CATEGORY",
+      payload: "",
+    });
+  };
+};
+
+export const addCategory = () => {
+  return (dispatch) => {
+    dispatch({
+      type: "ADD_CATEGORY",
+      payload: "",
+    });
+  };
+};
+export const showCategories = (func) => {
+  return (dispatch) => {
+    axios.get("https://qeola-api.herokuapp.com/api/v1/categories").then(
+      (response) => {
+        console.log(response);
+        dispatch({
+          type: "SHOW_CATEGORIES",
+          payload: response,
+          func: func,
+        });
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   };
 };
 
@@ -135,10 +178,12 @@ export const showClients = () => {
 };
 
 export const addClient = () => {
+  const url = "https://qeola-api.herokuapp.com/api/v1/clients?page=1&limit=5";
+
   return (dispatch) => {
     dispatch({
       type: "ADD_CLIENT",
-      payload: "",
+      payload: url,
     });
   };
 };
@@ -178,3 +223,60 @@ export const addMedia = () => {
     });
   };
 };
+
+export const Login = (email, password) => {
+  return (dispatch) => {
+    axios
+      .post("https://qeola-api.herokuapp.com/api/v1/auth/login", {
+        email: email,
+        password: password,
+      })
+      .then(
+        (response) => {
+          console.log(response);
+          if (response) {
+            dispatch({
+              type: "LOGIN",
+              payload: response,
+              token: response.data.token,
+            });
+          }
+        },
+        (error) => {
+          console.log(error);
+          dispatch({
+            type: "LOGIN",
+            payload: error,
+          });
+        }
+      );
+  };
+};
+
+export const Logout = () => {
+  return (dispatch) => {
+    axios.post("https://qeola-api.herokuapp.com/api/v1/auth/logout").then(
+      (response) => {
+        console.log(response);
+        dispatch({
+          type: "LOGOUT",
+          payload: response,
+          token: false,
+        });
+      },
+      (error) => {
+        console.log(error);
+        dispatch({
+          type: "LOGOUT",
+          payload: error,
+        });
+      }
+    );
+  };
+};
+
+// export const Token = () => {
+//   return (dispatch) => {
+//     axios.post;
+//   };
+// };

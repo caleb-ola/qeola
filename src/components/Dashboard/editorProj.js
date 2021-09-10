@@ -1,10 +1,13 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { Editor } from "react-draft-wysiwyg";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import draftToHtml from "draftjs-to-html";
+// import htmlToDraft from "html-to-draftjs";
+import { EditorState, convertToRaw } from "draft-js";
 import axios from "axios";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-// import "./contact.css";
 
-const DashContact = (props) => {
+const EditorProj = (props) => {
   const [shrink, setShrink] = useState({
     mail: "",
     name: "",
@@ -12,12 +15,13 @@ const DashContact = (props) => {
     proj: "",
     brief: "",
   });
-  const [name, setName] = useState();
+  const [author, setAuthor] = useState();
+  const [title, setTitle] = useState();
   const [category, setCategory] = useState();
   const [image, setImage] = useState();
   const [cat, setCat] = useState();
   const [catId, setCatId] = useState();
-  const [dataForm, setDataForm] = useState();
+  const [editorContent, setEditorContent] = useState();
 
   const ShrinkName = () => {
     setShrink({ mail: "", name: "shrink", Num: "", proj: "", brief: "" });
@@ -34,56 +38,12 @@ const DashContact = (props) => {
     setShrink("");
   };
 
-  let token = "";
-  const Tokena = useSelector((state) => state.output);
-  if (Tokena) {
-    token = Tokena.token;
-  }
-
-  const config = {
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "Content-Type": "multipart/form-data",
-    },
+  const [editorState, setEditorState] = useState(EditorState.createEmpty());
+  const onEditorStateChange = (editorState) => {
+    setEditorState(editorState);
   };
-
-  const Submit = (e) => {
-    e.preventDefault();
-
-    let formData = new FormData();
-    formData.append("image", image);
-    formData.append("name", name);
-    formData.append("category", category);
-
-    // setDataForm(formData);
-    // console.log(formData.keys());
-
-    axios
-      .post(
-        "https://qeola-api.herokuapp.com/api/v1/clients",
-        {
-          formData,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      )
-      .then(
-        (response) => {
-          console.log(response);
-        },
-        (error) => {
-          console.log(error);
-          console.log(error.response.data);
-          console.log(error.response.status);
-          console.log(error.response.headers);
-        }
-      );
-  };
-  console.log(image, name, category);
+  // const editorCont = editorState.getCurrentContent().getPlainText();
+  const content = draftToHtml(convertToRaw(editorState.getCurrentContent()));
   const Options = () => {
     axios.get("https://qeola-api.herokuapp.com/api/v1/categories").then(
       (response) => {
@@ -105,16 +65,50 @@ const DashContact = (props) => {
       }
     );
   };
-  useEffect(() => {});
-  // Options();
+  console.log(author, title, category, image, content);
+  let token = "";
+  const Tokena = useSelector((state) => state.output);
+  if (Tokena) {
+    token = Tokena.token;
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("image", image);
+    formData.append("title", title);
+    formData.append("content", content);
+    formData.append("category", category);
+    formData.append("author", author);
+
+    // console.log(JSON.stringify(formData));
+    axios
+      .post(
+        "https://qeola-api.herokuapp.com/api/v1/projects",
+        {
+          formData,
+        },
+        {
+          headers: {
+            Authorization: `Bearers ${token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      )
+      .then(
+        (response) => {
+          console.log(response);
+        },
+        (error) => console.log(error)
+      );
+  };
   return (
-    <section id="contact" className="py-3">
-      <div className="container">
-        <div className="contact-header py-3 mx-auto">
-          <h1 className="fs-2 fs-sm-1 fw-bold text-center">{props.title}</h1>
-        </div>
-        <div>
-          <form onSubmit={Submit}>
+    <main className="P-5">
+      <div className="p-5 py-3">
+        <div className="row justify-content-center mb-4">
+          <h3 className="text-center fw-bold">{props.title}</h3>
+
+          <form onSubmit={handleSubmit}>
             <div className="row pt-4 pb-2">
               <div
                 className="col-12 col-md-6 my-3"
@@ -129,15 +123,15 @@ const DashContact = (props) => {
                       : `fs-6 fw-bold`
                   }
                 >
-                  Client Name*
+                  Description*
                 </label>
                 <br />
                 <input
                   type="name"
                   name="name"
-                  placeholder="Name of the client you want to add"
+                  placeholder="Brief description of project"
                   className="w-100 p-2 my-1 border-0 border-2 border-bottom"
-                  onChange={(e) => setName(e.target.value)}
+                  onChange={(e) => setAuthor(e.target.value)}
                 />
               </div>
 
@@ -168,17 +162,32 @@ const DashContact = (props) => {
                     Make your selection
                   </option>
                   {cat}
-                  {/* <option value="Branding" className="branding">
-                    Branding
-                  </option>
-                  <option value="UI/UX Design">UI/UX Design</option>
-                  <option value="Case Sturd">Case Sturdy</option>
-                  <option value="Software Development">
-                    Software Development
-                  </option> */}
                 </select>
               </div>
-
+              <div
+                className="col-12 my-3"
+                onFocus={ShrinkName}
+                onBlur={Enlarge}
+              >
+                <label
+                  for="name"
+                  className={
+                    shrink.name == "shrink"
+                      ? `fs-6 fw-bold ${shrink.name}`
+                      : `fs-6 fw-bold`
+                  }
+                >
+                  Title*
+                </label>
+                <br />
+                <input
+                  type="name"
+                  name="name"
+                  placeholder="Title of the project"
+                  className="w-100 p-2 my-1 border-0 border-2 border-bottom"
+                  onChange={(e) => setTitle(e.target.value)}
+                />
+              </div>
               <div
                 className="col-12 col-md-12 my-3"
                 onFocus={ShrinkBrief}
@@ -192,7 +201,7 @@ const DashContact = (props) => {
                       : `fs-6 fw-bold `
                   }
                 >
-                  Client Logo{" "}
+                  Image
                 </label>
                 <br />
                 <div className="input-group my-1">
@@ -200,9 +209,10 @@ const DashContact = (props) => {
                     type="text"
                     id="project-brief"
                     className="form-control rounded-0"
-                    placeholder={`Attach the client's logo here `}
+                    placeholder={`Attach the cover Image here`}
                     aria-label="Text input with attach button "
                     onChange={(e) => setImage(e.target.value)}
+                    disabled
                   />
                   <button
                     type="button"
@@ -222,21 +232,31 @@ const DashContact = (props) => {
                   </button>
                 </div>
               </div>
+            </div>
+            <div>
+              <Editor
+                editorState={editorState}
+                toolbarClassName="toolbarClassName"
+                wrapperClassName="wrapperClassName"
+                editorClassName="editorClassName"
+                onEditorStateChange={onEditorStateChange}
+              />
+            </div>
 
-              <div className="col-12 col-md-12 my-2 text-center">
-                <button
-                  type="submit"
-                  className="contact-submit shadow-none btn rounded-pill py-3 my-4 w-50 fw-bold"
-                >
-                  Post
-                </button>
-              </div>
+            <div className="col-12 col-md-12 my-2 text-center">
+              <button
+                type="submit"
+                className="contact-submit shadow-none btn rounded-pill py-3 my-4 w-50 fw-bold"
+              >
+                SUBMIT PROJECT
+              </button>
             </div>
           </form>
         </div>
+        {/* {props.output} */}
       </div>
-    </section>
+    </main>
   );
 };
 
-export default DashContact;
+export default EditorProj;
