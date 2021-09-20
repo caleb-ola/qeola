@@ -8,21 +8,42 @@ const MoreClients = () => {
   const [appState, setAppState] = useState();
 
   useEffect(() => {
-    setAppState({ loading: true, clients: "" });
-
     const url = "https://qeola-api.herokuapp.com/api/v1/clients?page=1&limit=5";
 
-    axios.get(url).then((clients) => {
-      const Allclients = clients.data;
-      setAppState({ loading: false, clients: Allclients });
-      console.log(Allclients);
-    });
-  }, [setAppState]);
+    axios.get(url).then(
+      (response) => {
+        console.log(response);
+
+        setClient(
+          response &&
+            response.data.data.map((item, i) => {
+              return (
+                <div
+                  key={item._id}
+                  className="col-6 col-lg-2 col-md-3  align-self-center text-center px-5 px-md-4 py-4"
+                >
+                  <img
+                    src={item.image}
+                    alt="client's brand logo"
+                    className="img-fluid w-75"
+                  />
+                </div>
+              );
+            })
+        );
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }, []);
   return (
     <section id="more-clients" className="my-4">
       <div className="container">
         <div className="row py-2 align-content-center justify-content-center">
-          <div className="col-6 col-lg-2 col-md-3  align-self-center text-center px-5 px-md-4 py-4">
+          {appState}
+          {client}
+          {/* <div className="col-6 col-lg-2 col-md-3  align-self-center text-center px-5 px-md-4 py-4">
             <img
               src="images/Clients/lushly.png"
               alt="client's brand logo"
@@ -56,7 +77,7 @@ const MoreClients = () => {
               alt="client's brand logo"
               className="img-fluid w-50"
             />
-          </div>
+          </div> */}
           <div className="col-lg-2 col-md-6  align-self-center text-center m-0 p-0">
             <Cta2
               path={"/clients"}

@@ -89,6 +89,7 @@ const mainReducer = (state = "", action) => {
           name={"Media Agency's Name"}
         />
       );
+
     default:
       return <Welcome api={action.payload} />;
   }

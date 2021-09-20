@@ -25,16 +25,6 @@ const Aside = ({ setToken }) => {
   const handleLogout = (e) => {
     e.preventDefault();
     Logout();
-    // return cred.logout.data.status === "success" && setToken();
-    // axios.post("https://qeola-api.herokuapp.com/api/v1/auth/logout").then(
-    //   (response) => {
-    //     console.log(response);
-    //     setToken();
-    //   },
-    //   (error) => {
-    //     console.log(error);
-    //   }
-    // );
   };
 
   const [active, setActive] = useState({
@@ -140,7 +130,7 @@ const Aside = ({ setToken }) => {
   return (
     <aside className="m-0 position-fixed">
       <div
-        className="d-flex flex-column align-items-center mb-auto py-2"
+        className="d-flex flex-column align-items-center mb-auto py-2 aside"
         style={{ height: "100vh" }}
       >
         <div className="avatar my-4 text-center">
@@ -204,7 +194,7 @@ const Aside = ({ setToken }) => {
         >
           <i class="fas fa-industry me-2 p-0 ms-0"></i>Users
         </a>
-        <a
+        {/* <a
           className={
             active
               ? `btn dash-btn  d-flex align-items-center w-100 rounded-0 ${active.media}`
@@ -213,7 +203,7 @@ const Aside = ({ setToken }) => {
           onClick={activeMedia}
         >
           <i class="fas fa-medal me-2 p-0 ms-0"></i>Media mentions
-        </a>
+        </a> */}
         <a
           className={
             active

@@ -71,15 +71,15 @@ const Header = () => {
               CLOSE {"  "} <i class="fas fa-times px-2"></i>
             </a>
             <div class="over-content text-center ">
-              <a href="#" className="fw-bold my-3 fs-3 nav-linkB">
+              <Link to="/clients" className="fw-bold my-3 fs-3 nav-linkB">
                 CLIENTS
-              </a>
-              <a href="#" className="fw-bold my-3 fs-3 nav-linkB ">
+              </Link>
+              <Link to="/industries" className="fw-bold my-3 fs-3 nav-linkB ">
                 INDUSTRIES
-              </a>
-              <a href="#" className="fw-bold my-3 fs-3 nav-linkB ">
+              </Link>
+              <Link to="/blog" className="fw-bold my-3 fs-3 nav-linkB ">
                 BLOG
-              </a>
+              </Link>
             </div>
             <div className="row d-inline-block my-2 fs-4 text-center mt-auto ">
               <i className="fab fa-behance d-inline mx-2 social-icons"></i>
@@ -152,13 +152,13 @@ const Header = () => {
                 <li class="nav-item px-2 mx-2 fs-6">
                   <Link
                     class={
-                      window.location.hash == "#/blog"
+                      window.location.hash == "#/contact"
                         ? "nav-link proj active"
                         : "nav-link proj"
                     }
-                    to="/blog"
+                    to="/contact"
                   >
-                    Blog
+                    Talk to us
                   </Link>
                 </li>
                 <li class="nav-item ps-md-3  px-3 px-sm-0 py-md-0 fs-6 ">

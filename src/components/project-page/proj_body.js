@@ -1,14 +1,27 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Cta2 from "../Reusable-components/cta2";
 import Cta3 from "../Reusable-components/cta3";
 
-const ProjBody = () => {
+const ProjBody = (props) => {
+  const proj = useSelector((state) => state.output);
+  const [body, setBody] = useState();
+
+  const createMarkup = () => {
+    return { __html: props.content };
+  };
+
   return (
     <section id="project-body" className="">
       <div className="container">
         <div className="row justify-content-center">
-          <div className="first-header text-start pt-5 pb-3 mt-md-4">
-            <h1 className="fs-3 fw-bold">The Challenge</h1>
+          <div
+            className="text-Justify pt-5 pb-3 mt-md-4"
+            dangerouslySetInnerHTML={createMarkup()}
+          />
+          {/* <h1 className="fs-3 fw-bold">The Challenge</h1>
             <p>
               The company needed a brand identity to reflect its vision, mission
               and values. It needed design brand strategies with a long term
@@ -107,7 +120,7 @@ const ProjBody = () => {
             className="img-fluid"
           />
         </div>
-        <div className="text-center my-4 pt-5">
+        <div className="text-center my-4 pt-5"> */}
           {/* <Link
             to="/project"
             className="btn prev-btn shadow-none p-0 text-decoration-none fw-bold pe-5"
@@ -120,7 +133,10 @@ const ProjBody = () => {
           >
             Next Project <i class="fas fa-arrow-right m-2"></i>
           </Link> */}
-          <Cta3 textA={"Previous Project"} textB={"Next Project"} />
+
+          <div className="text-center">
+            <Cta3 textA={"Previous Project"} textB={"Next Project"} />
+          </div>
         </div>
       </div>
     </section>

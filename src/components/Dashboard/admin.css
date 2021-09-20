@@ -28,11 +28,18 @@ section#login {
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.8);
 }
-
+.lefty {
+  background: #f1f1f1;
+}
 aside {
+  background: rgb(148, 148, 148);
+}
+
+aside .aside {
   /* background-color: rgba(0, 0, 0, 0.8); */
-  background: fff;
+  background: #fff;
   color: rgb(68, 68, 68);
+  position: fixed;
 }
 aside a.dash-btn {
   color: rgb(68, 68, 68) !important;
@@ -52,8 +59,9 @@ aside a.dash-btn.active {
 }
 main {
   background: #f1f1f1;
-  height: 100vh;
-  border-radius: 50px;
+  min-height: 100vh;
+  /* height: auto; */
+  /* border-radius: 50px; */
 }
 main i.edit-icon {
   color: #fff;
@@ -116,6 +124,88 @@ tr:nth-child(even) {
   border: 1px solid #ccc;
   background-color: rgb(243, 243, 243);
 }
+i.delete-icon-btn {
+  cursor: pointer;
+}
+i.delete-icon-btn:hover {
+  color: #df0064;
+}
+/* ********** PAGINATION ********* */
+
+table {
+  min-height: 500px;
+}
+.contain {
+  /* position: absolute;
+  width: 100%;
+  left: 50%;
+  margin-left: -50%; */
+  display: flex;
+  list-style: none;
+  justify-content: center;
+  margin: 15px auto;
+}
+
+.page {
+  padding: 6px;
+  padding: 12px;
+  border: 1px solid #dcdcdc;
+  border-radius: 6px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+.page:hover {
+  background-color: #acacac;
+  color: #212121;
+}
+
+.disabled {
+  cursor: not-allowed;
+}
+
+.active {
+  /* border: 2px solid #000; */
+  background-color: #df0064;
+  color: #fff;
+  font-weight: bold;
+}
+
+.previous {
+  padding: 6px;
+  padding: 12px;
+
+  border-radius: 6px;
+  margin-right: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  color: #212121;
+  /* text-decoration: overline; */
+}
+.previous:hover,
+.next:hover {
+  background-color: #acacac;
+  color: #212121;
+}
+
+.break {
+  padding: 10px;
+}
+
+.next {
+  padding: 6px;
+  padding: 12px;
+
+  border-radius: 6px;
+  margin-left: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  color: #212121;
+}
+/* 
+a.page {
+  text-decoration: none;
+} */
+
 @media only screen and (min-width: 768px) {
   .login-card {
     width: 50%;

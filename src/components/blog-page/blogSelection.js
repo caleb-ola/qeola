@@ -1,4 +1,5 @@
-import { useState } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import BlogPost from "../Reusable-components/blog_post";
 
@@ -11,53 +12,41 @@ const BlogSelection = () => {
     SD: "",
   });
 
-  const [topics, setTopics] = useState(
-    <div>
-      <Link to="/blog-details" className="text-decoration-none">
-        <BlogPost
-          image={"images/Blog/img1.jpg"}
-          category={"Branding"}
-          title={"Understanding Visual Identity Deliverables"}
-          text={
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been ..."
-          }
-        />
-      </Link>
+  const [topics, setTopics] = useState();
 
-      <BlogPost
-        image={"images/Blog/img2.jpg"}
-        category={"UI/UX Design"}
-        title={"Understanding Visual Identity Deliverables"}
-        text={
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been ..."
-        }
-      />
-      <BlogPost
-        image={"images/Blog/img3.jpg"}
-        category={"UI/UX Design"}
-        title={"Understanding Visual Identity Deliverables"}
-        text={
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been ..."
-        }
-      />
-      <BlogPost
-        image={"images/Blog/img4.jpg"}
-        category={"Case sturdy"}
-        title={"Understanding Visual Identity Deliverables"}
-        text={
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been ..."
-        }
-      />
-      <BlogPost
-        image={"images/Blog/img5.jpg"}
-        category={"Software Engineering"}
-        title={"Understanding Visual Identity Deliverables"}
-        text={
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been ..."
-        }
-      />
-    </div>
-  );
+  const url = "https://qeola-api.herokuapp.com/api/v1/posts?page=1&limit=5";
+
+  useEffect(() => {
+    axios.get(url).then(
+      (response) => {
+        console.log(response);
+        setTopics(
+          response &&
+            response.data.data.map((item, i) => {
+              return (
+                <Link
+                  to={`/blog-details/${item.id}`}
+                  className="text-decoration-none"
+                  key={item._id}
+                >
+                  <BlogPost
+                    image={item.image}
+                    category={item.category.name}
+                    title={item.title}
+                    // text={
+                    //   "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been ..."
+                    // }
+                  />
+                </Link>
+              );
+            })
+        );
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }, []);
 
   const AllTopics = () => {
     setActive({
@@ -67,51 +56,31 @@ const BlogSelection = () => {
       caseSturdy: "",
       SD: "",
     });
-    setTopics(
-      <div>
-        <Link to="/blog-details" className="text-decoration-none">
-          <BlogPost
-            image={"images/Blog/img1.jpg"}
-            category={"Branding"}
-            title={"Understanding Visual Identity Deliverables"}
-            text={
-              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been ..."
-            }
-          />
-        </Link>
-        <BlogPost
-          image={"images/Blog/img2.jpg"}
-          category={"UI/UX Design"}
-          title={"Understanding Visual Identity Deliverables"}
-          text={
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been ..."
-          }
-        />
-        <BlogPost
-          image={"images/Blog/img3.jpg"}
-          category={"UI/UX Design"}
-          title={"Understanding Visual Identity Deliverables"}
-          text={
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been ..."
-          }
-        />
-        <BlogPost
-          image={"images/Blog/img4.jpg"}
-          category={"Case sturdy"}
-          title={"Understanding Visual Identity Deliverables"}
-          text={
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been ..."
-          }
-        />
-        <BlogPost
-          image={"images/Blog/img5.jpg"}
-          category={"Software Engineering"}
-          title={"Understanding Visual Identity Deliverables"}
-          text={
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been ..."
-          }
-        />
-      </div>
+    axios.get(url).then(
+      (response) => {
+        console.log(response);
+        setTopics(
+          response &&
+            response.data.data.map((item, i) => {
+              return (
+                <Link
+                  to={`/blog-details/${item.id}`}
+                  className="text-decoration-none"
+                  key={item._id}
+                >
+                  <BlogPost
+                    image={item.image}
+                    category={item.category.name}
+                    title={item.title}
+                  />
+                </Link>
+              );
+            })
+        );
+      },
+      (error) => {
+        console.log(error);
+      }
     );
   };
   const Branding = () => {
@@ -122,19 +91,33 @@ const BlogSelection = () => {
       caseSturdy: "",
       SD: "",
     });
-    setTopics(
-      <div>
-        <Link to="/blog-details" className="text-decoration-none">
-          <BlogPost
-            image={"images/Blog/img1.jpg"}
-            category={"Branding"}
-            title={"Understanding Visual Identity Deliverables"}
-            text={
-              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been ..."
-            }
-          />
-        </Link>
-      </div>
+    axios.get(url).then(
+      (response) => {
+        console.log(response);
+        setTopics(
+          response &&
+            response.data.data.map((item, i) => {
+              if (item.category.name === "Branding") {
+                return (
+                  <Link
+                    to={`/blog-details/${item.id}`}
+                    className="text-decoration-none"
+                    key={item._id}
+                  >
+                    <BlogPost
+                      image={item.image}
+                      category={item.category.name}
+                      title={item.title}
+                    />
+                  </Link>
+                );
+              }
+            })
+        );
+      },
+      (error) => {
+        console.log(error);
+      }
     );
   };
   const UIUX = () => {
@@ -145,25 +128,33 @@ const BlogSelection = () => {
       caseSturdy: "",
       SD: "",
     });
-    setTopics(
-      <div>
-        <BlogPost
-          image={"images/Blog/img2.jpg"}
-          category={"UI/UX Design"}
-          title={"Understanding Visual Identity Deliverables"}
-          text={
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been ..."
-          }
-        />
-        <BlogPost
-          image={"images/Blog/img3.jpg"}
-          category={"UI/UX Design"}
-          title={"Understanding Visual Identity Deliverables"}
-          text={
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been ..."
-          }
-        />
-      </div>
+    axios.get(url).then(
+      (response) => {
+        console.log(response);
+        setTopics(
+          response &&
+            response.data.data.map((item, i) => {
+              if (item.category.name === "UI/UX Design") {
+                return (
+                  <Link
+                    to={`/blog-details/${item.id}`}
+                    className="text-decoration-none"
+                    key={item._id}
+                  >
+                    <BlogPost
+                      image={item.image}
+                      category={item.category.name}
+                      title={item.title}
+                    />
+                  </Link>
+                );
+              }
+            })
+        );
+      },
+      (error) => {
+        console.log(error);
+      }
     );
   };
   const CaseSturdy = () => {
@@ -174,17 +165,33 @@ const BlogSelection = () => {
       caseSturdy: "active",
       SD: "",
     });
-    setTopics(
-      <div>
-        <BlogPost
-          image={"images/Blog/img4.jpg"}
-          category={"Case sturdy"}
-          title={"Understanding Visual Identity Deliverables"}
-          text={
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been ..."
-          }
-        />
-      </div>
+    axios.get(url).then(
+      (response) => {
+        console.log(response);
+        setTopics(
+          response &&
+            response.data.data.map((item, i) => {
+              if (item.category.name === "Case Study") {
+                return (
+                  <Link
+                    to="/blog-details"
+                    className="text-decoration-none"
+                    key={item._id}
+                  >
+                    <BlogPost
+                      image={item.image}
+                      category={item.category.name}
+                      title={item.title}
+                    />
+                  </Link>
+                );
+              }
+            })
+        );
+      },
+      (error) => {
+        console.log(error);
+      }
     );
   };
   const SD = () => {
@@ -195,17 +202,33 @@ const BlogSelection = () => {
       caseSturdy: "",
       SD: "active",
     });
-    setTopics(
-      <div>
-        <BlogPost
-          image={"images/Blog/img5.jpg"}
-          category={"Software Engineering"}
-          title={"Understanding Visual Identity Deliverables"}
-          text={
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been ..."
-          }
-        />
-      </div>
+    axios.get(url).then(
+      (response) => {
+        console.log(response);
+        setTopics(
+          response &&
+            response.data.data.map((item, i) => {
+              if (item.category.name === "Software Development") {
+                return (
+                  <Link
+                    to="/blog-details"
+                    className="text-decoration-none"
+                    key={item._id}
+                  >
+                    <BlogPost
+                      image={item.image}
+                      category={item.category.name}
+                      title={item.title}
+                    />
+                  </Link>
+                );
+              }
+            })
+        );
+      },
+      (error) => {
+        console.log(error);
+      }
     );
   };
   return (
@@ -234,7 +257,7 @@ const BlogSelection = () => {
             className={`shadow-none px-3 py-2 ${active.caseSturdy}`}
             onClick={CaseSturdy}
           >
-            Case Sturdy
+            Case Study
           </button>
           <button className={`shadow-none px-3 py-2 ${active.SD}`} onClick={SD}>
             Software Development

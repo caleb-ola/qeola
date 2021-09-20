@@ -1,8 +1,15 @@
-import { useState } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import ProjectRow from "../Reusable-components/project_row";
 import ProjectRow2 from "../Reusable-components/project_row2";
+import { bindActionCreators } from "redux";
+import { actionCreators } from "../../state";
+import { useDispatch } from "react-redux";
 
 const CaseSelection = () => {
+  const dispatch = useDispatch();
+  const { openCasestudy } = bindActionCreators(actionCreators, dispatch);
+
   const [active, setActive] = useState({
     Allworks: "active",
     Branding: "",
@@ -10,45 +17,43 @@ const CaseSelection = () => {
     MobileApp: "",
     Marketing: "",
   });
-  const [sturdies, setSturdies] = useState(
-    <div>
-      <ProjectRow2
-        title={"Eridan"}
-        content={
-          "Eridan is a unique venture-building company located in Lagos."
-        }
-        image={"images/Case-study/eridan.jpg"}
-      />
-      <ProjectRow
-        title={"Trifold App"}
-        content={
-          "Trifold is an all-encompassing marriage app that gives curated faith-based answers to prevailing issues."
-        }
-        image={"images/Case-study/trifold.jpg"}
-      />
-      <ProjectRow2
-        title={"The Soul Clinic"}
-        content={
-          "The Soul Clinic is a company created to serve as a funnel for emotional health and mental rejuvenation."
-        }
-        image={"images/Case-study/tsc.jpg"}
-      />
-      <ProjectRow
-        title={"Challengerec"}
-        content={
-          "ChallengeRec: Creating an Online Presence for a FinTech Recruitment Agency"
-        }
-        image={"images/Case-study/challengerec.jpg"}
-      />
-      <ProjectRow2
-        title={"R.O's Branding"}
-        content={
-          "Remi Odunsi is a Nigerian Social Entrepreneur and Philanthropist, with business interests in the FMCG, Financial Services (banking and insurance), and automobile sectors."
-        }
-        image={"images/Case-study/R.O..jpg"}
-      />
-    </div>
-  );
+  const [sturdies, setSturdies] = useState();
+  const url = "https://qeola-api.herokuapp.com/api/v1/projects?page=1&limit=5";
+
+  useEffect(() => {
+    axios.get(url).then(
+      (response) => {
+        console.log(response);
+        setSturdies(
+          response &&
+            response.data.data.map((item, i) => {
+              return i % 2 === 0 ? (
+                <ProjectRow2
+                  title={item.title}
+                  content={item.description}
+                  image={item.image}
+                  key={item._id}
+                  project={() => openCasestudy(item.id)}
+                  path={`/project/${item.id}`}
+                />
+              ) : (
+                <ProjectRow
+                  title={item.title}
+                  content={item.description}
+                  image={item.image}
+                  key={item._id}
+                  project={() => openCasestudy(item.id)}
+                  path={`/project/${item.id}`}
+                />
+              );
+            })
+        );
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }, []);
 
   const Allworks = () => {
     setActive({
@@ -58,44 +63,36 @@ const CaseSelection = () => {
       MobileApp: "",
       Marketing: "",
     });
-    setSturdies(
-      <div>
-        <ProjectRow2
-          title={"Eridan"}
-          content={
-            "Eridan is a unique venture-building company located in Lagos."
-          }
-          image={"images/Case-study/eridan.jpg"}
-        />
-        <ProjectRow
-          title={"Trifold App"}
-          content={
-            "Trifold is an all-encompassing marriage app that gives curated faith-based answers to prevailing issues."
-          }
-          image={"images/Case-study/trifold.jpg"}
-        />
-        <ProjectRow2
-          title={"The Soul Clinic"}
-          content={
-            "The Soul Clinic is a company created to serve as a funnel for emotional health and mental rejuvenation."
-          }
-          image={"images/Case-study/tsc.jpg"}
-        />
-        <ProjectRow
-          title={"Challengerec"}
-          content={
-            "ChallengeRec: Creating an Online Presence for a FinTech Recruitment Agency"
-          }
-          image={"images/Case-study/challengerec.jpg"}
-        />
-        <ProjectRow2
-          title={"R.O's Branding"}
-          content={
-            "Remi Odunsi is a Nigerian Social Entrepreneur and Philanthropist, with business interests in the FMCG, Financial Services (banking and insurance), and automobile sectors."
-          }
-          image={"images/Case-study/R.O..jpg"}
-        />
-      </div>
+
+    axios.get(url).then(
+      (response) => {
+        console.log(response);
+        setSturdies(
+          response &&
+            response.data.data.map((item, i) => {
+              return i % 2 === 0 ? (
+                <ProjectRow2
+                  title={item.title}
+                  content={item.description}
+                  image={item.image}
+                  key={item._id}
+                  project={() => openCasestudy(item.id)}
+                />
+              ) : (
+                <ProjectRow
+                  title={item.title}
+                  content={item.description}
+                  image={item.image}
+                  key={item._id}
+                  project={() => openCasestudy(item.id)}
+                />
+              );
+            })
+        );
+      },
+      (error) => {
+        console.log(error);
+      }
     );
   };
 
@@ -107,24 +104,37 @@ const CaseSelection = () => {
       MobileApp: "",
       Marketing: "",
     });
-    setSturdies(
-      <div>
-        <ProjectRow2
-          title={"Eridan"}
-          content={
-            "Eridan is a unique venture-building company located in Lagos."
-          }
-          image={"images/Case-study/eridan.jpg"}
-        />
-
-        <ProjectRow
-          title={"R.O's Branding"}
-          content={
-            "Remi Odunsi is a Nigerian Social Entrepreneur and Philanthropist, with business interests in the FMCG, Financial Services (banking and insurance), and automobile sectors."
-          }
-          image={"images/Case-study/R.O..jpg"}
-        />
-      </div>
+    axios.get(url).then(
+      (response) => {
+        console.log(response);
+        setSturdies(
+          response &&
+            response.data.data.map((item, i) => {
+              if (item.category.name === "Branding") {
+                return i % 2 === 0 ? (
+                  <ProjectRow2
+                    title={item.title}
+                    content={item.description}
+                    image={item.image}
+                    key={item._id}
+                    project={() => openCasestudy(item.id)}
+                  />
+                ) : (
+                  <ProjectRow
+                    title={item.title}
+                    content={item.description}
+                    image={item.image}
+                    key={item._id}
+                    project={() => openCasestudy(item.id)}
+                  />
+                );
+              }
+            })
+        );
+      },
+      (error) => {
+        console.log(error);
+      }
     );
   };
 
@@ -136,30 +146,37 @@ const CaseSelection = () => {
       MobileApp: "",
       Marketing: "",
     });
-    setSturdies(
-      <div>
-        <ProjectRow
-          title={"Trifold App"}
-          content={
-            "Trifold is an all-encompassing marriage app that gives curated faith-based answers to prevailing issues."
-          }
-          image={"images/Case-study/trifold.jpg"}
-        />
-        <ProjectRow2
-          title={"The Soul Clinic"}
-          content={
-            "The Soul Clinic is a company created to serve as a funnel for emotional health and mental rejuvenation."
-          }
-          image={"images/Case-study/tsc.jpg"}
-        />
-        <ProjectRow
-          title={"Challengerec"}
-          content={
-            "ChallengeRec: Creating an Online Presence for a FinTech Recruitment Agency"
-          }
-          image={"images/Case-study/challengerec.jpg"}
-        />
-      </div>
+    axios.get(url).then(
+      (response) => {
+        console.log(response);
+        setSturdies(
+          response &&
+            response.data.data.map((item, i) => {
+              if (item.category.name === "Web Design") {
+                return i % 2 === 0 ? (
+                  <ProjectRow2
+                    title={item.title}
+                    content={item.description}
+                    image={item.image}
+                    key={item._id}
+                    project={() => openCasestudy(item.id)}
+                  />
+                ) : (
+                  <ProjectRow
+                    title={item.title}
+                    content={item.description}
+                    image={item.image}
+                    key={item._id}
+                    project={() => openCasestudy(item.id)}
+                  />
+                );
+              }
+            })
+        );
+      },
+      (error) => {
+        console.log(error);
+      }
     );
   };
 
@@ -171,16 +188,37 @@ const CaseSelection = () => {
       MobileApp: "active",
       Marketing: "",
     });
-    setSturdies(
-      <div>
-        <ProjectRow
-          title={"Trifold App"}
-          content={
-            "Trifold is an all-encompassing marriage app that gives curated faith-based answers to prevailing issues."
-          }
-          image={"images/Case-study/trifold.jpg"}
-        />
-      </div>
+    axios.get(url).then(
+      (response) => {
+        console.log(response);
+        setSturdies(
+          response &&
+            response.data.data.map((item, i) => {
+              if (item.category.name === "Mobile App") {
+                return i % 2 === 0 ? (
+                  <ProjectRow2
+                    title={item.title}
+                    content={item.description}
+                    image={item.image}
+                    key={item._id}
+                    project={() => openCasestudy(item.id)}
+                  />
+                ) : (
+                  <ProjectRow
+                    title={item.title}
+                    content={item.description}
+                    image={item.image}
+                    key={item._id}
+                    project={() => openCasestudy(item.id)}
+                  />
+                );
+              }
+            })
+        );
+      },
+      (error) => {
+        console.log(error);
+      }
     );
   };
 
@@ -192,32 +230,50 @@ const CaseSelection = () => {
       MobileApp: "",
       Marketing: "active",
     });
-    setSturdies(
-      <div>
-        <ProjectRow2
-          title={"Trifold App"}
-          content={
-            "Trifold is an all-encompassing marriage app that gives curated faith-based answers to prevailing issues."
-          }
-          image={"images/Case-study/trifold.jpg"}
-        />
-        <ProjectRow
-          title={"The Soul Clinic"}
-          content={
-            "The Soul Clinic is a company created to serve as a funnel for emotional health and mental rejuvenation."
-          }
-          image={"images/Case-study/tsc.jpg"}
-        />
-        <ProjectRow2
-          title={"R.O's Branding"}
-          content={
-            "Remi Odunsi is a Nigerian Social Entrepreneur and Philanthropist, with business interests in the FMCG, Financial Services (banking and insurance), and automobile sectors."
-          }
-          image={"images/Case-study/R.O..jpg"}
-        />
-      </div>
+    axios.get(url).then(
+      (response) => {
+        console.log(response);
+        setSturdies(
+          response &&
+            response.data.data.map((item, i) => {
+              if (item.category.name === "Marketing") {
+                return i % 2 === 0 ? (
+                  <ProjectRow2
+                    title={item.title}
+                    content={item.description}
+                    image={item.image}
+                    key={item._id}
+                    project={() => openCasestudy(item.id)}
+                  />
+                ) : (
+                  <ProjectRow
+                    title={item.title}
+                    content={item.description}
+                    image={item.image}
+                    key={item._id}
+                    project={() => openCasestudy(item.id)}
+                  />
+                );
+              }
+            })
+        );
+      },
+      (error) => {
+        console.log(error);
+      }
     );
   };
+
+  // const openProject = (id) => {
+  //   axios.get(`https://qeola-api.herokuapp.com/api/v1/projects/${id}`).then(
+  //     (response) => {
+  //       console.log(response);
+  //     },
+  //     (error) => {
+  //       console.log(error);
+  //     }
+  //   );
+  // };
   return (
     <div>
       <section id="case-study">

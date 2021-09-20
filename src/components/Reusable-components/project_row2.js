@@ -31,7 +31,12 @@ const ProjectRow2 = (props) => {
             >
               See Project <i class="fas fa-arrow-right m-2"></i>
             </Link> */}
-            <Cta2 xclass={"fw-bold"} text={"See Project"} path={"/project"} />
+            <Cta2
+              xclass={"fw-bold"}
+              text={"See Project"}
+              path={props.path}
+              click={props.project}
+            />
           </div>
         </div>
       </div>

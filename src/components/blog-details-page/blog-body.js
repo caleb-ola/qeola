@@ -1,36 +1,34 @@
-const BlogBody = () => {
+const BlogBody = (props) => {
+  const createMarkup = () => {
+    return { __html: props.content };
+  };
   return (
     <section id="blog-body" className="">
       <div className="container">
         <div className="blog-passage">
           <div className="blog-details-header text-start my-3 ">
             <p className="category p-0 m-0">
-              <small>Branding</small>
+              <small>{props.category}</small>
             </p>
-            <h2 className="fw-bold fs-1">
-              Understanding Visual Identity Deliverables
-            </h2>
+            <h2 className="fw-bold fs-1">{props.title} </h2>
             <p>
               "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
               enim ad minim veniam, quis nostrud exercitation.
             </p>
             <p className="author fw-bold pb-4">
-              <small>By Dayo Salako</small>
+              <small>By {props.author}</small>
             </p>
           </div>
         </div>
       </div>
       <div className="">
-        <img
-          src="images/Blog-details/header-image.jpg"
-          alt="blog-image"
-          className="img-fluid"
-        />
+        <img src={props.image} alt="blog-image" className="img-fluid" />
       </div>
       <div className="container my-5">
         <div className="blog-passage">
-          <h3 className="fw-bold fs-4 py-2">What is Lorem Ipsum?</h3>
+          <div dangerouslySetInnerHTML={createMarkup()} />
+          {/* <h3 className="fw-bold fs-4 py-2">What is Lorem Ipsum?</h3>
           <p className="py-2">
             What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the
             printing and typesetting industry. Lorem Ipsum has been the
@@ -73,7 +71,7 @@ const BlogBody = () => {
             src="images/Blog-details/img2.jpg"
             alt="blog-image-one"
             className="img-fluid "
-          />
+          /> */}
         </div>
       </div>
     </section>

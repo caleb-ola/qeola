@@ -1,45 +1,59 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import propTypes from "prop-types";
 import "./admin.css";
 import { bindActionCreators } from "redux";
 import { actionCreators } from "../../state";
 import { useDispatch, useSelector } from "react-redux";
+import ReactNotification from "react-notifications-component";
+import "react-notifications-component/dist/theme.css";
+import { store } from "react-notifications-component";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   const dispatch = useDispatch();
   const { Login } = bindActionCreators(actionCreators, dispatch);
 
   const cred = useSelector((state) => state.output);
-  // if (cred) {
-  //   setToken(cred.login.data.token);
-  // }
+  const [alert, setAlert] = useState();
 
   useEffect(() => {}, []);
 
   const Submit = (e) => {
     e.preventDefault();
-    return Login(email, password);
-
-    // axios
-    //   .post("https://qeola-api.herokuapp.com/api/v1/auth/login", {
-    //     email: email,
-    //     password: password,
-    //   })
-    //   .then(
-    //     (response) => {
-    //       console.log(response);
-    //       setToken(response.data.token);
-    //     },
-    //     (error) => {
-    //       console.log(error);
-    //     }
-    //   );
+    Login(email, password);
+    // console.log(cred.data && cred.data);
+    if (cred.data) {
+      store.addNotification({
+        title: `Sorry, check again`,
+        message: cred.data.message,
+        type: "danger",
+        insert: "top",
+        container: "top-left",
+        animationIn: ["animate__animated", "animate__fadeIn"],
+        animationOut: ["animate__animated", "animate__fadeOut"],
+        dismiss: {
+          duration: 8000,
+          onScreen: true,
+        },
+      });
+    } else if (cred.token) {
+      store.addNotification({
+        title: `Success`,
+        message: "Login Successful, loading....",
+        type: "success",
+        insert: "top",
+        container: "top-left",
+        animationIn: ["animate__animated", "animate__fadeIn"],
+        animationOut: ["animate__animated", "animate__fadeOut"],
+        dismiss: {
+          duration: 8000,
+          onScreen: true,
+        },
+      });
+    }
   };
+
   return (
     <section
       id="login"
@@ -51,7 +65,8 @@ const Login = () => {
         height: "100vh",
       }}
     >
-      {console.log(cred)}
+      <ReactNotification />
+
       <div className="overlayb"></div>
       <div className="container">
         <div className="login-card mx-auto p-3 p-sm-4 rounded-3 ">

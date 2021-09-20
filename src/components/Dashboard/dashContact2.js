@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useState } from "react";
-// import "./contact.css";
+import ReactNotification from "react-notifications-component";
+import "react-notifications-component/dist/theme.css";
+import { store } from "react-notifications-component";
 
 const DashContact2 = (props) => {
   const [shrink, setShrink] = useState({
@@ -12,6 +14,7 @@ const DashContact2 = (props) => {
   });
   const [email, setEmail] = useState();
   const [Output, setOutput] = useState();
+  const [Alert, setAlert] = useState();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -19,8 +22,21 @@ const DashContact2 = (props) => {
       .post(`https://qeola-api.herokuapp.com/api/v1/users/get-user`, { email })
       .then(
         (response) => {
-          console.log(response);
+          // console.log(response);
           const data = response.data.data;
+          store.addNotification({
+            title: `SUCCESS`,
+            message: "User found",
+            type: "success",
+            insert: "top",
+            container: "top-left",
+            animationIn: ["animate__animated", "animate__fadeIn"],
+            animationOut: ["animate__animated", "animate__fadeOut"],
+            dismiss: {
+              duration: 5000,
+              onScreen: true,
+            },
+          });
           setOutput(
             response && (
               <div>
@@ -43,16 +59,22 @@ const DashContact2 = (props) => {
           );
         },
         (error) => {
-          console.log(error);
-          setOutput(
-            error && (
-              <div className="text-center">
-                <h3 className="fw-bold">
-                  USER NOT FOUND, PLEASE ENSURE THE EMAIL IS CORRECT, THANK YOU.
-                </h3>
-              </div>
-            )
-          );
+          // console.log(error);
+
+          store.addNotification({
+            title: "NOT FOUND",
+            message:
+              "The email is not registered to any users, please ensure you enter a registered user's email",
+            type: "danger",
+            insert: "top",
+            container: "top-left",
+            animationIn: ["animate__animated", "animate__fadeIn"],
+            animationOut: ["animate__animated", "animate__fadeOut"],
+            dismiss: {
+              duration: 8000,
+              onScreen: true,
+            },
+          });
         }
       );
   };
@@ -66,54 +88,62 @@ const DashContact2 = (props) => {
   };
 
   return (
-    <section id="contact" className="py-3">
-      <div className="container">
-        <div className="contact-header py-3 mx-auto">
-          <h1 className="fs-2 fs-sm-1 fw-bold text-center">{props.title}</h1>
-        </div>
-        <div>
-          <form onSubmit={handleSubmit}>
-            <div className="row pt-4 pb-2">
-              <div
-                className="col-12 col-md-12 my-3"
-                onFocus={ShrinkName}
-                onBlur={Enlarge}
-              >
-                <label
-                  for="name"
-                  className={
-                    shrink.name == "shrink"
-                      ? `fs-6 fw-bold ${shrink.name}`
-                      : `fs-6 fw-bold`
-                  }
+    <main>
+      <section id="contact" className="py-3">
+        <div className="container">
+          <ReactNotification />
+          <div className="contact-header position-relative py-3 mx-auto">
+            <div className="position-absolute">{Alert}</div>
+            <h1 className="fs-2 fs-sm-1 fw-bold mt-5 text-center">
+              {props.title}
+            </h1>
+          </div>
+          <div>
+            <form onSubmit={handleSubmit}>
+              <div className="row pt-4 pb-2">
+                <div
+                  className="col-12 col-md-12 my-3"
+                  onFocus={ShrinkName}
+                  onBlur={Enlarge}
                 >
-                  {props.email}
-                </label>
-                <br />
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Enter the user's email "
-                  className="w-100 p-2 my-1 border-0 border-2 border-bottom"
-                  required
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-              </div>
+                  <label
+                    for="name"
+                    className={
+                      shrink.name == "shrink"
+                        ? `fs-6 fw-bold ${shrink.name}`
+                        : `fs-6 fw-bold`
+                    }
+                  >
+                    {props.email}
+                  </label>
+                  <br />
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Enter the user's email "
+                    className="w-100 p-2 my-1 border-0 border-2 border-bottom"
+                    required
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                </div>
 
-              <div className="col-12 col-md-12 my-2 text-center">
-                <button
-                  type="submit"
-                  className="contact-submit shadow-none btn rounded-pill py-3 my-4 w-50 fw-bold"
-                >
-                  {props.btn}
-                </button>
+                <div className="col-12 col-md-12 my-2 text-center">
+                  <button
+                    type="submit"
+                    className="contact-submit shadow-none btn rounded-pill py-3 my-4 w-50 fw-bold"
+                  >
+                    {props.btn}
+                  </button>
+                </div>
+                <div className="col-12 col-md-12 my-2 text-center">
+                  {Output}
+                </div>
               </div>
-              <div className="col-12 col-md-12 my-2 text-center">{Output}</div>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </main>
   );
 };
 

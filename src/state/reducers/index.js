@@ -1,5 +1,4 @@
 import { combineReducers } from "redux";
-// import briefReducer from "./firstReducers";
 import briefReducer from "./firstReducers";
 import mainReducer from "./mainReducer";
 import displayReducer from "./displayReducer";

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import draftToHtml from "draftjs-to-html";
@@ -6,6 +6,9 @@ import htmlToDraft from "html-to-draftjs";
 import { EditorState, convertToRaw } from "draft-js";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import ReactNotification from "react-notifications-component";
+import "react-notifications-component/dist/theme.css";
+import { store } from "react-notifications-component";
 
 const Editorial = (props) => {
   const [shrink, setShrink] = useState({
@@ -22,6 +25,7 @@ const Editorial = (props) => {
   const [cat, setCat] = useState();
   const [catId, setCatId] = useState();
   const [editorContent, setEditorContent] = useState();
+  const [Alert, setAlert] = useState();
 
   const ShrinkName = () => {
     setShrink({ mail: "", name: "shrink", Num: "", proj: "", brief: "" });
@@ -44,13 +48,19 @@ const Editorial = (props) => {
   };
   // const editorCont = editorState.getCurrentContent().getPlainText();
   const content = draftToHtml(convertToRaw(editorState.getCurrentContent()));
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      Options();
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, []);
+
   const Options = () => {
     axios.get("https://qeola-api.herokuapp.com/api/v1/categories").then(
       (response) => {
         console.log(response);
         const tration = response.data.data.map((item) => {
           if (item) {
-            // console.log(item.id + item.name);
             return (
               <option value={item.id} key={item.id}>
                 {item.name}
@@ -72,41 +82,77 @@ const Editorial = (props) => {
     token = Tokena.token;
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("image", image);
+    formData.append("image", image, image.file);
     formData.append("title", title);
     formData.append("content", content);
     formData.append("category", category);
     formData.append("author", author);
 
     // console.log(JSON.stringify(formData));
-    axios
-      .post(
+
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", `Bearer ${token}`);
+
+    var requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: formData,
+      redirect: "follow",
+    };
+
+    async function postImage() {
+      const res = await fetch(
         "https://qeola-api.herokuapp.com/api/v1/posts",
-        {
-          formData,
-        },
-        {
-          headers: {
-            Authorization: `Bearers ${token}`,
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      )
-      .then(
-        (response) => {
-          console.log(response);
-        },
-        (error) => console.log(error)
+        requestOptions
       );
+      const result = await res.json();
+      console.log(result);
+      if (result.status === "success") {
+        store.addNotification({
+          title: `SUCCESS`,
+          message: "You added a new blog post.",
+          type: "success",
+          insert: "top",
+          container: "top-left",
+          animationIn: ["animate__animated", "animate__fadeIn"],
+          animationOut: ["animate__animated", "animate__fadeOut"],
+          dismiss: {
+            duration: 8000,
+            onScreen: true,
+          },
+        });
+      } else if (result.status !== "success") {
+        store.addNotification({
+          title: `SORRY`,
+          message: "Something went wrong",
+          type: "danger",
+          insert: "top",
+          container: "top-left",
+          animationIn: ["animate__animated", "animate__fadeIn"],
+          animationOut: ["animate__animated", "animate__fadeOut"],
+          dismiss: {
+            duration: 8000,
+            onScreen: true,
+          },
+        });
+      }
+      return result;
+    }
+
+    const postIt = await postImage();
   };
+
   return (
     <main className="P-5">
+      <ReactNotification />
+
       <div className="p-5 py-3">
         <div className="row justify-content-center mb-4">
-          <h3 className="text-center fw-bold">{props.title}</h3>
+          <h3 className="text-center  fw-bold">{props.title}</h3>
+
           <form onSubmit={handleSubmit}>
             <div className="row pt-4 pb-2">
               <div
@@ -131,6 +177,7 @@ const Editorial = (props) => {
                   placeholder="Name of Author"
                   className="w-100 p-2 my-1 border-0 border-2 border-bottom"
                   onChange={(e) => setAuthor(e.target.value)}
+                  required
                 />
               </div>
 
@@ -155,7 +202,7 @@ const Editorial = (props) => {
                   name="project-type"
                   className="w-100 p-2 my-2 border-0 border-2 border-bottom"
                   onChange={(e) => setCategory(e.target.value)}
-                  onClick={Options}
+                  required
                 >
                   <option value="" disabled selected className="primary">
                     Make your selection
@@ -185,6 +232,7 @@ const Editorial = (props) => {
                   placeholder="Title of the post"
                   className="w-100 p-2 my-1 border-0 border-2 border-bottom"
                   onChange={(e) => setTitle(e.target.value)}
+                  required
                 />
               </div>
               <div
@@ -211,6 +259,7 @@ const Editorial = (props) => {
                     placeholder={`Attach the client's logo here `}
                     aria-label="Text input with attach button "
                     onChange={(e) => setImage(e.target.value)}
+                    disabled
                   />
                   <button
                     type="button"
@@ -224,7 +273,8 @@ const Editorial = (props) => {
                         type="file"
                         name="myfile"
                         style={{ display: "none" }}
-                        onChange={(e) => setImage(e.target.value)}
+                        onChange={(e) => setImage(e.target.files[0])}
+                        required
                       />
                     </label>
                   </button>

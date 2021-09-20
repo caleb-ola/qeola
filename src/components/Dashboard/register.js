@@ -1,13 +1,16 @@
 import { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
+import ReactNotification from "react-notifications-component";
+import "react-notifications-component/dist/theme.css";
+import { store } from "react-notifications-component";
 
 const Register = () => {
   const [name, SetName] = useState("");
   const [email, SetEmail] = useState("");
   const [password, SetPassword] = useState("");
   const [confirmP, SetConfirmP] = useState("");
-  const [alert, setAlert] = useState();
+  // const [alert, setAlert] = useState();
 
   console.log({ name, email, password, confirmP });
   let history = useHistory();
@@ -31,17 +34,31 @@ const Register = () => {
         (error) => {
           console.log(error);
           if (error) {
-            setAlert();
+            store.addNotification({
+              title: `Sorry`,
+              message: "Something went very wrong.",
+              type: "danger",
+              insert: "top",
+              container: "top-left",
+              animationIn: ["animate__animated", "animate__fadeIn"],
+              animationOut: ["animate__animated", "animate__fadeOut"],
+              dismiss: {
+                duration: 8000,
+                onScreen: true,
+              },
+            });
           }
         }
       );
   };
   return (
     <div className="container">
+      <ReactNotification />
       <div className="my-3 mb-4 text-center w-75">
         {/* <h2 className="fs-3 fw-bold">Please register an account</h2> */}
+        {/* {alert} */}
       </div>
-      <div className="w-25 mt-3 text-center mx-auto">
+      <div className="w-25 mt-5 text-center mx-auto">
         <img
           src="images/logo.png"
           alt="qeola icon"
@@ -121,7 +138,7 @@ const Register = () => {
         </div>
         <div className="my-1">
           <Link
-            to="/admin-login"
+            to="/dashboard"
             type="submit"
             className=" btn back-to-home-btn w-100 shadow-none"
           >

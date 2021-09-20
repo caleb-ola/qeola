@@ -247,6 +247,7 @@ export const Login = (email, password) => {
           dispatch({
             type: "LOGIN",
             payload: error,
+            data: error.response.data,
           });
         }
       );
@@ -275,8 +276,25 @@ export const Logout = () => {
   };
 };
 
-// export const Token = () => {
-//   return (dispatch) => {
-//     axios.post;
-//   };
-// };
+export const openCasestudy = (id) => {
+  return (dispatch) => {
+    axios.get(`https://qeola-api.herokuapp.com/api/v1/projects/${id}`).then(
+      (response) => {
+        console.log(response);
+        if (response) {
+          dispatch({
+            type: "OPEN_CASESTUDY",
+            payload: response,
+          });
+        }
+      },
+      (error) => {
+        console.log(error);
+        dispatch({
+          type: "OPEN_CASESTUDY",
+          payload: error,
+        });
+      }
+    );
+  };
+};
