@@ -13,7 +13,7 @@ const Blog = () => {
       <NavBar2 />
       <OtherHero title="Big Header Text Stays Here" />
       <BlogSelection />
-      <Pagination />
+      {/* <Pagination /> */}
       <Footer />
     </div>
   );

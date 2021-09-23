@@ -35,6 +35,8 @@ const Header = () => {
     // document.getElementById("myNav").style.width = "0%";
     setProj(false);
   };
+
+  // console.log(window.location.hash);
   return (
     <section id="navbar" className="m-0">
       <div id="myNav" className={proj ? "over visible" : "over hidden"}>
@@ -70,18 +72,18 @@ const Header = () => {
             >
               CLOSE {"  "} <i class="fas fa-times px-2"></i>
             </a>
-            <div class="over-content text-center ">
-              <Link to="/clients" className="fw-bold my-3 fs-3 nav-linkB">
+            <div class="over-content text-center text-lg-start w-50 mx-auto ">
+              <Link to="/clients" className="fw-bold my-3 mt-0 fs-1 nav-linkB">
                 CLIENTS
               </Link>
-              <Link to="/industries" className="fw-bold my-3 fs-3 nav-linkB ">
+              <Link to="/industries" className="fw-bold my-3 fs-1 nav-linkB ">
                 INDUSTRIES
               </Link>
-              <Link to="/blog" className="fw-bold my-3 fs-3 nav-linkB ">
+              <Link to="/blog" className="fw-bold my-3 fs-1 nav-linkB ">
                 BLOG
               </Link>
             </div>
-            <div className="row d-inline-block my-2 fs-4 text-center mt-auto ">
+            <div className="row d-inline-block my-2 fs-3  mt-auto mb-4 text-center text-lg-start w-50 mx-auto">
               <i className="fab fa-behance d-inline mx-2 social-icons"></i>
               <i className="fab fa-instagram d-inline mx-2 social-icons"></i>
               <i className="fab fa-twitter d-inline mx-2 social-icons"></i>

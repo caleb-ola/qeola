@@ -39,7 +39,7 @@ const Aside = ({ setToken }) => {
 
   const activeBlog = () => {
     setActive({
-      blog: "active",
+      blog: "activ",
       brief: "",
       case: "",
       client: "",
@@ -53,7 +53,7 @@ const Aside = ({ setToken }) => {
   const activeBrief = () => {
     setActive({
       blog: "",
-      brief: "active",
+      brief: "activ",
       case: "",
       client: "",
       industry: "",
@@ -67,7 +67,7 @@ const Aside = ({ setToken }) => {
     setActive({
       blog: "",
       brief: "",
-      case: "active",
+      case: "activ",
       client: "",
       industry: "",
       media: "",
@@ -81,7 +81,7 @@ const Aside = ({ setToken }) => {
       blog: "",
       brief: "",
       case: "",
-      client: "active",
+      client: "activ",
       industry: "",
       media: "",
       category: "",
@@ -95,7 +95,7 @@ const Aside = ({ setToken }) => {
       brief: "",
       case: "",
       client: "",
-      industry: "active",
+      industry: "activ",
       media: "",
       category: "",
     });
@@ -109,7 +109,7 @@ const Aside = ({ setToken }) => {
       case: "",
       client: "",
       industry: "",
-      media: "active",
+      media: "activ",
       category: "",
     });
     media();
@@ -122,7 +122,7 @@ const Aside = ({ setToken }) => {
       client: "",
       industry: "",
       media: "",
-      category: "active",
+      category: "activ",
     });
     category();
   };

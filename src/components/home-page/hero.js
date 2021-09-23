@@ -1,14 +1,14 @@
 import ReactPlayer from "react-player";
 import HeroVideo from "./vid.mp4";
-import Typical from "react-typical";
-// import Typist from "react-typist";
-// import { Link } from "react-router-dom";
+import ReactTypingEffect from "react-typing-effect";
 
 import "./hero.css";
 import { useEffect, useState } from "react";
 import Cta1 from "../Reusable-components/cta1";
 
 const Hero = () => {
+  const [count, setCount] = useState(1);
+
   return (
     // <header style={{ backgroundImage: `url("images/Home/vid.mp4")` }}></header>
     <div className="hero-container">
@@ -23,27 +23,22 @@ const Hero = () => {
       <div className="overlay">
         <div className="container">
           <div className="hero-text mx-auto ms-md-0 align-text-center justify-content-center text-center text-md-start">
-            <h1 className="fw-bold ">
-              We Will Make Your Brand{" "}
-              <Typical
-                steps={[
+            <h1 className="fw-bold">
+              <ReactTypingEffect
+                staticText={"We Will Make Your Brand"}
+                text={[
                   "Visible",
-                  2000,
                   "Memorable",
-                  2000,
                   "Lovable",
-                  2000,
                   "Accessible",
-                  2000,
                   "Powerful",
-                  2000,
                 ]}
-                loop={Infinity}
-                wrapper="span"
+                eraseDelay={3000}
+                typingDelay={0}
               />
             </h1>
 
-            <Cta1 text={"See the clients we have served"} xclass={"fw-bold"} />
+            <Cta1 text={"See the clients we have served"} />
           </div>
         </div>
       </div>

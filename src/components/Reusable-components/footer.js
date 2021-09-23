@@ -37,10 +37,10 @@ const Footer = () => {
                   <small>Follow us</small>
                 </p>
                 <div className="row d-inline-block py-1 fs-6">
-                  <i className="fab fa-2x fa-behance d-inline mx-1"></i>
-                  <i className="fab fa-2x fa-instagram d-inline mx-1"></i>
-                  <i className="fab fa-2x fa-twitter d-inline mx-1"></i>
-                  <i className="fab fa-2x fa-linkedin d-inline mx-1"></i>
+                  <i className="fab fs-4 fa-behance d-inline mx-1"></i>
+                  <i className="fab fs-4 fa-instagram d-inline mx-1"></i>
+                  <i className="fab fs-4 fa-twitter d-inline mx-1"></i>
+                  <i className="fab fs-4 fa-linkedin d-inline mx-1"></i>
                 </div>
               </div>
             </div>

@@ -14,7 +14,7 @@ const About = () => {
       <OtherHero
         title={"Qeola exists to make you look your best!"}
         text={
-          "We are a full-service creative digital agency that helps SMBs take advantage of technology and use it to drive business growth. We combine strategic planning, design craftmanship, marketing expertise, and coding mastery to create online properties with a strong foundation and an eye for innovation."
+          "We are a full-service creative digital agency that helps SMBs take advantage of technology and use it to drive business growth."
         }
         cta={`Send us your brief`}
       />

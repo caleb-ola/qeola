@@ -8,7 +8,7 @@ const Industries = () => {
     <section id="industries" className="industries py-5">
       <div className="container text-center text-md-start">
         <div className="Section-header py-5">
-          <h1 className="fs-2 fs-sm-1 fw-bold">Industries we have served</h1>
+          <h1 className="fs-1 fs-sm-1 fw-bold">Industries we have served</h1>
         </div>
         <div className="row align-items-center ">
           <div className="col-6 col-lg-3 col-md-3 px-1 p-3">

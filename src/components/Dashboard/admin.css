@@ -163,7 +163,7 @@ table {
   cursor: not-allowed;
 }
 
-.active {
+.activ {
   /* border: 2px solid #000; */
   background-color: #df0064;
   color: #fff;

@@ -141,8 +141,8 @@ const NavBar2 = () => {
                 <li class="nav-item px-2 mx-2">
                   <Link
                     class={
-                      window.location.hash == "#/blog" ||
-                      window.location.hash == "#/blog-details"
+                      window.location.hash == "#/contact" ||
+                      window.location.hash == "#/contact"
                         ? "nav-link active"
                         : "nav-link"
                     }

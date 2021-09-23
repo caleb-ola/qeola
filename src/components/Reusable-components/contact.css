@@ -23,9 +23,26 @@
 #contact .contact-form {
   width: 100%;
 }
+#contact .border-blue {
+  border: 0 0 1px 0 !important;
+  border-color: #0839d8 !important;
+}
 
 #contact .shrink {
-  transform: scale(0.9);
+  transform: scale(1);
+  position: relative;
+  animation-name: shrink;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+}
+@keyframes shrink {
+  0% {
+    bottom: 6px;
+  }
+
+  100% {
+    bottom: 6px;
+  }
 }
 .form-control:focus {
   box-shadow: none !important;

@@ -210,3 +210,8 @@ nav div ul li a.cta:hover {
     display: flex;
   }
 }
+@media only screen and (min-width: 1440px) {
+  div.row div.left {
+    display: flex;
+  }
+}

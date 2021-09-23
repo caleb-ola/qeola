@@ -234,36 +234,41 @@ const BlogSelection = () => {
   return (
     <section id="blog-selection">
       <div className="container">
-        <div className="my-5 pt-5">
-          <button
-            className={`shadow-none px-3 py-2 ${active.allTopics}`}
-            onClick={AllTopics}
-          >
-            All Topics
-          </button>
-          <button
-            className={`shadow-none px-3 py-2 ${active.branding}`}
-            onClick={Branding}
-          >
-            Branding
-          </button>
-          <button
-            className={`shadow-none px-3 py-2 ${active.uiux}`}
-            onClick={UIUX}
-          >
-            UI/UX Design
-          </button>
-          <button
-            className={`shadow-none px-3 py-2 ${active.caseSturdy}`}
-            onClick={CaseSturdy}
-          >
-            Case Study
-          </button>
-          <button className={`shadow-none px-3 py-2 ${active.SD}`} onClick={SD}>
-            Software Development
-          </button>
+        <div className="containing mx-auto">
+          <div className="my-5 pt-5 text-center">
+            <button
+              className={`shadow-none px-1 mx-2 py-1 ${active.allTopics}`}
+              onClick={AllTopics}
+            >
+              All Topics
+            </button>
+            <button
+              className={`shadow-none px-1 mx-2 py-1 ${active.branding}`}
+              onClick={Branding}
+            >
+              Branding
+            </button>
+            <button
+              className={`shadow-none px-1 mx-2 py-1 ${active.uiux}`}
+              onClick={UIUX}
+            >
+              UI/UX Design
+            </button>
+            <button
+              className={`shadow-none px-1 mx-2 py-1 ${active.caseSturdy}`}
+              onClick={CaseSturdy}
+            >
+              Case Study
+            </button>
+            <button
+              className={`shadow-none px-1 mx-2 py-1 ${active.SD}`}
+              onClick={SD}
+            >
+              Software Development
+            </button>
+          </div>
+          <div className="my-5 pb-5 mx-auto"> {topics}</div>
         </div>
-        {topics}
       </div>
     </section>
   );

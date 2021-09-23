@@ -261,37 +261,37 @@ const Selection = () => {
       <div className="container">
         <div className="my-5 pt-5">
           <button
-            className={`shadow-none px-3 py-2 ${active.Allworks}`}
+            className={`shadow-none px-1 mx-3 py-1 ${active.Allworks}`}
             onClick={Allworks}
           >
             All Works
           </button>
           <button
-            className={`shadow-none px-3 py-2 ${active.Branding}`}
+            className={`shadow-none px-1 mx-3 py-1 ${active.Branding}`}
             onClick={Branding}
           >
             Branding
           </button>
           <button
-            className={`shadow-none px-3 py-2 ${active.WebDesign}`}
+            className={`shadow-none px-1 mx-3 py-1 ${active.WebDesign}`}
             onClick={WebDesign}
           >
             Web Design
           </button>
           <button
-            className={`shadow-none px-3 py-2 ${active.MobileApp}`}
+            className={`shadow-none px-1 mx-3 py-1 ${active.MobileApp}`}
             onClick={MobileApp}
           >
             Mobile App
           </button>
           <button
-            className={`shadow-none px-3 py-2 ${active.Marketing}`}
+            className={`shadow-none px-1 mx-3 py-1 ${active.Marketing}`}
             onClick={Marketing}
           >
             Marketing
           </button>
         </div>
-        <div className="row py-2 align-content-center justify-content-start my-5">
+        <div className="row py-2 align-content-center justify-content-start my-5 pb-5">
           {brands}
         </div>
       </div>

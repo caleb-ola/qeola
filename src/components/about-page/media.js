@@ -14,21 +14,21 @@ const Media = () => {
             <img
               src="images/About/awwwards_logo.png"
               alt=""
-              className="img-fluid "
+              className="img-fluid w-75"
             />
           </div>
           <div className=" col-6 col-md-4 p-2 p-md-3 my-1">
             <img
               src="images/About/the_guardian.png"
               alt=""
-              className="img-fluid "
+              className="img-fluid w-75"
             />
           </div>
           <div className=" col-6 col-md-4 p-2 p-md-3 my-1">
             <img
               src="images/About/tech_crunch.png"
               alt=""
-              className="img-fluid "
+              className="img-fluid w-75 "
             />
           </div>
           <div className=" col-6 col-md-4 p-2 p-md-3 my-1">

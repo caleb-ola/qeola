@@ -1,8 +1,9 @@
 #other-hero {
-  /* height: 600px; */
 }
 .hero-header {
   width: 90%;
+  align-self: center;
+  height: 85vh;
 }
 .hero-header h1 {
   font-size: 2.4rem;
@@ -12,7 +13,7 @@
     width: 80%;
   }
   .hero-header h1 {
-    font-size: 2.8rem;
+    font-size: 2.9rem;
     width: 90%;
   }
 }
@@ -21,7 +22,7 @@
     width: 80%;
   }
   .hero-header h1 {
-    font-size: 3rem;
+    font-size: 4rem;
     width: 75%;
   }
 }
