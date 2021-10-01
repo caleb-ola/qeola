@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import Cta2 from "./cta2";
 
 import "./otherHero.css";
@@ -18,7 +18,7 @@ const OtherHero = (props) => {
           >
             {props.cta} {props.cta && <i class="fas fa-arrow-right m-2"></i>}
           </Link> */}
-          <Cta2 text={props.cta} xclass={"fw-bold"} />
+          <Cta2 text={props.cta} xclass={"fw-bold"} path={props.path} />
         </div>
       </div>
     </section>

@@ -39,23 +39,23 @@ aside .aside {
   /* background-color: rgba(0, 0, 0, 0.8); */
   background: #fff;
   color: rgb(68, 68, 68);
-  position: fixed;
+  /* position: fixed; */
 }
-aside a.dash-btn {
-  color: rgb(68, 68, 68) !important;
+aside button.dash-btn {
+  color: rgb(68, 68, 68);
 }
-aside a.dash-btn:hover {
+aside button.dash-btn:hover {
   background-color: #fe00720c;
-  color: #fe0072 !important;
+  color: #fe0072;
   /* border-right: 3px solid #fe0072; */
 }
-aside a.dash-btn.active {
+aside button.dash-btn.activ {
   background-color: #fe00721a;
-  color: #fe0072 !important;
-  border-right: 3px solid #fe0072;
+  color: #fe0072;
+  border-right: 3px solid #fe0072 !important;
 }
 .logout-btn:hover {
-  color: #003cff !important;
+  color: #003cff;
 }
 main {
   background: #f1f1f1;
@@ -155,7 +155,7 @@ table {
   cursor: pointer;
 }
 .page:hover {
-  background-color: #acacac;
+  background-color: #fe00721a;
   color: #212121;
 }
 
@@ -183,7 +183,7 @@ table {
 }
 .previous:hover,
 .next:hover {
-  background-color: #acacac;
+  background-color: #fe00721a;
   color: #212121;
 }
 
@@ -194,17 +194,20 @@ table {
 .next {
   padding: 6px;
   padding: 12px;
-
   border-radius: 6px;
   margin-left: 10px;
   cursor: pointer;
   text-decoration: none;
   color: #212121;
 }
-/* 
-a.page {
-  text-decoration: none;
-} */
+.active-paginate {
+  background-color: #df0064;
+  color: #fff;
+  font-weight: bold;
+}
+i {
+  cursor: pointer;
+}
 
 @media only screen and (min-width: 768px) {
   .login-card {
@@ -215,5 +218,12 @@ a.page {
 @media only screen and (min-width: 1024px) {
   .login-card {
     width: 35%;
+  }
+  aside .aside {
+    /* background-color: rgba(0, 0, 0, 0.8); */
+    background: #fff;
+    color: rgb(68, 68, 68);
+    position: fixed;
+    height: 100vh;
   }
 }

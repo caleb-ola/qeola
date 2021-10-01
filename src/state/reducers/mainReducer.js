@@ -14,7 +14,7 @@ import MainSpace from "../../components/Dashboard/mainSpace";
 import MediaControl from "../../components/Dashboard/mediaControl";
 import Output from "../../components/Dashboard/output";
 import Welcome from "../../components/Dashboard/welcome";
-import { caseStudy } from "../actions";
+// import { caseStudy } from "../actions";
 
 const mainReducer = (state = "", action) => {
   switch (action.type) {

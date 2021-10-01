@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import draftToHtml from "draftjs-to-html";
-import htmlToDraft from "html-to-draftjs";
+// import htmlToDraft from "html-to-draftjs";
 import { EditorState, convertToRaw } from "draft-js";
 import axios from "axios";
 import { useSelector } from "react-redux";
@@ -23,9 +23,10 @@ const Editorial = (props) => {
   const [category, setCategory] = useState();
   const [image, setImage] = useState();
   const [cat, setCat] = useState();
-  const [catId, setCatId] = useState();
-  const [editorContent, setEditorContent] = useState();
-  const [Alert, setAlert] = useState();
+  // const [catId, setCatId] = useState();
+  // const [editorContent, setEditorContent] = useState();
+  // const [Alert, setAlert] = useState();
+  const [loading, setLoading] = useState(false);
 
   const ShrinkName = () => {
     setShrink({ mail: "", name: "shrink", Num: "", proj: "", brief: "" });
@@ -60,13 +61,13 @@ const Editorial = (props) => {
       (response) => {
         console.log(response);
         const tration = response.data.data.map((item) => {
-          if (item) {
-            return (
+          return (
+            item && (
               <option value={item.id} key={item.id}>
                 {item.name}
               </option>
-            );
-          }
+            )
+          );
         });
         setCat(tration);
       },
@@ -75,7 +76,7 @@ const Editorial = (props) => {
       }
     );
   };
-  console.log(author, title, category, image, content);
+  // console.log(author, title, category, image, content);
   let token = "";
   const Tokena = useSelector((state) => state.output);
   if (Tokena) {
@@ -84,6 +85,8 @@ const Editorial = (props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+
     const formData = new FormData();
     formData.append("image", image, image.file);
     formData.append("title", title);
@@ -109,8 +112,9 @@ const Editorial = (props) => {
         requestOptions
       );
       const result = await res.json();
-      console.log(result);
+      // console.log(result);
       if (result.status === "success") {
+        setLoading(false);
         store.addNotification({
           title: `SUCCESS`,
           message: "You added a new blog post.",
@@ -125,6 +129,7 @@ const Editorial = (props) => {
           },
         });
       } else if (result.status !== "success") {
+        setLoading(false);
         store.addNotification({
           title: `SORRY`,
           message: "Something went wrong",
@@ -142,7 +147,7 @@ const Editorial = (props) => {
       return result;
     }
 
-    const postIt = await postImage();
+    await postImage();
   };
 
   return (
@@ -163,7 +168,7 @@ const Editorial = (props) => {
                 <label
                   for="name"
                   className={
-                    shrink.name == "shrink"
+                    shrink.name === "shrink"
                       ? `fs-6 fw-bold ${shrink.name}`
                       : `fs-6 fw-bold`
                   }
@@ -189,7 +194,7 @@ const Editorial = (props) => {
                 <label
                   for="project-type"
                   className={
-                    shrink.proj == "shrink"
+                    shrink.proj === "shrink"
                       ? `fs-6 fw-bold ${shrink.proj}`
                       : `fs-6 fw-bold`
                   }
@@ -218,7 +223,7 @@ const Editorial = (props) => {
                 <label
                   for="name"
                   className={
-                    shrink.name == "shrink"
+                    shrink.name === "shrink"
                       ? `fs-6 fw-bold ${shrink.name}`
                       : `fs-6 fw-bold`
                   }
@@ -243,7 +248,7 @@ const Editorial = (props) => {
                 <label
                   for="project-brief"
                   className={
-                    shrink.brief == "shrink"
+                    shrink.brief === "shrink"
                       ? `fs-6 fw-bold ${shrink.brief}`
                       : `fs-6 fw-bold `
                   }
@@ -296,7 +301,15 @@ const Editorial = (props) => {
                 type="submit"
                 className="contact-submit shadow-none btn rounded-pill py-3 my-4 w-50 fw-bold"
               >
-                POST ARTICLE
+                {loading ? (
+                  <span
+                    className="spinner-border spinner-border-sm"
+                    role="status"
+                    aria-hidden="true"
+                  ></span>
+                ) : (
+                  "Post article"
+                )}
               </button>
             </div>
           </form>

@@ -1,4 +1,4 @@
-// import "./card_industry.css";
+import "./card_industry.css";
 
 const CardIndustry = (props) => {
   return (

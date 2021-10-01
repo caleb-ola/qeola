@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
 import { actionCreators } from "../../state";
 import Add from "./add";
@@ -11,7 +11,7 @@ import "react-notifications-component/dist/theme.css";
 import { store } from "react-notifications-component";
 
 const IndustryControl = (props) => {
-  const output = useSelector((state) => state.output);
+  // const output = useSelector((state) => state.output);
   const dispatch = useDispatch();
   const [Output, setOutput] = useState();
 
@@ -24,24 +24,21 @@ const IndustryControl = (props) => {
   const [posts, setPosts] = useState();
   const [PostsB, setPostsB] = useState();
 
-  const { showIndustry, addIndustry } = bindActionCreators(
-    actionCreators,
-    dispatch
-  );
+  const { addIndustry } = bindActionCreators(actionCreators, dispatch);
 
   const all = () => {
     axios.get("https://qeola-api.herokuapp.com/api/v1/users").then(
       (response) => {
-        console.log({ all: response });
+        // console.log({ all: response });
         setLoadingB(true);
         setPostsB(Math.ceil(response.data.data.length / itemsPerPage));
       },
       (error) => {
-        console.log(error);
+        // console.log(error);
       }
     );
   };
-  console.log(PostsB);
+  // console.log(PostsB);
 
   const renderUsers = (page, limit) => {
     all();
@@ -51,15 +48,14 @@ const IndustryControl = (props) => {
       )
       .then(
         (response) => {
-          console.log(response);
+          // console.log(response);
           if (response) {
-            console.log(response);
+            // console.log(response);
             setPosts(...[response.data.data]);
             setLoading(true);
-
             setOutput(
               response && (
-                <div>
+                <div style={{ overflowX: "auto" }}>
                   <table style={{ width: "100%" }} className="">
                     <tr>
                       <th>S/N</th>
@@ -68,7 +64,7 @@ const IndustryControl = (props) => {
                       <th>Date Registered</th>
                     </tr>
                     {response.data.data.map((item, i) => {
-                      console.log(item);
+                      // console.log(item);
                       return (
                         <tr>
                           <td>{i + 1}</td>
@@ -112,6 +108,9 @@ const IndustryControl = (props) => {
   return (
     <main className="P-5">
       <div className="p-5 py-3">
+        <div>
+          <input type="hidden" value={posts} />
+        </div>
         <ReactNotification />
 
         <div className="row justify-content-center mb-4">
@@ -139,7 +138,7 @@ const IndustryControl = (props) => {
             breakClassName={"page"}
             nextLinkClassName={"next"}
             pageClassName={"page"}
-            disabledClassNae={"disabled"}
+            disabledClassName={"disabled"}
             activeClassName={"active"}
           />
         ) : (

@@ -11,7 +11,7 @@ import "react-notifications-component/dist/theme.css";
 import { store } from "react-notifications-component";
 
 const CaseControl = (props) => {
-  const output = useSelector((state) => state.output);
+  // const output = useSelector((state) => state.output);
   const dispatch = useDispatch();
   const [Output, setOutput] = useState();
 
@@ -24,7 +24,7 @@ const CaseControl = (props) => {
   const [posts, setPosts] = useState();
   const [PostsB, setPostsB] = useState();
 
-  const { showCase, addCase } = bindActionCreators(actionCreators, dispatch);
+  const { addCase } = bindActionCreators(actionCreators, dispatch);
 
   let token;
 
@@ -35,16 +35,16 @@ const CaseControl = (props) => {
   const all = () => {
     axios.get("https://qeola-api.herokuapp.com/api/v1/projects").then(
       (response) => {
-        console.log({ all: response });
+        // console.log({ all: response });
         setLoadingB(true);
         setPostsB(Math.ceil(response.data.data.length / itemsPerPage));
       },
       (error) => {
-        console.log(error);
+        // console.log(error);
       }
     );
   };
-  console.log(PostsB);
+  // console.log(PostsB);
 
   const deleteProject = (id) => {
     axios
@@ -53,13 +53,13 @@ const CaseControl = (props) => {
       })
       .then(
         (response) => {
-          console.log(response);
+          // console.log(response);
           if (response) {
             renderProjects();
           }
         },
         (error) => {
-          console.log(error);
+          // console.log(error);
         }
       );
   };
@@ -76,7 +76,7 @@ const CaseControl = (props) => {
             setLoading(true);
             setOutput(
               response && (
-                <div>
+                <div style={{ overflowX: "auto" }}>
                   <table style={{ width: "100%" }} className="">
                     <tr>
                       <th>S/N</th>
@@ -87,7 +87,7 @@ const CaseControl = (props) => {
                       <th>Delete</th>
                     </tr>
                     {response.data.data.map((item, i) => {
-                      console.log(item);
+                      // console.log(item);
                       return (
                         <tr>
                           <td>{i + 1}</td>
@@ -147,6 +147,9 @@ const CaseControl = (props) => {
   return (
     <main className="P-5">
       <div className="p-5 py-3">
+        <div>
+          <input type="hidden" value={posts} />
+        </div>
         <ReactNotification />
 
         <div className="row justify-content-center mb-4">

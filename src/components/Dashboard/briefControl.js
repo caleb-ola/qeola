@@ -11,7 +11,7 @@ import "react-notifications-component/dist/theme.css";
 import { store } from "react-notifications-component";
 
 const BriefControl = (props) => {
-  const output = useSelector((state) => state.output);
+  // const output = useSelector((state) => state.output);
   const dispatch = useDispatch();
   const [Output, setOutput] = useState();
 
@@ -24,7 +24,7 @@ const BriefControl = (props) => {
   const [posts, setPosts] = useState();
   const [PostsB, setPostsB] = useState();
 
-  const { showBriefs, addBrief } = bindActionCreators(actionCreators, dispatch);
+  const { addBrief } = bindActionCreators(actionCreators, dispatch);
 
   let token;
 
@@ -36,16 +36,16 @@ const BriefControl = (props) => {
   const all = () => {
     axios.get("https://qeola-api.herokuapp.com/api/v1/briefs").then(
       (response) => {
-        console.log({ all: response });
+        // console.log({ all: response });
         setLoadingB(true);
         setPostsB(Math.ceil(response.data.data.length / itemsPerPage));
       },
       (error) => {
-        console.log(error);
+        // console.log(error);
       }
     );
   };
-  console.log(PostsB);
+  // console.log(PostsB);
 
   const deleteBrief = (id) => {
     axios
@@ -54,13 +54,13 @@ const BriefControl = (props) => {
       })
       .then(
         (response) => {
-          console.log(response);
+          // console.log(response);
           if (response) {
             renderBriefs();
           }
         },
         (error) => {
-          console.log(error);
+          // console.log(error);
         }
       );
   };
@@ -73,12 +73,12 @@ const BriefControl = (props) => {
       .then(
         (response) => {
           if (response) {
-            console.log(response);
+            // console.log(response);
             setPosts(...[response.data.data]);
             setLoading(true);
             setOutput(
               response && (
-                <div>
+                <div style={{ overflowX: "auto" }}>
                   <table style={{ width: "100%" }} className="">
                     <tr>
                       <th>S/N</th>
@@ -147,6 +147,10 @@ const BriefControl = (props) => {
   return (
     <main className="P-5">
       <div className="p-5 py-3">
+        <div>
+          <input type="hidden" value={posts} />
+          <input type="hidden" value={pageNumber} />
+        </div>
         <ReactNotification />
         <div className="row justify-content-center mb-4">
           <div className="col-12 col-sm-6 mx-auto" onClick={renderBriefs}>

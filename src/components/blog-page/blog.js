@@ -1,7 +1,7 @@
 import NavBar2 from "../Reusable-components/navbar2";
 import OtherHero from "../Reusable-components/otherHero";
 import BlogSelection from "./blogSelection";
-import Pagination from "../blog-details-page/pagination";
+// import Pagination from "../blog-details-page/pagination";
 import Footer from "../Reusable-components/footer";
 
 // CSS

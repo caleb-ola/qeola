@@ -11,11 +11,11 @@ import "react-notifications-component/dist/theme.css";
 import { store } from "react-notifications-component";
 
 const MainSpace = (props) => {
-  const output = useSelector((state) => state.output);
+  // const output = useSelector((state) => state.output);
   const dispatch = useDispatch();
   const [Output, setOutput] = useState();
 
-  const { showBlogs, addBlog } = bindActionCreators(actionCreators, dispatch);
+  const { addBlog } = bindActionCreators(actionCreators, dispatch);
 
   // PAGINATION
   const [loading, setLoading] = useState(false);
@@ -36,16 +36,16 @@ const MainSpace = (props) => {
   const all = () => {
     axios.get("https://qeola-api.herokuapp.com/api/v1/posts").then(
       (response) => {
-        console.log({ all: response });
+        // console.log({ all: response });
         setLoadingB(true);
         setPostsB(Math.ceil(response.data.data.length / itemsPerPage));
       },
       (error) => {
-        console.log(error);
+        // console.log(error);
       }
     );
   };
-  console.log(PostsB);
+  // console.log(PostsB);
 
   const deletePost = (id) => {
     axios
@@ -54,13 +54,13 @@ const MainSpace = (props) => {
       })
       .then(
         (response) => {
-          console.log(response);
+          // console.log(response);
           if (response) {
             renderPosts();
           }
         },
         (error) => {
-          console.log(error);
+          // console.log(error);
         }
       );
   };
@@ -79,7 +79,7 @@ const MainSpace = (props) => {
             setLoading(true);
             setOutput(
               response && (
-                <div>
+                <div style={{ overflowX: "auto" }}>
                   <table style={{ width: "100%" }} className="">
                     <tr>
                       <th>S/N</th>
@@ -91,7 +91,7 @@ const MainSpace = (props) => {
                       <th>Delete</th>
                     </tr>
                     {response.data.data.map((item, i) => {
-                      console.log(item);
+                      // console.log(item);
                       return (
                         <tr key={item._id}>
                           <td>{i + 1}</td>
@@ -154,6 +154,9 @@ const MainSpace = (props) => {
   return (
     <main className="P-5">
       <div className="p-5 py-3">
+        <div>
+          <input type="hidden" value={posts} />
+        </div>
         <ReactNotification />
 
         <div className="row justify-content-center mb-4">

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Pagination from "../blog-details-page/pagination";
+// import Pagination from "../blog-details-page/pagination";
 
 const Output = () => {
   return (

@@ -48,11 +48,15 @@
   color: #f1f1f1;
 }
 
-.over .closebtn {
+.over button.closebtn {
   position: absolute;
   top: 20px;
   right: 45px;
+  color: #212121cc !important;
   /* font-size: 60px; */
+}
+.over button.closebtn:hover {
+  color: #fe0072 !important;
 }
 
 div.row div.left {
@@ -81,7 +85,7 @@ nav.navbar.active {
 
 nav div ul li a {
   color: #fff !important;
-  font-weight: 400;
+  font-weight: 500;
 }
 nav div ul li a:hover {
   color: #fe0072 !important;
@@ -89,20 +93,20 @@ nav div ul li a:hover {
 }
 nav div ul li a.proj {
   color: rgb(231, 231, 231) !important;
-  font-weight: 400;
+  font-weight: 500;
 }
 nav div ul li a.proj:hover {
-  color: #fff !important;
+  color: #fe0072 !important;
   font-weight: 500;
 }
 nav div ul li a.proj.active {
-  color: #fff !important;
+  color: #fe0072 !important;
   font-weight: 600;
 }
 nav div ul li a.cta {
   background-color: #fe0072 !important;
   color: #fff;
-  font-weight: 400;
+  font-weight: 500;
   border-radius: 50px;
   border: 1px solid #fe0072;
 }
@@ -113,10 +117,6 @@ nav div ul li a.cta:hover {
   border-radius: 50px;
   border: 1px solid #fe0072;
 }
-
-/* .custom-toggler.navbar-toggler {
-  color: #fff;
-} */
 
 .animated-icon1,
 .animated-icon2,

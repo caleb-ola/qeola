@@ -4,11 +4,19 @@
 }
 #navbar2 nav div ul li a {
   color: #212121cc !important;
-  font-weight: 400;
+  font-weight: 500;
+}
+#navbar2 nav div ul li .nav-link {
+  color: #212121cc !important;
+  font-weight: 500;
+}
+#navbar2 nav div ul li .nav-link:hover {
+  color: #fe0072 !important;
+  font-weight: 500;
 }
 #navbar2 nav div ul li a.active {
-  color: #212121 !important;
-  font-weight: 600;
+  color: #202020 !important;
+  font-weight: 500;
 }
 #navbar2 nav div ul li a:hover {
   color: #fe0072 !important;
@@ -17,7 +25,7 @@
 #navbar2 nav div ul li a.cta {
   background-color: #fe0072 !important;
   color: #fff !important;
-  font-weight: 400;
+  font-weight: 500;
   border-radius: 50px;
   border: 1px solid #fe0072;
 }

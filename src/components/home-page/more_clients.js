@@ -5,14 +5,14 @@ import { useEffect, useState } from "react";
 
 const MoreClients = () => {
   const [client, setClient] = useState();
-  const [appState, setAppState] = useState();
+  // const [appState, setAppState] = useState();
 
   useEffect(() => {
     const url = "https://qeola-api.herokuapp.com/api/v1/clients?page=1&limit=5";
 
     axios.get(url).then(
       (response) => {
-        console.log(response);
+        // console.log(response);
 
         setClient(
           response &&
@@ -33,7 +33,7 @@ const MoreClients = () => {
         );
       },
       (error) => {
-        console.log(error);
+        // console.log(error);
       }
     );
   }, []);
@@ -41,7 +41,7 @@ const MoreClients = () => {
     <section id="more-clients" className="my-4">
       <div className="container">
         <div className="row py-2 align-content-center justify-content-center">
-          {appState}
+          {/* {appState} */}
           {client}
           {/* <div className="col-6 col-lg-2 col-md-3  align-self-center text-center px-5 px-md-4 py-4">
             <img

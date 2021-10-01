@@ -5,6 +5,8 @@ import { useSelector } from "react-redux";
 import ReactNotification from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
 import { store } from "react-notifications-component";
+// import Button from "@mui/material/Button";
+// import { CircularProgress } from "@mui/material";
 
 const DashContact3 = (props) => {
   const [shrink, setShrink] = useState({
@@ -15,6 +17,8 @@ const DashContact3 = (props) => {
     brief: "",
   });
   const [name, setName] = useState();
+  const [loading, setLoading] = useState(false);
+  // const [button, setButton] = useState(props.btn);
 
   const ShrinkName = () => {
     setShrink({ mail: "", name: "shrink", Num: "", proj: "", brief: "" });
@@ -32,6 +36,7 @@ const DashContact3 = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setLoading(true);
     axios
       .post(
         "https://qeola-api.herokuapp.com/api/v1/categories",
@@ -41,6 +46,7 @@ const DashContact3 = (props) => {
       .then(
         (response) => {
           // console.log(response);
+          setLoading(false);
           store.addNotification({
             title: `SUCCESS`,
             message: "You added a new category",
@@ -56,6 +62,7 @@ const DashContact3 = (props) => {
           });
         },
         (error) => {
+          setLoading(false);
           store.addNotification({
             title: `Sorry`,
             message: "Something went wrong please try again",
@@ -90,9 +97,9 @@ const DashContact3 = (props) => {
                   onBlur={Enlarge}
                 >
                   <label
-                    for="name"
+                    htmlFor="name"
                     className={
-                      shrink.name == "shrink"
+                      shrink.name === "shrink"
                         ? `fs-6 fw-bold ${shrink.name}`
                         : `fs-6 fw-bold`
                     }
@@ -114,8 +121,19 @@ const DashContact3 = (props) => {
                     type="submit"
                     className="contact-submit shadow-none btn rounded-pill py-3 my-4 w-50 fw-bold"
                   >
-                    {props.btn}
+                    {loading ? (
+                      <span
+                        className="spinner-border spinner-border-sm"
+                        role="status"
+                        aria-hidden="true"
+                      ></span>
+                    ) : (
+                      props.btn
+                    )}
                   </button>
+                  {/* <Button variant="contained" size="large" type="submit">
+                    {loading ? <CircularProgress /> : button}
+                  </Button> */}
                 </div>
               </div>
             </form>

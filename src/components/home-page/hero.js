@@ -3,11 +3,11 @@ import HeroVideo from "./vid.mp4";
 import ReactTypingEffect from "react-typing-effect";
 
 import "./hero.css";
-import { useEffect, useState } from "react";
+// import { useState } from "react";
 import Cta1 from "../Reusable-components/cta1";
 
 const Hero = () => {
-  const [count, setCount] = useState(1);
+  // const [count, setCount] = useState(1);
 
   return (
     // <header style={{ backgroundImage: `url("images/Home/vid.mp4")` }}></header>
@@ -38,7 +38,7 @@ const Hero = () => {
               />
             </h1>
 
-            <Cta1 text={"See the clients we have served"} />
+            <Cta1 text={"See the clients we have served"} path={"/clients"} />
           </div>
         </div>
       </div>

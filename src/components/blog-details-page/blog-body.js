@@ -10,7 +10,7 @@ const BlogBody = (props) => {
             <p className="category p-0 m-0">
               <small>{props.category}</small>
             </p>
-            <h2 className="fw-bold fs-1">{props.title} </h2>
+            <h1 className="fw-bold fs-1">{props.title} </h1>
             <p>
               "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
@@ -23,7 +23,7 @@ const BlogBody = (props) => {
         </div>
       </div>
       <div className="">
-        <img src={props.image} alt="blog-image" className="img-fluid" />
+        <img src={props.image} alt="blog banner" className="img-fluid" />
       </div>
       <div className="container my-5">
         <div className="blog-passage">

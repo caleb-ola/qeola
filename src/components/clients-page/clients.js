@@ -5,6 +5,7 @@ import Selection from "../Reusable-components/selection";
 import Footer from "../Reusable-components/footer";
 // CSS
 import "./clients.css";
+// import { useEffect } from "react";
 const Clients = () => {
   return (
     <div id="clients">

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import ReactNotification from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
 import { store } from "react-notifications-component";
@@ -18,9 +18,10 @@ const DashContact = (props) => {
   const [category, setCategory] = useState();
   const [image, setImage] = useState();
   const [cat, setCat] = useState();
-  const [alert, setAlert] = useState();
-  const [catId, setCatId] = useState();
-  const [dataForm, setDataForm] = useState();
+  // const [alert, setAlert] = useState();
+  // const [catId, setCatId] = useState();
+  // const [dataForm, setDataForm] = useState();
+  const [loading, setLoading] = useState(false);
 
   const ShrinkName = () => {
     setShrink({ mail: "", name: "shrink", Num: "", proj: "", brief: "" });
@@ -50,15 +51,16 @@ const DashContact = (props) => {
     token = Tokena.token;
   }
 
-  const config = {
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "Content-Type": "multipart/form-data",
-    },
-  };
+  // const config = {
+  //   headers: {
+  //     Authorization: `Bearer ${token}`,
+  //     "Content-Type": "multipart/form-data",
+  //   },
+  // };
 
   const Submit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     // console.log(e.target.input);
 
     const formdata = new FormData();
@@ -85,8 +87,9 @@ const DashContact = (props) => {
         requestOptions
       );
       const result = await res.json();
-      console.log(result);
+      // console.log(result);
       if (result.status === "success") {
+        setLoading(false);
         store.addNotification({
           title: `SUCCESS`,
           message: "You added a new client",
@@ -101,6 +104,7 @@ const DashContact = (props) => {
           },
         });
       } else {
+        setLoading(false);
         store.addNotification({
           title: `Sorry, check again`,
           message: "Something went wrong please try again",
@@ -118,7 +122,7 @@ const DashContact = (props) => {
       return result;
     }
 
-    const postIt = await postImage();
+    await postImage();
   };
 
   // console.log(image, name, category);
@@ -126,13 +130,13 @@ const DashContact = (props) => {
     axios.get("https://qeola-api.herokuapp.com/api/v1/categories").then(
       (response) => {
         const tration = response.data.data.map((item) => {
-          if (item) {
-            return (
+          return (
+            item && (
               <option value={item.id} key={item.id}>
                 {item.name}
               </option>
-            );
-          }
+            )
+          );
         });
         setCat(tration);
       },
@@ -162,7 +166,7 @@ const DashContact = (props) => {
                   <label
                     for="name"
                     className={
-                      shrink.name == "shrink"
+                      shrink.name === "shrink"
                         ? `fs-6 fw-bold ${shrink.name}`
                         : `fs-6 fw-bold`
                     }
@@ -187,7 +191,7 @@ const DashContact = (props) => {
                   <label
                     for="project-type"
                     className={
-                      shrink.proj == "shrink"
+                      shrink.proj === "shrink"
                         ? `fs-6 fw-bold ${shrink.proj}`
                         : `fs-6 fw-bold`
                     }
@@ -217,7 +221,7 @@ const DashContact = (props) => {
                   <label
                     for="project-brief"
                     className={
-                      shrink.brief == "shrink"
+                      shrink.brief === "shrink"
                         ? `fs-6 fw-bold ${shrink.brief}`
                         : `fs-6 fw-bold `
                     }
@@ -261,7 +265,15 @@ const DashContact = (props) => {
                     type="submit"
                     className="contact-submit shadow-none btn rounded-pill py-3 my-4 w-50 fw-bold"
                   >
-                    Post
+                    {loading ? (
+                      <span
+                        className="spinner-border spinner-border-sm"
+                        role="status"
+                        aria-hidden="true"
+                      ></span>
+                    ) : (
+                      "Post"
+                    )}
                   </button>
                 </div>
               </div>

@@ -17,6 +17,7 @@ const About = () => {
           "We are a full-service creative digital agency that helps SMBs take advantage of technology and use it to drive business growth."
         }
         cta={`Send us your brief`}
+        path={"/contact"}
       />
       <Process />
       <Quote />

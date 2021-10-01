@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import CardIndustry from "../Reusable-components/card_industry";
 import Cta2 from "../Reusable-components/cta2";
 import "./industries.css";
@@ -13,7 +13,7 @@ const Industries = () => {
         <div className="row align-items-center ">
           <div className="col-6 col-lg-3 col-md-3 px-1 p-3">
             <CardIndustry
-              title={"Eduaction"}
+              title={"Education"}
               image={"images/Home/icons/education.png"}
             />
           </div>

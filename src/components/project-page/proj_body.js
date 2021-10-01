@@ -1,13 +1,13 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import Cta2 from "../Reusable-components/cta2";
-import Cta3 from "../Reusable-components/cta3";
+// import axios from "axios";
+// import {  useState } from "react";
+// import { useSelector } from "react-redux";
+// import { Link } from "react-router-dom";
+// import Cta2 from "../Reusable-components/cta2";
+// import Cta3 from "../Reusable-components/cta3";
 
 const ProjBody = (props) => {
-  const proj = useSelector((state) => state.output);
-  const [body, setBody] = useState();
+  // const proj = useSelector((state) => state.output);
+  // const [body, setBody] = useState();
 
   const createMarkup = () => {
     return { __html: props.content };
@@ -134,9 +134,9 @@ const ProjBody = (props) => {
             Next Project <i class="fas fa-arrow-right m-2"></i>
           </Link> */}
 
-          <div className="text-center">
+          {/* <div className="text-center">
             <Cta3 textA={"Previous Project"} textB={"Next Project"} />
-          </div>
+          </div> */}
         </div>
       </div>
     </section>

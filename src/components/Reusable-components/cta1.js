@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./../home-page/hero.css";
 
 const Cta1 = (props) => {
   const [animate, setAnimate] = useState(false);
@@ -12,14 +13,15 @@ const Cta1 = (props) => {
   return (
     <div>
       <a
-        href="#"
-        className={`btn hero-cta p-0 m-0 my-2 shadow-none ${props.xclass}`}
+        href={props.path}
+        className={`btn hero-cta p-0 m-0 my-2 shadow-none `}
         onMouseOver={ActiveAnime}
         onMouseOut={DeactiveAnime}
       >
         {props.text}{" "}
         <i
-          class={
+          id="anime"
+          className={
             animate
               ? `fas fa-arrow-right m-2 animate`
               : `fas fa-arrow-right m-2`

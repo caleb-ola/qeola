@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ReactPaginate from "react-paginate";
 import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -34,16 +34,16 @@ const CategoryControl = (props) => {
   const all = () => {
     axios.get("https://qeola-api.herokuapp.com/api/v1/categories").then(
       (response) => {
-        console.log({ all: response });
+        // console.log({ all: response });
         setLoadingB(true);
         setPostsB(Math.ceil(response.data.data.length / itemsPerPage));
       },
       (error) => {
-        console.log(error);
+        // console.log(error);
       }
     );
   };
-  console.log(PostsB);
+  // console.log(PostsB);
 
   const updateCategory = (id) => {
     axios
@@ -56,11 +56,11 @@ const CategoryControl = (props) => {
       )
       .then(
         (response) => {
-          console.log(response);
+          // console.log(response);
           // response.data.data.name = "new category";
         },
         (error) => {
-          console.log(error);
+          // console.log(error);
         }
       );
   };
@@ -97,7 +97,7 @@ const CategoryControl = (props) => {
             setLoading(true);
             setOutput(
               response && (
-                <div>
+                <div style={{ overflowX: "auto" }}>
                   <table style={{ width: "100%" }} className="">
                     <tr>
                       <th>S/N</th>
@@ -163,13 +163,13 @@ const CategoryControl = (props) => {
     renderCategories(selected + 1, itemsPerPage);
     // console.log(selected + 1);
   };
-  const { showCategories, addCategory } = bindActionCreators(
-    actionCreators,
-    dispatch
-  );
+  const { addCategory } = bindActionCreators(actionCreators, dispatch);
   return (
     <main className="P-5">
       <div className="p-5 py-3">
+        <div>
+          <input type="hidden" value={posts} />
+        </div>
         <ReactNotification />
         <div className="row justify-content-center mb-4">
           <div

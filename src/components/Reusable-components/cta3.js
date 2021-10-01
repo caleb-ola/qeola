@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 // import "../home-page/hero.css";
 
 const Cta3 = (props) => {
@@ -22,8 +22,8 @@ const Cta3 = (props) => {
   return (
     <div className="m-0 row w-75 mx-auto">
       <div className="col-12 col-sm-6 ">
-        <Link
-          to={props.pathA}
+        <a
+          href={props.pathA}
           className={`btn more-clients-btn p-0 m-0 my-1 shadow-none fw-bold`}
           onMouseOver={ActiveAnimeA}
           onMouseOut={DeactiveAnimeA}
@@ -38,12 +38,12 @@ const Cta3 = (props) => {
             ></i>
           )}
           {props.textA}
-        </Link>
+        </a>
       </div>
       <div className="col-12 col-sm-6">
         {" "}
-        <Link
-          to={props.pathB}
+        <a
+          href={props.pathB}
           className={`btn more-clients-btn p-0 m-0 my-1 shadow-none fw-bold`}
           onMouseOver={ActiveAnime}
           onMouseOut={DeactiveAnime}
@@ -59,7 +59,7 @@ const Cta3 = (props) => {
               }
             ></i>
           )}
-        </Link>
+        </a>
       </div>{" "}
     </div>
   );

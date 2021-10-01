@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import "./contact.css";
 import ReactNotification from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
@@ -102,8 +102,8 @@ const Contact = (props) => {
   const [phone, setPhone] = useState();
   const [briefTxt, setBriefTxt] = useState();
   const [cat, setCat] = useState();
-  const [file, setFile] = useState();
-  const [alert, setAlert] = useState();
+  // const [file, setFile] = useState();
+  // const [alert, setAlert] = useState();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -112,30 +112,30 @@ const Contact = (props) => {
     return () => clearTimeout(timer);
   }, []);
 
-  let token = "";
-  const Tokena = useSelector((state) => state.output);
-  if (Tokena) {
-    token = Tokena.token;
-  }
+  // let token = "";
+  // const Tokena = useSelector((state) => state.output);
+  // if (Tokena) {
+  //   token = Tokena.token;
+  // }
 
   const Options = () => {
     axios.get("https://qeola-api.herokuapp.com/api/v1/categories").then(
       (response) => {
-        console.log(response);
+        // console.log(response);
         const tration = response.data.data.map((item) => {
-          if (item) {
-            // console.log(item.id + item.name);
-            return (
+          // console.log(item.id + item.name);
+          return (
+            item && (
               <option value={item.id} key={item.id}>
                 {item.name}
               </option>
-            );
-          }
+            )
+          );
         });
         setCat(tration);
       },
       (error) => {
-        console.log(error);
+        // console.log(error);
       }
     );
   };
@@ -201,8 +201,10 @@ const Contact = (props) => {
       return result;
     }
 
-    const postIt = await postImage();
+    await postImage();
   };
+
+  // console.log({ brief, name, category, email, phone, briefTxt });
 
   return (
     <section id="contact" className="py-3">
@@ -221,7 +223,7 @@ const Contact = (props) => {
                 onBlur={Enlarge}
               >
                 <label
-                  for="email"
+                  htmlFor="email"
                   className={
                     shrink.mail === "shrink"
                       ? `fs-6 fw-bold ${shrink.mail}`
@@ -249,7 +251,7 @@ const Contact = (props) => {
                 onBlur={Enlarge}
               >
                 <label
-                  for="name"
+                  htmlFor="name"
                   className={
                     shrink.name === "shrink"
                       ? `fs-6 fw-bold ${shrink.name}`
@@ -279,7 +281,7 @@ const Contact = (props) => {
                 onBlur={Enlarge}
               >
                 <label
-                  for="number"
+                  htmlFor="number"
                   className={
                     shrink.Num === "shrink"
                       ? `fs-6 fw-bold ${shrink.Num}`
@@ -308,7 +310,7 @@ const Contact = (props) => {
                 onBlur={Enlarge}
               >
                 <label
-                  for="project-type"
+                  htmlFor="project-type"
                   className={
                     shrink.proj === "shrink"
                       ? `fs-6 fw-bold ${shrink.proj}`
@@ -321,6 +323,7 @@ const Contact = (props) => {
                 <select
                   id="project-type"
                   name="project-type"
+                  defaultValue="Make your selection"
                   className={
                     shrink.Bproj === "border-blue"
                       ? `w-100 py-2 my-1 border-0 border-2 border-bottom ${shrink.Bproj}`
@@ -329,9 +332,6 @@ const Contact = (props) => {
                   onChange={(e) => setCategory(e.target.value)}
                   required
                 >
-                  <option value="" disabled selected className="primary">
-                    Make your selection
-                  </option>
                   {cat}
                 </select>
               </div>
@@ -342,7 +342,7 @@ const Contact = (props) => {
                 onBlur={Enlarge}
               >
                 <label
-                  for="project-brief"
+                  htmlFor="project-brief"
                   className={
                     shrink.brief === "shrink"
                       ? `fs-6 fw-bold ${shrink.brief}`

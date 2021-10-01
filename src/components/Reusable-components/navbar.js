@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./navbar.css";
 
@@ -11,9 +11,9 @@ const Header = () => {
     setHamburger(hamburger ? false : true);
   };
 
-  const ToggleNavBg = (e) => {
-    setNavbg(window.pageYOffset > 100 ? "bg-dark" : "");
-  };
+  // const ToggleNavBg = (e) => {
+  //   setNavbg(window.pageYOffset > 100 ? "bg-dark" : "");
+  // };
 
   const ChangeBg = () => {
     if (window.scrollY >= 100) {
@@ -36,7 +36,7 @@ const Header = () => {
     setProj(false);
   };
 
-  // console.log(window.location.hash);
+  // console.log(window.location.pathname);
   return (
     <section id="navbar" className="m-0">
       <div id="myNav" className={proj ? "over visible" : "over hidden"}>
@@ -49,12 +49,11 @@ const Header = () => {
             }}
           >
             <img
-              src="images/Home/menu.jpg"
-              alt="menu image"
+              src="/images/Home/menu.jpg"
+              alt="menu"
               className=" menu-img img-fluid"
               style={{
                 objectFit: "cover",
-                // height: "100vh",
               }}
             />
           </div>
@@ -65,14 +64,14 @@ const Header = () => {
               height: "100vh",
             }}
           >
-            <a
-              href="javascript:void(0)"
-              className="closebtn fw-bold nav-link nav-linkB fs-5"
+            <button
+              // href="#"
+              className="btn closebtn fw-bold nav-link nav-linkB fs-5 shadow-none"
               onClick={CloseNav}
             >
-              CLOSE {"  "} <i class="fas fa-times px-2"></i>
-            </a>
-            <div class="over-content text-center text-lg-start w-50 mx-auto ">
+              CLOSE {"  "} <i className="fas fa-times px-2"></i>
+            </button>
+            <div className="over-content text-center text-lg-start w-50 mx-auto ">
               <Link to="/clients" className="fw-bold my-3 mt-0 fs-1 nav-linkB">
                 CLIENTS
               </Link>
@@ -94,23 +93,23 @@ const Header = () => {
 
       <div className="">
         <nav
-          class={
+          className={
             navbg
               ? `navbar fixed-top navbar-expand-lg navbar-light bg-light py-sm-4 bg-transparent active`
               : `navbar fixed-top navbar-expand-lg navbar-light bg-light py-sm-4 bg-transparent`
           }
         >
-          <div class="container">
-            <Link class="navbar-brand me-auto" to="/">
+          <div className="container">
+            <Link className="navbar-brand me-auto" to="/">
               <img
-                src={"images/white_logo.png"}
+                src={"/images/white_logo.png"}
                 alt="Qeola's logo"
                 className="img-fluid w-50"
               />
             </Link>
             <button
               onClick={ToggleHamburger}
-              class="navbar-toggler custom-toggler shadow-none border-0"
+              className="navbar-toggler custom-toggler shadow-none border-0"
               type="button"
               data-bs-toggle="collapse"
               data-bs-target="#navbarNavDropdown"
@@ -118,18 +117,20 @@ const Header = () => {
               aria-expanded="false"
               aria-label="Toggle navigation"
             >
-              <div class={hamburger ? "animated-icon1 open" : "animated-icon1"}>
+              <div
+                className={hamburger ? "animated-icon1 open" : "animated-icon1"}
+              >
                 <span></span>
                 <span></span>
                 <span></span>
               </div>
             </button>
-            <div class="collapse navbar-collapse " id="navbarNavDropdown">
-              <ul class="navbar-nav ms-auto">
-                <li class="nav-item px-2 mx-2 fs-6">
+            <div className="collapse navbar-collapse " id="navbarNavDropdown">
+              <ul className="navbar-nav ms-auto">
+                <li className="nav-item px-2 mx-2 fs-6">
                   <Link
-                    class={
-                      window.location.hash == "#/about"
+                    className={
+                      window.location.pathname === "/about"
                         ? "nav-link proj active"
                         : "nav-link proj"
                     }
@@ -139,10 +140,10 @@ const Header = () => {
                     About Us
                   </Link>
                 </li>
-                <li class="nav-item px-2 mx-2 fs-6">
+                <li className="nav-item px-2 mx-2 fs-6">
                   <Link
-                    class={
-                      window.location.hash == "#/project"
+                    className={
+                      window.location.pathname === "/project"
                         ? "nav-link proj active"
                         : "nav-link proj"
                     }
@@ -151,10 +152,10 @@ const Header = () => {
                     Case Studies
                   </Link>
                 </li>
-                <li class="nav-item px-2 mx-2 fs-6">
+                <li className="nav-item px-2 mx-2 fs-6">
                   <Link
-                    class={
-                      window.location.hash == "#/contact"
+                    className={
+                      window.location.pathname === "/contact"
                         ? "nav-link proj active"
                         : "nav-link proj"
                     }
@@ -163,7 +164,7 @@ const Header = () => {
                     Talk to us
                   </Link>
                 </li>
-                <li class="nav-item ps-md-3  px-3 px-sm-0 py-md-0 fs-6 ">
+                <li className="nav-item ps-md-3  px-3 px-sm-0 py-md-0 fs-6 ">
                   {/* <Link
                     class=""
                     to="/contact"
@@ -172,8 +173,9 @@ const Header = () => {
                   </Link> */}
                   <Link
                     style={{ cursor: "pointer" }}
-                    className="nav-link "
+                    className="nav-link proj"
                     onClick={OpenNav}
+                    to="#"
                   >
                     Menu &#9776;
                   </Link>

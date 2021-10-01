@@ -28,12 +28,25 @@
 }
 #quote {
   color: #fff;
+  position: relative;
 }
 #quote .quote-cta {
   color: #fff;
 }
 #quote .quote-cta:hover {
   color: #fe0072;
+}
+
+#quote .quote {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* width: 70%; */
+  /* text-align: center; */
+  /* margin: 0 auto; */
+  height: 100vh;
+  /* background-color: rgba(0, 0, 0, 0.7); */
 }
 
 @media only screen and (min-width: 1024px) {

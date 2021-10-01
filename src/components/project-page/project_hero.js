@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+// import { useEffect, useState } from "react";
+// import { useSelector } from "react-redux";
 import "../home-page/hero.css";
 
 const ProjectHero = (props) => {
-  const proj = useSelector((state) => state.output);
+  // const proj = useSelector((state) => state.output);
   // const [image, setImage] = useState();
   // const [name, setName] = useState();
   // const [description, setDescription] = useState();

@@ -1,10 +1,12 @@
-import axios from "axios";
+// import axios from "axios";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { bindActionCreators } from "redux";
 import { actionCreators } from "../../state";
-import propTypes from "prop-types";
+// import propTypes from "prop-types";
+
+import "./admin.css";
 
 const Aside = ({ setToken }) => {
   const dispatch = useDispatch();
@@ -15,12 +17,12 @@ const Aside = ({ setToken }) => {
     caseStudy,
     client,
     industry,
-    media,
+    // media,
     category,
     Logout,
   } = bindActionCreators(actionCreators, dispatch);
 
-  const cred = useSelector((state) => state.output);
+  // const cred = useSelector((state) => state.output);
 
   const handleLogout = (e) => {
     e.preventDefault();
@@ -102,18 +104,18 @@ const Aside = ({ setToken }) => {
     industry();
   };
 
-  const activeMedia = () => {
-    setActive({
-      blog: "",
-      brief: "",
-      case: "",
-      client: "",
-      industry: "",
-      media: "activ",
-      category: "",
-    });
-    media();
-  };
+  // const activeMedia = () => {
+  //   setActive({
+  //     blog: "",
+  //     brief: "",
+  //     case: "",
+  //     client: "",
+  //     industry: "",
+  //     media: "activ",
+  //     category: "",
+  //   });
+  //   media();
+  // };
   const activeCategory = () => {
     setActive({
       blog: "",
@@ -128,10 +130,10 @@ const Aside = ({ setToken }) => {
   };
 
   return (
-    <aside className="m-0 position-fixed">
+    <aside className="m-0 ">
       <div
         className="d-flex flex-column align-items-center mb-auto py-2 aside"
-        style={{ height: "100vh" }}
+        // style={{ height: "100vh" }}
       >
         <div className="avatar my-4 text-center">
           {/* <i class="material-icons fs-1">account_circle</i>{" "} */}
@@ -142,84 +144,84 @@ const Aside = ({ setToken }) => {
             onClick={() => welcome()}
           />
         </div>
-        <a
+        <button
           className={
             active
-              ? `btn dash-btn  d-flex align-items-center w-100 rounded-0 ${active.blog}`
-              : "btn dash-btn  d-flex align-items-center w-100 rounded-0"
+              ? `btn dash-btn  d-flex align-items-center w-100 rounded-0 shadow-none ${active.blog}`
+              : "btn dash-btn  d-flex align-items-center w-100 rounded-0 shadow-none"
           }
           onClick={activeBlog}
         >
-          <i class="fas fa-blog me-2 p-0 ms-0"></i>Blog
-        </a>
+          <i className="fas fa-blog me-2 p-0 ms-0"></i>Blog
+        </button>
 
-        <a
+        <button
           className={
             active
-              ? `btn dash-btn  d-flex align-items-center w-100 rounded-0 ${active.brief}`
-              : "btn dash-btn  d-flex align-items-center w-100 rounded-0"
+              ? `btn dash-btn  d-flex align-items-center w-100 rounded-0 shadow-none ${active.brief}`
+              : "btn dash-btn  d-flex align-items-center w-100 rounded-0 shadow-none"
           }
           onClick={activeBrief}
         >
-          <i class="fas fa-business-time me-2 p-0 ms-0 "></i>
+          <i className="fas fa-business-time me-2 p-0 ms-0 "></i>
           Brief
-        </a>
-        <a
+        </button>
+        <button
           className={
             active
-              ? `btn dash-btn  d-flex align-items-center w-100 rounded-0 ${active.case}`
-              : "btn dash-btn  d-flex align-items-center w-100 rounded-0"
+              ? `btn dash-btn  d-flex align-items-center w-100 rounded-0 shadow-none ${active.case}`
+              : "btn dash-btn  d-flex align-items-center w-100 rounded-0 shadow-none"
           }
           onClick={activeCase}
         >
-          <i class="fas fa-file-alt me-2 p-0 ms-0"></i>Case studies
-        </a>
-        <a
+          <i className="fas fa-file-alt me-2 p-0 ms-0"></i>Case studies
+        </button>
+        <button
           className={
             active
-              ? `btn dash-btn  d-flex align-items-center w-100 rounded-0 ${active.client}`
-              : "btn dash-btn  d-flex align-items-center w-100 rounded-0"
+              ? `btn dash-btn  d-flex align-items-center w-100 rounded-0 shadow-none ${active.client}`
+              : "btn dash-btn  d-flex align-items-center w-100 rounded-0 shadow-none"
           }
           onClick={activeClient}
         >
-          <i class="fas fa-smile-wink me-2 p-0 ms-0"></i>Client
-        </a>
-        <a
+          <i className="fas fa-smile-wink me-2 p-0 ms-0"></i>Client
+        </button>
+        <button
           className={
             active
-              ? `btn dash-btn  d-flex align-items-center w-100 rounded-0 ${active.industry}`
-              : "btn dash-btn  d-flex align-items-center w-100 rounded-0"
+              ? `btn dash-btn  d-flex align-items-center w-100 rounded-0 shadow-none ${active.industry}`
+              : "btn dash-btn  d-flex align-items-center w-100 rounded-0 shadow-none"
           }
           onClick={activeIndustry}
         >
-          <i class="fas fa-industry me-2 p-0 ms-0"></i>Users
-        </a>
+          <i className="fas fa-industry me-2 p-0 ms-0"></i>Users
+        </button>
         {/* <a
           className={
             active
-              ? `btn dash-btn  d-flex align-items-center w-100 rounded-0 ${active.media}`
-              : "btn dash-btn  d-flex align-items-center w-100 rounded-0"
+              ? `btn dash-btn  d-flex align-items-center w-100 rounded-0 shadow-none ${active.media}`
+              : "btn dash-btn  d-flex align-items-center w-100 rounded-0 shadow-none"
           }
           onClick={activeMedia}
         >
           <i class="fas fa-medal me-2 p-0 ms-0"></i>Media mentions
         </a> */}
-        <a
+        <button
           className={
             active
-              ? `btn dash-btn  d-flex align-items-center w-100 rounded-0 ${active.category}`
-              : "btn dash-btn  d-flex align-items-center w-100 rounded-0"
+              ? `btn dash-btn  d-flex align-items-center w-100 rounded-0 shadow-none ${active.category}`
+              : "btn dash-btn  d-flex align-items-center w-100 rounded-0 shadow-none"
           }
           onClick={activeCategory}
         >
-          <i class="fas fa-medal me-2 p-0 ms-0"></i>Category
-        </a>
+          <i className="fas fa-medal me-2 p-0 ms-0"></i>Category
+        </button>
         <Link
           to="/"
-          className="btn mt-auto logout-btn align-self-start d-flex align-items-center w-100 rounded-0 d-flex align-items-center fw-bold text-decoration-none shadow-none"
+          className="btn mt-auto logout-btn align-self-center d-flex align-items-center w-100 rounded-0 d-flex align-items-center fw-bold text-decoration-none shadow-none text-center"
           onClick={handleLogout}
         >
-          <i class="material-icons me-2 p-0 ms-0">logout</i> Logout
+          <i className="material-icons me-2 p-0 ms-0">logout</i> Logout
         </Link>
       </div>
     </aside>

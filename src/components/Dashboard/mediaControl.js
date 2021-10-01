@@ -1,11 +1,11 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
 import { actionCreators } from "../../state";
 import Add from "./add";
 import Edit from "./edit";
 
 const MediaControl = (props) => {
-  const output = useSelector((state) => state.output);
+  // const output = useSelector((state) => state.output);
   const dispatch = useDispatch();
 
   const { showMedia, addMedia } = bindActionCreators(actionCreators, dispatch);

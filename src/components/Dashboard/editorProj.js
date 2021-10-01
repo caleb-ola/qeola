@@ -22,9 +22,10 @@ const EditorProj = (props) => {
   const [category, setCategory] = useState();
   const [image, setImage] = useState();
   const [cat, setCat] = useState();
-  const [Alert, setAlert] = useState();
-  const [catId, setCatId] = useState();
-  const [editorContent, setEditorContent] = useState();
+  // const [Alert, setAlert] = useState();
+  // const [catId, setCatId] = useState();
+  // const [editorContent, setEditorContent] = useState();
+  const [loading, setLoading] = useState(false);
 
   const ShrinkName = () => {
     setShrink({ mail: "", name: "shrink", Num: "", proj: "", brief: "" });
@@ -56,24 +57,24 @@ const EditorProj = (props) => {
   const Options = () => {
     axios.get("https://qeola-api.herokuapp.com/api/v1/categories").then(
       (response) => {
-        console.log(response);
+        // console.log(response);
         const tration = response.data.data.map((item) => {
-          if (item) {
-            return (
+          return (
+            item && (
               <option value={item.id} key={item.id}>
                 {item.name}
               </option>
-            );
-          }
+            )
+          );
         });
         setCat(tration);
       },
       (error) => {
-        console.log(error);
+        // console.log(error);
       }
     );
   };
-  console.log(description, title, category, image, content);
+  // console.log(description, title, category, image, content);
   let token = "";
   const Tokena = useSelector((state) => state.output);
   if (Tokena) {
@@ -82,6 +83,7 @@ const EditorProj = (props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     const formData = new FormData();
     formData.append("image", image, image.name);
     formData.append("title", title);
@@ -106,6 +108,7 @@ const EditorProj = (props) => {
       );
       const result = await res.json();
       if (result.status === "success") {
+        setLoading(false);
         store.addNotification({
           title: `Success`,
           message: "You have added a new project.",
@@ -120,6 +123,7 @@ const EditorProj = (props) => {
           },
         });
       } else if (result.status !== "success") {
+        setLoading(false);
         store.addNotification({
           title: `Sorry`,
           message: "Something went wrong",
@@ -138,7 +142,7 @@ const EditorProj = (props) => {
       return result;
     }
 
-    const postIt = await postImage();
+    await postImage();
   };
   return (
     <main className="P-5">
@@ -156,9 +160,9 @@ const EditorProj = (props) => {
                 onBlur={Enlarge}
               >
                 <label
-                  for="name"
+                  htmlFor="name"
                   className={
-                    shrink.name == "shrink"
+                    shrink.name === "shrink"
                       ? `fs-6 fw-bold ${shrink.name}`
                       : `fs-6 fw-bold`
                   }
@@ -182,9 +186,9 @@ const EditorProj = (props) => {
                 onBlur={Enlarge}
               >
                 <label
-                  for="project-type"
+                  htmlFor="project-type"
                   className={
-                    shrink.proj == "shrink"
+                    shrink.proj === "shrink"
                       ? `fs-6 fw-bold ${shrink.proj}`
                       : `fs-6 fw-bold`
                   }
@@ -211,9 +215,9 @@ const EditorProj = (props) => {
                 onBlur={Enlarge}
               >
                 <label
-                  for="name"
+                  htmlFor="name"
                   className={
-                    shrink.name == "shrink"
+                    shrink.name === "shrink"
                       ? `fs-6 fw-bold ${shrink.name}`
                       : `fs-6 fw-bold`
                   }
@@ -236,9 +240,9 @@ const EditorProj = (props) => {
                 onBlur={Enlarge}
               >
                 <label
-                  for="project-brief"
+                  htmlFor="project-brief"
                   className={
-                    shrink.brief == "shrink"
+                    shrink.brief === "shrink"
                       ? `fs-6 fw-bold ${shrink.brief}`
                       : `fs-6 fw-bold `
                   }
@@ -291,7 +295,15 @@ const EditorProj = (props) => {
                 type="submit"
                 className="contact-submit shadow-none btn rounded-pill py-3 my-4 w-50 fw-bold"
               >
-                SUBMIT PROJECT
+                {loading ? (
+                  <span
+                    className="spinner-border spinner-border-sm"
+                    role="status"
+                    aria-hidden="true"
+                  ></span>
+                ) : (
+                  "Submit project"
+                )}
               </button>
             </div>
           </form>

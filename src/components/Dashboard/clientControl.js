@@ -23,10 +23,7 @@ const ClientControl = () => {
   const [posts, setPosts] = useState();
   const [PostsB, setPostsB] = useState();
 
-  const { showClients, addClient } = bindActionCreators(
-    actionCreators,
-    dispatch
-  );
+  const { addClient } = bindActionCreators(actionCreators, dispatch);
 
   let token;
 
@@ -38,12 +35,12 @@ const ClientControl = () => {
   const all = () => {
     axios.get("https://qeola-api.herokuapp.com/api/v1/clients").then(
       (response) => {
-        console.log({ all: response });
+        // console.log({ all: response });
         setLoadingB(true);
         setPostsB(Math.ceil(response.data.data.length / itemsPerPage));
       },
       (error) => {
-        console.log(error);
+        // console.log(error);
       }
     );
   };
@@ -61,7 +58,7 @@ const ClientControl = () => {
           }
         },
         (error) => {
-          console.log(error);
+          // console.log(error);
         }
       );
   };
@@ -75,12 +72,12 @@ const ClientControl = () => {
       .then(
         (response) => {
           if (response) {
-            console.log(response);
+            // console.log(response);
             setPosts(...[response.data.data]);
             setLoading(true);
             setOutput(
               response && (
-                <div>
+                <div style={{ overflowX: "auto" }}>
                   <table style={{ width: "100%" }} className="">
                     <tr>
                       <th>S/N</th>
@@ -149,6 +146,9 @@ const ClientControl = () => {
   return (
     <main className="P-5">
       <div className="p-5 py-3">
+        <div>
+          <input type="hidden" value={posts} />
+        </div>
         <ReactNotification />
         <div className="row justify-content-center mb-4">
           <div
@@ -174,8 +174,8 @@ const ClientControl = () => {
             breakClassName={"page"}
             nextLinkClassName={"next"}
             pageClassName={"page"}
-            disabledClassNae={"disabled"}
-            activeClassName={"active"}
+            disabledClassName={"disabled"}
+            activeClassName={"active-paginate"}
           />
         ) : (
           <div></div>

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import Cta2 from "../Reusable-components/cta2";
 import ProjectRow from "../Reusable-components/project_row";
 import ProjectRow2 from "../Reusable-components/project_row2";
@@ -17,7 +17,7 @@ const Projects = () => {
 
     axios.get(url).then(
       (response) => {
-        console.log(response);
+        // console.log(response);
 
         setProject(
           response &&
@@ -43,7 +43,7 @@ const Projects = () => {
         );
       },
       (error) => {
-        console.log(error);
+        // console.log(error);
       }
     );
   }, []);

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import Cta2 from "./cta2";
 import "./project_row.css";
 
@@ -8,7 +8,7 @@ const ProjectRow = (props) => {
       <div className="col-md-4 order-1 order-sm-0">
         <div
           className={
-            window.location.hash == "#/case-study"
+            window.location.hash === "#/case-study"
               ? "card border-0"
               : "card project-card"
           }

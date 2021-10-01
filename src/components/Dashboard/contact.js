@@ -14,6 +14,7 @@ const Contact = (props) => {
     proj: "",
     brief: "",
   });
+  const [loading, setLoading] = useState(false);
 
   const ShrinkMail = () => {
     setShrink({ mail: "shrink", name: "", Num: "", proj: "", brief: "" });
@@ -42,8 +43,8 @@ const Contact = (props) => {
   const [phone, setPhone] = useState();
   const [briefTxt, setBriefTxt] = useState();
   const [cat, setCat] = useState();
-  const [file, setFile] = useState();
-  const [alert, setAlert] = useState();
+  // const [file, setFile] = useState();
+  // const [alert, setAlert] = useState();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -61,27 +62,28 @@ const Contact = (props) => {
   const Options = () => {
     axios.get("https://qeola-api.herokuapp.com/api/v1/categories").then(
       (response) => {
-        console.log(response);
+        // console.log(response);
         const tration = response.data.data.map((item) => {
-          if (item) {
-            return (
+          return (
+            item && (
               <option value={item.id} key={item.id}>
                 {item.name}
               </option>
-            );
-          }
+            )
+          );
         });
         setCat(tration);
       },
       (error) => {
-        console.log(error);
+        // console.log(error);
       }
     );
   };
-  console.log({ brief, name, category, email, phone, briefTxt });
+  // console.log({ brief, name, category, email, phone, briefTxt });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     let formData = new FormData();
     formData.append("briefFile", brief, brief.name);
@@ -109,6 +111,7 @@ const Contact = (props) => {
       const result = await res.json();
       // console.log(result);
       if (result.status === "success") {
+        setLoading(false);
         store.addNotification({
           title: `Success`,
           message: "You sent a new brief",
@@ -123,6 +126,7 @@ const Contact = (props) => {
           },
         });
       } else if (result.status !== "success") {
+        setLoading(false);
         store.addNotification({
           title: `Sorry, check again`,
           message: "Something went wrong please try again",
@@ -140,7 +144,7 @@ const Contact = (props) => {
       return result;
     }
 
-    const postIt = await postImage();
+    await postImage();
   };
 
   return (
@@ -162,7 +166,7 @@ const Contact = (props) => {
                   <label
                     for="email"
                     className={
-                      shrink.mail == "shrink"
+                      shrink.mail === "shrink"
                         ? `fs-6 fw-bold ${shrink.mail}`
                         : `fs-6 fw-bold `
                     }
@@ -187,7 +191,7 @@ const Contact = (props) => {
                   <label
                     for="name"
                     className={
-                      shrink.name == "shrink"
+                      shrink.name === "shrink"
                         ? `fs-6 fw-bold ${shrink.name}`
                         : `fs-6 fw-bold`
                     }
@@ -213,7 +217,7 @@ const Contact = (props) => {
                   <label
                     for="number"
                     className={
-                      shrink.Num == "shrink"
+                      shrink.Num === "shrink"
                         ? `fs-6 fw-bold ${shrink.Num}`
                         : `fs-6 fw-bold`
                     }
@@ -238,7 +242,7 @@ const Contact = (props) => {
                   <label
                     for="project-type"
                     className={
-                      shrink.proj == "shrink"
+                      shrink.proj === "shrink"
                         ? `fs-6 fw-bold ${shrink.proj}`
                         : `fs-6 fw-bold`
                     }
@@ -267,7 +271,7 @@ const Contact = (props) => {
                   <label
                     for="project-brief"
                     className={
-                      shrink.brief == "shrink"
+                      shrink.brief === "shrink"
                         ? `fs-6 fw-bold ${shrink.brief}`
                         : `fs-6 fw-bold `
                     }
@@ -310,7 +314,15 @@ const Contact = (props) => {
                     type="submit"
                     className="contact-submit shadow-none btn rounded-pill py-3 my-4 w-100"
                   >
-                    Send us a brief
+                    {loading ? (
+                      <span
+                        className="spinner-border spinner-border-sm"
+                        role="status"
+                        aria-hidden="true"
+                      ></span>
+                    ) : (
+                      "Send us a brief"
+                    )}
                   </button>
                 </div>
               </div>

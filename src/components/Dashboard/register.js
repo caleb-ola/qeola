@@ -12,11 +12,14 @@ const Register = () => {
   const [confirmP, SetConfirmP] = useState("");
   // const [alert, setAlert] = useState();
 
-  console.log({ name, email, password, confirmP });
+  const [loading, setLoading] = useState(false);
+
+  // console.log({ name, email, password, confirmP });
   let history = useHistory();
 
   const Submit = (e) => {
     e.preventDefault();
+    setLoading(true);
     axios
       .post("https://qeola-api.herokuapp.com/api/v1/auth/register", {
         name: name,
@@ -26,13 +29,15 @@ const Register = () => {
       })
       .then(
         (response) => {
-          console.log(response);
+          setLoading(false);
+          // console.log(response);
           if (response) {
             history.push("/dashboard");
           }
         },
         (error) => {
-          console.log(error);
+          // console.log(error);
+          setLoading(false);
           if (error) {
             store.addNotification({
               title: `Sorry`,
@@ -133,7 +138,15 @@ const Register = () => {
             className="my-1 btn contact-submit shadow-none w-100"
           >
             {" "}
-            Register
+            {loading ? (
+              <span
+                className="spinner-border spinner-border-sm"
+                role="status"
+                aria-hidden="true"
+              ></span>
+            ) : (
+              "Register"
+            )}
           </button>
         </div>
         <div className="my-1">

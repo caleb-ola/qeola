@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import Cta2 from "./cta2";
 import "./project_row.css";
 
@@ -6,16 +6,12 @@ const ProjectRow2 = (props) => {
   return (
     <div className="row align-items-center justify-contents-center text-center text-md-start  my-md-5 p-0 mx-auto">
       <div className="col-md-8">
-        <img
-          src={props.image}
-          alt="Project image"
-          className="img-fluid rounded-3"
-        />
+        <img src={props.image} alt="Project" className="img-fluid rounded-3" />
       </div>
       <div className="col-md-4 ">
         <div
           className={
-            window.location.hash == "#/case-study"
+            window.location.hash === "#/case-study"
               ? "card border-0"
               : "card project-card"
           }

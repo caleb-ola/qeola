@@ -34,6 +34,9 @@
   border: 0;
   color: #0839d8;
 }
+.more-articles a {
+  color: #fff;
+}
 
 @media only screen and (min-width: 1024px) {
   #blog-body .blog-passage {

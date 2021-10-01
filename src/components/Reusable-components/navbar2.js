@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./navbar2.css";
 import { Link } from "react-router-dom";
+// import image from "images/Logo/logo.png";
 
 const NavBar2 = () => {
   const [hamburger, setHamburger] = useState(false);
@@ -16,15 +17,12 @@ const NavBar2 = () => {
   };
 
   const OpenNav = () => {
-    // document.getElementById("myNav").style.width = "100%";
     setProj(true);
   };
 
   const CloseNav = () => {
-    // document.getElementById("myNav").style.width = "0%";
     setProj(false);
   };
-  // useEffect(window.addEventListener("scroll", ToggleNavBg));
 
   return (
     <section id="navbar2">
@@ -38,12 +36,11 @@ const NavBar2 = () => {
             }}
           >
             <img
-              src="images/Home/menu.jpg"
-              alt="menu image"
+              src="/images/Home/menu.jpg"
+              alt="menu"
               className=" menu-img img-fluid"
               style={{
                 objectFit: "cover",
-                // height: "100vh",
               }}
             />
           </div>
@@ -54,21 +51,20 @@ const NavBar2 = () => {
               height: "100vh",
             }}
           >
-            <a
-              href="javascript:void(0)"
-              className="closebtn fw-bold nav-link nav-linkB fs-5"
+            <button
+              className="btn closebtn fw-bold nav-link nav-linkB fs-5 shadow-none"
               onClick={CloseNav}
             >
-              CLOSE {"  "} <i class="fas fa-times px-2"></i>
-            </a>
-            <div class="over-content text-center ">
-              <Link to="/clients" className="fw-bold my-3 fs-3 nav-linkB">
+              CLOSE {"  "} <i className="fas fa-times px-2"></i>
+            </button>
+            <div className="over-content text-center text-lg-start w-50 mx-auto ">
+              <Link to="/clients" className="fw-bold my-3 fs-1 nav-linkB">
                 CLIENTS
               </Link>
-              <Link to="/industries" className="fw-bold my-3 fs-3 nav-linkB ">
+              <Link to="/industries" className="fw-bold my-3 fs-1 nav-linkB ">
                 INDUSTRIES
               </Link>
-              <Link to="/blog" className="fw-bold my-3 fs-3 nav-linkB ">
+              <Link to="/blog" className="fw-bold my-3 fs-1 nav-linkB ">
                 BLOG
               </Link>
             </div>
@@ -82,20 +78,20 @@ const NavBar2 = () => {
       </div>
       <div className="">
         <nav
-          class={`navbar  navbar-expand-lg navbar-light bg-transparent py-sm-4  ${navbg}`}
+          className={`navbar  navbar-expand-lg navbar-light bg-transparent py-sm-4  ${navbg}`}
           onScroll={ToggleNavBg}
         >
-          <div class="container">
-            <Link class="navbar-brand me-auto" to="/">
+          <div className="container">
+            <Link className="navbar-brand me-auto" to="/">
               <img
-                src={"images/logo.png"}
+                src={"/images/logo.png"}
                 alt="Qeola's logo"
                 className="img-fluid w-50"
               />
             </Link>
             <button
               onClick={ToggleHamburger}
-              class="navbar-toggler custom-toggler shadow-none border-0"
+              className="navbar-toggler custom-toggler shadow-none border-0"
               type="button"
               data-bs-toggle="collapse"
               data-bs-target="#navbarNavDropdown"
@@ -104,19 +100,21 @@ const NavBar2 = () => {
               aria-label="Toggle navigation"
             >
               <div
-                class={hamburger ? "animated-icon11 open" : "animated-icon11"}
+                className={
+                  hamburger ? "animated-icon11 open" : "animated-icon11"
+                }
               >
                 <span></span>
                 <span></span>
                 <span></span>
               </div>
             </button>
-            <div class="collapse navbar-collapse " id="navbarNavDropdown">
-              <ul class="navbar-nav ms-auto">
-                <li class="nav-item px-2 mx-2">
+            <div className="collapse navbar-collapse " id="navbarNavDropdown">
+              <ul className="navbar-nav ms-auto">
+                <li className="nav-item px-2 mx-2">
                   <Link
-                    class={
-                      window.location.hash == "#/about"
+                    className={
+                      window.location.pathname === "/about"
                         ? "nav-link active"
                         : "nav-link"
                     }
@@ -126,10 +124,10 @@ const NavBar2 = () => {
                     About Us
                   </Link>
                 </li>
-                <li class="nav-item px-2 mx-2">
+                <li className="nav-item px-2 mx-2">
                   <Link
-                    class={
-                      window.location.hash == "#/case-study"
+                    className={
+                      window.location.pathname === "/case-study"
                         ? "nav-link active"
                         : "nav-link"
                     }
@@ -138,11 +136,10 @@ const NavBar2 = () => {
                     Case Studies
                   </Link>
                 </li>
-                <li class="nav-item px-2 mx-2">
+                <li className="nav-item px-2 mx-2">
                   <Link
-                    class={
-                      window.location.hash == "#/contact" ||
-                      window.location.hash == "#/contact"
+                    className={
+                      window.location.pathname === "/contact"
                         ? "nav-link active"
                         : "nav-link"
                     }
@@ -151,20 +148,21 @@ const NavBar2 = () => {
                     Talk to us
                   </Link>
                 </li>
-                <li class="nav-item ps-md-3  px-3 px-sm-0 py-md-0 fs-6 ">
+                <li className="nav-item ps-md-3  px-3 px-sm-0 py-md-0 fs-6 ">
                   {/* <Link
                     class=""
                     to="/contact"
                   >
                     Talk to us
                   </Link> */}
-                  <Link
+                  <button
+                    to=""
                     style={{ cursor: "pointer" }}
-                    className="nav-link "
+                    className="nav-link btn shadow-none"
                     onClick={OpenNav}
                   >
                     Menu &#9776;
-                  </Link>
+                  </button>
                 </li>
               </ul>
             </div>

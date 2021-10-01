@@ -5,7 +5,7 @@ const Footer = () => {
   const year = date.getFullYear();
 
   return (
-    <footer id="footer" className="pt-4 pb-2 pt-sm-5 pb-sm-4 ">
+    <footer id="footer" className="pt-4 pb-2 pt-sm-5 pb-sm-4 mt-5 ">
       <div className="container  my-3 my-sm-4">
         <div className="row align-items-center text-center text-sm-start">
           <div className="col-12  col-lg-8">
@@ -69,7 +69,7 @@ const Footer = () => {
               <input
                 type="text"
                 className="form-control p-3  fs-6 border-end-0"
-                placeholder="Recipient's username"
+                placeholder="yourname@xyx.com"
                 aria-label="Recipient's username"
                 aria-describedby="button-addon2"
               />

@@ -13,17 +13,21 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const { Login } = bindActionCreators(actionCreators, dispatch);
+  const [loading, setLoading] = useState(false);
+  // const [button, setButton] = useState("login");
 
   const cred = useSelector((state) => state.output);
-  const [alert, setAlert] = useState();
+  // const [alert, setAlert] = useState();
 
   useEffect(() => {}, []);
 
   const Submit = (e) => {
     e.preventDefault();
+    setLoading(true);
     Login(email, password);
     // console.log(cred.data && cred.data);
     if (cred.data) {
+      setLoading(false);
       store.addNotification({
         title: `Sorry, check again`,
         message: cred.data.message,
@@ -38,6 +42,7 @@ const Login = () => {
         },
       });
     } else if (cred.token) {
+      setLoading(false);
       store.addNotification({
         title: `Success`,
         message: "Login Successful, loading....",
@@ -81,7 +86,7 @@ const Login = () => {
             <h2 className="fs-3 fw-bold my-3  text-center">Login</h2>
 
             <div className="my-3">
-              <label for="username" className="fw-bold text-start">
+              <label htmlFor="username" className="fw-bold text-start">
                 {" "}
                 Email
               </label>{" "}
@@ -95,7 +100,7 @@ const Login = () => {
               />
             </div>
             <div className="my-3">
-              <label for="password" className="fw-bold">
+              <label htmlFor="password" className="fw-bold">
                 {" "}
                 Password
               </label>{" "}
@@ -113,8 +118,15 @@ const Login = () => {
                 type="submit"
                 className="my-1 btn contact-submit shadow-none w-100"
               >
-                {" "}
-                Login
+                {loading ? (
+                  <span
+                    className="spinner-border spinner-border-sm"
+                    role="status"
+                    aria-hidden="true"
+                  ></span>
+                ) : (
+                  "Login"
+                )}
               </button>
             </div>
             <div className="my-1">
@@ -124,14 +136,14 @@ const Login = () => {
               >
                 {" "}
                 Not Registered?, Click to register
-                <i class="fas fa-arrow-right m-2"></i>
+                <i className="fas fa-arrow-right m-2"></i>
               </Link>
               <Link
                 to="/"
                 className=" btn back-to-home-btn w-100 shadow-none fs-6"
               >
                 {" "}
-                <i class="fas fa-arrow-left m-2"></i> Back to home
+                <i className="fas fa-arrow-left m-2"></i> Back to home
               </Link>
             </div>
           </form>

@@ -102,7 +102,7 @@ export const showCategories = (func) => {
   return (dispatch) => {
     axios.get("https://qeola-api.herokuapp.com/api/v1/categories").then(
       (response) => {
-        console.log(response);
+        // console.log(response);
         dispatch({
           type: "SHOW_CATEGORIES",
           payload: response,
@@ -110,7 +110,7 @@ export const showCategories = (func) => {
         });
       },
       (error) => {
-        console.log(error);
+        // console.log(error);
       }
     );
   };
@@ -233,7 +233,7 @@ export const Login = (email, password) => {
       })
       .then(
         (response) => {
-          console.log(response);
+          // console.log(response);
           if (response) {
             dispatch({
               type: "LOGIN",
@@ -243,7 +243,7 @@ export const Login = (email, password) => {
           }
         },
         (error) => {
-          console.log(error);
+          // console.log(error);
           dispatch({
             type: "LOGIN",
             payload: error,
@@ -258,7 +258,7 @@ export const Logout = () => {
   return (dispatch) => {
     axios.post("https://qeola-api.herokuapp.com/api/v1/auth/logout").then(
       (response) => {
-        console.log(response);
+        // console.log(response);
         dispatch({
           type: "LOGOUT",
           payload: response,
@@ -266,7 +266,7 @@ export const Logout = () => {
         });
       },
       (error) => {
-        console.log(error);
+        // console.log(error);
         dispatch({
           type: "LOGOUT",
           payload: error,
@@ -280,7 +280,7 @@ export const openCasestudy = (id) => {
   return (dispatch) => {
     axios.get(`https://qeola-api.herokuapp.com/api/v1/projects/${id}`).then(
       (response) => {
-        console.log(response);
+        // console.log(response);
         if (response) {
           dispatch({
             type: "OPEN_CASESTUDY",
@@ -289,7 +289,7 @@ export const openCasestudy = (id) => {
         }
       },
       (error) => {
-        console.log(error);
+        // console.log(error);
         dispatch({
           type: "OPEN_CASESTUDY",
           payload: error,

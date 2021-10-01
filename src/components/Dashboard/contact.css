@@ -28,7 +28,7 @@
   border-color: #0839d8;
 }
 #contact .shrink {
-  transform: scale(1);
+  transform: scale(0.9);
   border-color: #0839d8;
   position: relative;
   animation-name: shrink;
@@ -78,7 +78,7 @@
 }
 @media only screen and (min-width: 728px) {
   #contact .contact-header {
-    width: 90%;
+    width: 80%;
   }
   #contact .contact-form {
     width: 85%;
@@ -102,7 +102,7 @@
 }
 @media only screen and (min-width: 1024px) {
   #contact .contact-header {
-    width: 90%;
+    width: 80%;
   }
   #contact .contact-form {
     width: 75%;
@@ -126,10 +126,10 @@
 }
 @media only screen and (min-width: 1920px) {
   #contact .contact-header {
-    width: 90%;
+    width: 80%;
   }
   #contact .contact-form {
-    width: 75%;
+    width: 70%;
   }
   ::-webkit-input-placeholder {
     /* Chrome/Opera/Safari */

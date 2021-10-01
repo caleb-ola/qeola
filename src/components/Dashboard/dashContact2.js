@@ -14,14 +14,18 @@ const DashContact2 = (props) => {
   });
   const [email, setEmail] = useState();
   const [Output, setOutput] = useState();
-  const [Alert, setAlert] = useState();
+  // const [Alert, setAlert] = useState();
+
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setLoading(true);
     axios
       .post(`https://qeola-api.herokuapp.com/api/v1/users/get-user`, { email })
       .then(
         (response) => {
+          setLoading(false);
           // console.log(response);
           const data = response.data.data;
           store.addNotification({
@@ -39,7 +43,7 @@ const DashContact2 = (props) => {
           });
           setOutput(
             response && (
-              <div>
+              <div style={{ overflowX: "auto" }}>
                 <table>
                   <tr>
                     <th>S/N</th>
@@ -60,7 +64,7 @@ const DashContact2 = (props) => {
         },
         (error) => {
           // console.log(error);
-
+          setLoading(false);
           store.addNotification({
             title: "NOT FOUND",
             message:
@@ -93,7 +97,7 @@ const DashContact2 = (props) => {
         <div className="container">
           <ReactNotification />
           <div className="contact-header position-relative py-3 mx-auto">
-            <div className="position-absolute">{Alert}</div>
+            {/* <div className="position-absolute">{Alert}</div> */}
             <h1 className="fs-2 fs-sm-1 fw-bold mt-5 text-center">
               {props.title}
             </h1>
@@ -107,9 +111,9 @@ const DashContact2 = (props) => {
                   onBlur={Enlarge}
                 >
                   <label
-                    for="name"
+                    htmlFor="name"
                     className={
-                      shrink.name == "shrink"
+                      shrink.name === "shrink"
                         ? `fs-6 fw-bold ${shrink.name}`
                         : `fs-6 fw-bold`
                     }
@@ -132,7 +136,15 @@ const DashContact2 = (props) => {
                     type="submit"
                     className="contact-submit shadow-none btn rounded-pill py-3 my-4 w-50 fw-bold"
                   >
-                    {props.btn}
+                    {loading ? (
+                      <span
+                        className="spinner-border spinner-border-sm"
+                        role="status"
+                        aria-hidden="true"
+                      ></span>
+                    ) : (
+                      props.btn
+                    )}
                   </button>
                 </div>
                 <div className="col-12 col-md-12 my-2 text-center">
