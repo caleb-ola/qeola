@@ -12,7 +12,8 @@ const About = () => {
       <NavBar2 />
 
       <OtherHero
-        title={"Qeola exists to make you look your best!"}
+        title={"Qeola exists to make "}
+        titleb={"you look your best!"}
         text={
           "We are a full-service creative digital agency that helps SMBs take advantage of technology and use it to drive business growth."
         }

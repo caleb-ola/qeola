@@ -8,7 +8,11 @@ const OtherHero = (props) => {
     <section id="other-hero">
       <div className="container">
         <div className="hero-header text-center mx-auto d-flex flex-column justify-content-center align-items-center">
-          <h1 className={" mb-3 fw-bolder mx-auto"}>{props.title}</h1>
+          <h1 className={" mb-3 fw-bolder mx-auto"}>
+            {props.title}
+            <br />
+            {props.titleb}
+          </h1>
           <p className={props.text ? "mt-2 mb-3" : "mt-2 mb-3 d-none"}>
             {props.text}
           </p>

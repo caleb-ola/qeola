@@ -2,11 +2,15 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 // import { useSelector } from "react-redux";
 import "./contact.css";
-import ReactNotification from "react-notifications-component";
-import "react-notifications-component/dist/theme.css";
-import { store } from "react-notifications-component";
+// import ReactNotification from "react-notifications-component";
+// import "react-notifications-component/dist/theme.css";
+// import { store } from "react-notifications-component";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Contact = (props) => {
+  const [loading, setLoading] = useState(false);
+
   // FOR LABEL JUMPING UP EFFECT
   const [shrink, setShrink] = useState({
     mail: "",
@@ -142,6 +146,7 @@ const Contact = (props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     let formData = new FormData();
     formData.append("briefFile", brief, brief.name);
@@ -152,7 +157,10 @@ const Contact = (props) => {
     formData.append("briefText", briefTxt);
 
     var myHeaders = new Headers();
-    // myHeaders.append("Authorization", `Bearer ${token}`);
+    myHeaders.append(
+      "Authorization",
+      `Bearer ${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxM2Y4ZGY1NGFkMzQ0ZTEyMjAxMzMyOSIsImlhdCI6MTYzMTU2MDUzNSwiZXhwIjoxNjM0MTUyNTM1fQ.iL-HU4OgINkYmaKVIGhB73FVQFnVk67pP6Fjn-zIovY"}`
+    );
     myHeaders.append("mode", `no-cors`);
 
     var requestOptions = {
@@ -168,34 +176,29 @@ const Contact = (props) => {
         requestOptions
       );
       const result = await res.json();
-      console.log(result);
+      // console.log(result);
+
       if (result.status === "success") {
-        store.addNotification({
-          title: `Success`,
-          message: "You sent a new brief",
-          type: "success",
-          insert: "top",
-          container: "top-left",
-          animationIn: ["animate__animated", "animate__fadeIn"],
-          animationOut: ["animate__animated", "animate__fadeOut"],
-          dismiss: {
-            duration: 8000,
-            onScreen: true,
-          },
+        setLoading(false);
+        toast.success("Thank you. You have successfully sent us your brief.", {
+          position: "top-right",
+          autoClose: 8000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
         });
       } else if (result.status !== "success") {
-        store.addNotification({
-          title: `Sorry, check again`,
-          message: "Something went wrong please try again",
-          type: "danger",
-          insert: "top",
-          container: "top-left",
-          animationIn: ["animate__animated", "animate__fadeIn"],
-          animationOut: ["animate__animated", "animate__fadeOut"],
-          dismiss: {
-            duration: 8000,
-            onScreen: true,
-          },
+        setLoading(false);
+        toast.error("Something went wrong please try again", {
+          position: "top-right",
+          autoClose: 8000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
         });
       }
       return result;
@@ -204,13 +207,24 @@ const Contact = (props) => {
     await postImage();
   };
 
-  // console.log({ brief, name, category, email, phone, briefTxt });
+  //console.log({ brief, name, category, email, phone, briefTxt });
 
   return (
     <section id="contact" className="py-3">
       <div className="container">
-        <ReactNotification />
-
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
+        {/* Same as */}
+        <ToastContainer />
         <div className="contact-header py-3 mx-auto">
           <h1 className="fs-1 fw-bold text-center">{props.title}</h1>
         </div>
@@ -323,7 +337,7 @@ const Contact = (props) => {
                 <select
                   id="project-type"
                   name="project-type"
-                  defaultValue="Make your selection"
+                  defaultValue="DEFAULT"
                   className={
                     shrink.Bproj === "border-blue"
                       ? `w-100 py-2 my-1 border-0 border-2 border-bottom ${shrink.Bproj}`
@@ -332,6 +346,9 @@ const Contact = (props) => {
                   onChange={(e) => setCategory(e.target.value)}
                   required
                 >
+                  <option value="DEFAULT" disabled>
+                    Choose a category
+                  </option>
                   {cat}
                 </select>
               </div>
@@ -399,7 +416,15 @@ const Contact = (props) => {
                   type="submit"
                   className="contact-submit shadow-none btn rounded-pill py-3 my-4 w-100"
                 >
-                  Send us a brief
+                  {loading ? (
+                    <span
+                      className="spinner-border spinner-border-sm"
+                      role="status"
+                      aria-hidden="true"
+                    ></span>
+                  ) : (
+                    "Send us a brief"
+                  )}
                 </button>
               </div>
             </div>
