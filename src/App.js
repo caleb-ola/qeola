@@ -1,4 +1,4 @@
-import { Route, BrowserRouter, Switch } from "react-router-dom";
+import { Route, BrowserRouter, Switch, Redirect } from "react-router-dom";
 
 // CSS
 import "./App.css";
@@ -58,6 +58,7 @@ function App() {
           <Route exact path="/clients" component={Clients} />
           <Route exact path="/contact" component={ContactPage} />
           <Route exact path="/" component={Home} />
+          <Route render={() => <Redirect to={{ pathname: "/" }} />} />
         </Switch>
       </ScrollToTop>
     </BrowserRouter>

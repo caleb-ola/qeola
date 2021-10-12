@@ -3,7 +3,7 @@ import ProcessCard from "../Reusable-components/process_card";
 const Process = () => {
   return (
     <section id="process" className="py-5">
-      <div className="container">
+      <div className="container py-3 py-md-5">
         <div className="process-header text-center mx-auto pt-5">
           <h2 className="fw-bold fs-1">Our Process</h2>
           <p>

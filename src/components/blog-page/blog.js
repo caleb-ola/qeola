@@ -11,7 +11,11 @@ const Blog = () => {
   return (
     <div>
       <NavBar2 />
-      <OtherHero title="Big Header Text Stays Here" />
+      <OtherHero
+        title="Big Header Text"
+        titleb="Stays Here"
+        text="Eiusmod elit dolor adipisicing sit incididunt officia labore officia."
+      />
       <BlogSelection />
       {/* <Pagination /> */}
       <Footer />

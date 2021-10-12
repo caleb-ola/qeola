@@ -4,6 +4,7 @@
   color: #212121;
 }
 #about-section .card {
+  border: 0;
   border-bottom: 7px solid #0839d8;
   border-radius: 7px;
   max-height: 17rem;
@@ -11,6 +12,7 @@
   transition: background-color 0.5s;
 }
 #about-section .card:hover {
+  border: 0;
   background-color: #0839d8;
   color: #fff;
   border-bottom: 0px solid #0839d8;

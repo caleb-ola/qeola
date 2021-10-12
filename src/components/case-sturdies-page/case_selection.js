@@ -56,25 +56,12 @@ const CaseSelection = () => {
         );
       },
       (error) => {
-        console.log(error);
+        // console.log(error);
       }
     );
     axios.get("https://qeola-api.herokuapp.com/api/v1/categories").then(
       (response) => {
-        setSelectCat(
-          response &&
-            response.data.data.map((item) => {
-              return (
-                <button
-                  key={item.id}
-                  className={`shadow-none px-1 mx-2 py-1 `}
-                  onClick={() => otherCategories(item.name, item.id)}
-                >
-                  {item.name}
-                </button>
-              );
-            })
-        );
+        setSelectCat(response && response.data.data);
       },
       (error) => {
         // console.log(error);
@@ -126,7 +113,7 @@ const CaseSelection = () => {
   const otherCategories = (category, actCat) => {
     setActive({
       Allworks: "",
-      Branding: "active",
+      branding: category,
       WebDesign: "",
       MobileApp: "",
       Marketing: "",
@@ -299,48 +286,27 @@ const CaseSelection = () => {
         <div className="container">
           <div className="my-5 pt-5">
             <button
-              className={`shadow-none px-1 mx-2 py-1 ${active.Allworks}`}
+              className={`shadow-none px-0 mx-2 py-1 ${active.Allworks}`}
               onClick={Allworks}
             >
               All Works
             </button>
-            {selectCat}
-            {/* <button
-              className={`shadow-none px-1 mx-2 py-1 ${active.Branding}`}
-              onClick={B}
-            >
-              Branding
-            </button>
-            <button
-              className={`shadow-none px-1 mx-2 py-1 ${active.WebDesign}`}
-              onClick={WebDesign}
-            >
-              Web Design
-            </button>
-            <button
-              className={`shadow-none px-1 mx-2 py-1 ${active.MobileApp}`}
-              onClick={MobileApp}
-            >
-              Mobile App
-            </button>
-            <button
-              className={`shadow-none px-1 mx-2 py-1 ${active.Marketing}`}
-              onClick={Marketing}
-            >
-              Marketing
-            </button> */}
+            {selectCat &&
+              selectCat.map((item) => {
+                return (
+                  <button
+                    key={item.id}
+                    className={`shadow-none px-0 mx-3 py-1 ${
+                      active.branding === item.name ? "active" : ""
+                    }`}
+                    onClick={() => otherCategories(item.name, item.id)}
+                  >
+                    {item.name}
+                  </button>
+                );
+              })}
           </div>
-          <div className="my-5 pb-5">
-            {/* {empty === [] ? (
-              <EmptyState
-                image={"/images/empty-state/Group1.png"}
-                text={"No blog post"}
-              />
-            ) : (
-              sturdies
-            )} */}
-            {sturdies}
-          </div>
+          <div className="my-5 pb-5">{sturdies}</div>
         </div>
       </section>
     </div>

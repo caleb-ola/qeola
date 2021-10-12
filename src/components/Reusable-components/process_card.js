@@ -13,7 +13,7 @@ const ProcessCard = (props) => {
   let icon = hov;
   return (
     <div
-      className="card py-2 px- mx-3 my-4"
+      className="card py-2 px- mx-3 my-4 shadow"
       styles={{ width: "14rem" }}
       onMouseOut={HoverOut}
       onMouseOver={HoverEffect}

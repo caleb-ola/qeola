@@ -27,14 +27,14 @@
   color: #fff !important;
   font-weight: 500;
   border-radius: 50px;
-  border: 1px solid #fe0072;
+  /* border: 3px solid #fe0072; */
 }
 #navbar2 nav div ul li a.cta:hover {
   background-color: #cc055e !important;
   color: #fff !important;
   font-weight: 500;
   border-radius: 50px;
-  border: 1px solid #fe0072;
+  /* border: 3px solid #fe0072; */
 }
 
 /* .custom-toggler.navbar-toggler {
@@ -126,6 +126,6 @@
 
 @media only screen and (min-width: 1024px) {
   #navbar2 nav div ul li a.active {
-    border-bottom: 2px solid #fe0072;
+    border-bottom: 4px solid #fe0072;
   }
 }

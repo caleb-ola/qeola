@@ -14,7 +14,7 @@ const Cta1 = (props) => {
     <div>
       <a
         href={props.path}
-        className={`btn hero-cta p-0 m-0 my-2 shadow-none `}
+        className={`btn hero-cta p-0 m-0 my-3 shadow-none fw-bold`}
         onMouseOver={ActiveAnime}
         onMouseOut={DeactiveAnime}
       >

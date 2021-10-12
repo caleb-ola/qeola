@@ -127,12 +127,12 @@ const Header = () => {
             </button>
             <div className="collapse navbar-collapse " id="navbarNavDropdown">
               <ul className="navbar-nav ms-auto">
-                <li className="nav-item px-2 mx-2 fs-6">
+                <li className="nav-item mx-4 fs-6">
                   <Link
                     className={
                       window.location.pathname === "/about"
-                        ? "nav-link proj active"
-                        : "nav-link proj"
+                        ? "nav-link proj px-0  active"
+                        : "nav-link proj px-0"
                     }
                     aria-current="page"
                     to="/about"
@@ -140,24 +140,24 @@ const Header = () => {
                     About Us
                   </Link>
                 </li>
-                <li className="nav-item px-2 mx-2 fs-6">
+                <li className="nav-item  mx-4 fs-6">
                   <Link
                     className={
                       window.location.pathname === "/project"
-                        ? "nav-link proj active"
-                        : "nav-link proj"
+                        ? "nav-link proj px-0 active"
+                        : "nav-link proj px-0"
                     }
                     to="/case-study"
                   >
                     Case Studies
                   </Link>
                 </li>
-                <li className="nav-item px-2 mx-2 fs-6">
+                <li className="nav-item mx-4 fs-6">
                   <Link
                     className={
                       window.location.pathname === "/contact"
-                        ? "nav-link proj active"
-                        : "nav-link proj"
+                        ? "nav-link proj px-0 active"
+                        : "nav-link proj px-0"
                     }
                     to="/contact"
                   >
@@ -173,7 +173,7 @@ const Header = () => {
                   </Link> */}
                   <Link
                     style={{ cursor: "pointer" }}
-                    className="nav-link proj"
+                    className="nav-link proj px-0"
                     onClick={OpenNav}
                     to="#"
                   >

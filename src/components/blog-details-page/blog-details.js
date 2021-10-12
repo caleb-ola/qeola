@@ -17,7 +17,7 @@ const BlogDetails = (props) => {
       )
       .then(
         (response) => {
-          console.log(response);
+          // console.log(response);
           setBody(
             <BlogBody
               category={response.data.data.category.name}
@@ -29,7 +29,7 @@ const BlogDetails = (props) => {
           );
         },
         (error) => {
-          console.log(error);
+          // console.log(error);
         }
       );
   }, [props.match.params.id]);

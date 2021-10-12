@@ -10,7 +10,12 @@ const Clients = () => {
   return (
     <div id="clients">
       <NavBar2 />
-      <OtherHero title={"Our Clients"} />
+      <OtherHero
+        title={"Our Clients"}
+        text={
+          "Tempor cupidatat nulla mollit fugiat elit et eiusmod qui aliqua ad ut sint Lorem."
+        }
+      />
       <Selection />
       <Footer />
     </div>

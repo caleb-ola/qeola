@@ -45,25 +45,7 @@ const Selection = () => {
     );
     axios.get("https://qeola-api.herokuapp.com/api/v1/categories").then(
       (response) => {
-        setSelectCat(
-          response &&
-            response.data.data.map((item) => {
-              return (
-                <button
-                  key={item._id}
-                  className={
-                    active.Branding === item.name
-                      ? `shadow-none px-1 mx-2 py-1 active`
-                      : `shadow-none px-1 mx-2 py-1`
-                  }
-                  // value={item.name}
-                  onClick={() => otherCategories(item.name, item.id)}
-                >
-                  {item.name}
-                </button>
-              );
-            })
-        );
+        setSelectCat(response && response.data.data);
         // setAct(
         //   response &&
         //     response.data.data.map((item) => {
@@ -333,12 +315,28 @@ const Selection = () => {
       <div className="container">
         <div className="my-5 pt-5">
           <button
-            className={`shadow-none px-1 mx-3 py-1 ${active.Allworks}`}
+            className={`shadow-none px-0 mx-3 py-1 ${active.Allworks}`}
             onClick={Allworks}
           >
             All Clients
           </button>
-          {selectCat}
+          {selectCat &&
+            selectCat.map((item) => {
+              return (
+                <button
+                  key={item._id}
+                  className={
+                    active.Branding === item.name
+                      ? `shadow-none px-0  mx-2 py-1 active `
+                      : `shadow-none px-0 mx-2 py-1`
+                  }
+                  // value={item.name}
+                  onClick={() => otherCategories(item.name, item.id)}
+                >
+                  {item.name}
+                </button>
+              );
+            })}
           {/* <button
             className={`shadow-none px-1 mx-3 py-1 ${active.Branding}`}
             onClick={Branding}

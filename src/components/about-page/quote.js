@@ -13,7 +13,7 @@ const Quote = () => {
         height: "100vh",
       }}
     >
-      <div className="container my-5 text-center position-relative">
+      <div className="container text-center position-relative">
         <div className="quote text-center mx-auto d-flex flex-column justify-content-center align-items-center">
           <p className="fw-bold fs-1 pb-3 lh-base ">
             We strive to create technological solutions that will help advance

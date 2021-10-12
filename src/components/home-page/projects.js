@@ -73,7 +73,7 @@ const Projects = () => {
           }
           image={"images/Home/tsc.jpg"}
         /> */}
-        <div className="text-center my-3 my-md-5">
+        <div className="text-center my-3 my-md-5 pt-md-3">
           <Cta2
             text={"View more case studies"}
             xclass={"fw-bold"}

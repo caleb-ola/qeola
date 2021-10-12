@@ -15,7 +15,7 @@ const Cta2 = (props) => {
     <div className="m-0">
       <Link
         to={props.path ? props.path : "/"}
-        className={`btn more-clients-btn p-0 m-0 my-1 shadow-none `}
+        className={`btn more-clients-btn p-0 m-0 my-3 fw-bold shadow-none `}
         onMouseOver={ActiveAnime}
         onMouseOut={DeactiveAnime}
       >

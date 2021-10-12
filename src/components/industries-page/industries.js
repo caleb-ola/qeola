@@ -7,7 +7,11 @@ const Industries = () => {
   return (
     <div>
       <NavBar2 />
-      <OtherHero title={"Industries We Have Served"} />
+      <OtherHero
+        title={"Industries We"}
+        titleb={"Have Served"}
+        text="Deserunt labore officia ut proident nisi fugiat voluptate aliquip aliquip laboris."
+      />
       <IndustrySelection />
       <Footer />
     </div>

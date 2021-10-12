@@ -111,12 +111,12 @@ const NavBar2 = () => {
             </button>
             <div className="collapse navbar-collapse " id="navbarNavDropdown">
               <ul className="navbar-nav ms-auto">
-                <li className="nav-item px-2 mx-2">
+                <li className="nav-item mx-4">
                   <Link
                     className={
                       window.location.pathname === "/about"
-                        ? "nav-link active"
-                        : "nav-link"
+                        ? "nav-link px-0 active"
+                        : "nav-link px-0"
                     }
                     aria-current="page"
                     to="/about"
@@ -124,24 +124,24 @@ const NavBar2 = () => {
                     About Us
                   </Link>
                 </li>
-                <li className="nav-item px-2 mx-2">
+                <li className="nav-item mx-4">
                   <Link
                     className={
                       window.location.pathname === "/case-study"
-                        ? "nav-link active"
-                        : "nav-link"
+                        ? "nav-link px-0 active"
+                        : "nav-link px-0"
                     }
                     to="/case-study"
                   >
                     Case Studies
                   </Link>
                 </li>
-                <li className="nav-item px-2 mx-2">
+                <li className="nav-item  mx-4">
                   <Link
                     className={
                       window.location.pathname === "/contact"
-                        ? "nav-link active"
-                        : "nav-link"
+                        ? "nav-link px-0 active"
+                        : "nav-link px-0"
                     }
                     to="/contact"
                   >
@@ -158,7 +158,7 @@ const NavBar2 = () => {
                   <button
                     to=""
                     style={{ cursor: "pointer" }}
-                    className="nav-link btn shadow-none"
+                    className="nav-link px-0 btn shadow-none"
                     onClick={OpenNav}
                   >
                     Menu &#9776;

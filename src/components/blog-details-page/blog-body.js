@@ -23,7 +23,7 @@ const BlogBody = (props) => {
         </div>
       </div>
       <div className="">
-        <img src={props.image} alt="blog banner" className="img-fluid" />
+        <img src={props.image} alt="blog banner" className="img-fluid w-100" />
       </div>
       <div className="container my-5">
         <div className="blog-passage">
