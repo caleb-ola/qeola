@@ -30,29 +30,39 @@ section#login {
 }
 .lefty {
   background: #f1f1f1;
+  /* position: fixed; */
 }
+
 aside {
   background: rgb(148, 148, 148);
 }
 
-aside .aside {
+aside {
   /* background-color: rgba(0, 0, 0, 0.8); */
   background: #fff;
-  color: rgb(68, 68, 68);
-  /* position: fixed; */
-}
-aside button.dash-btn {
-  color: rgb(68, 68, 68);
-}
-aside button.dash-btn:hover {
-  background-color: #fe00720c;
   color: #fe0072;
-  /* border-right: 3px solid #fe0072; */
+  position: inherit;
+}
+aside button.dash-btn i,
+aside button.dash-btn span {
+  color: #fe0072;
+}
+
+aside button.dash-btn:hover {
+  background-color: #fe00721a;
+  /* color: #fe0072; */
+  border-right: 3px solid #fe0072 !important;
 }
 aside button.dash-btn.activ {
-  background-color: #fe00721a;
-  color: #fe0072;
-  border-right: 3px solid #fe0072 !important;
+  background-color: #fe0072;
+  color: #fff;
+  /* border-right: 3px solid #fe0072; */
+}
+aside button.dash-btn.activ i,
+aside button.dash-btn.activ span {
+  background-color: #fe0072;
+  color: #fff;
+  border-right: 3px solid #fe0072;
 }
 .logout-btn:hover {
   color: #003cff;
@@ -63,29 +73,38 @@ main {
   /* height: auto; */
   /* border-radius: 50px; */
 }
+main input,
+main select {
+  background: #f1f1f1 !important;
+}
+
 main i.edit-icon {
-  color: #fff;
-  background-color: #0535d3;
+  color: #fe0072;
+  background-color: #fe00721a;
 }
 main p {
-  color: #003cff;
+  color: #212121;
   /* background-color: ; */
 }
 
 main .cardb i {
-  color: #fff;
-  background-color: #df0064;
+  color: #fe0072;
+  background-color: #fe00721a;
 }
 main .cardb p {
-  color: #fe0072;
+  color: #212121;
 }
-main div.card,
-main div.cardb {
+main a.card,
+main a.cardb {
   transition: all 0.2s ease-in-out;
+  border-radius: 15px;
 }
 main .card:hover {
   box-shadow: 0 4px 8px 0 rgba(168, 168, 168, 0.2),
     0 6px 20px 0 rgba(160, 160, 160, 0.19);
+}
+main .section-topic h1 {
+  color: #293038;
 }
 section#display {
   background: #fff;
@@ -103,6 +122,14 @@ th {
   /* border: 1px solid #dddddd; */
   text-align: left;
   padding: 8px;
+}
+table tr i,
+table tr span {
+  color: #212121;
+}
+table tr i:hover,
+table tr span:hover {
+  color: #df0064;
 }
 
 tr:nth-child(even) {
@@ -179,12 +206,14 @@ table {
   cursor: pointer;
   text-decoration: none;
   color: #212121;
+  font-weight: 500;
   /* text-decoration: overline; */
 }
 .previous:hover,
 .next:hover {
-  background-color: #fe00721a;
-  color: #212121;
+  /* background-color: #003cff; */
+  color: #003cff;
+  font-weight: 500;
 }
 
 .break {
@@ -199,8 +228,14 @@ table {
   cursor: pointer;
   text-decoration: none;
   color: #212121;
+  font-weight: 500;
 }
 .active-paginate {
+  background-color: #df0064;
+  color: #fff;
+  font-weight: bold;
+}
+.active-paginate:hover {
   background-color: #df0064;
   color: #fff;
   font-weight: bold;
@@ -219,11 +254,26 @@ i {
   .login-card {
     width: 35%;
   }
-  aside .aside {
+  aside {
     /* background-color: rgba(0, 0, 0, 0.8); */
     background: #fff;
     color: rgb(68, 68, 68);
     position: fixed;
+    width: 16.67%;
+    /* position: absolute; */
+    /* left: calc(25% - 360px); */
+    /* position: sticky; */
+    /* top: 10px; */
     height: 100vh;
   }
+  .lefty {
+    height: 100vh;
+    position: relative;
+  }
+  .addmin {
+    height: 100%;
+  }
+  /* .top {
+    /* position: sticky; */
+  /* top: 10px; }*/
 }

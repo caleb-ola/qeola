@@ -2,13 +2,18 @@ import { useEffect, useState } from "react";
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import draftToHtml from "draftjs-to-html";
-import { EditorState, convertToRaw } from "draft-js";
+import {
+  EditorState,
+  convertToRaw,
+  convertFromHTML,
+  ContentState,
+} from "draft-js";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const EditorProj = (props) => {
+const EditorProjPatch = (props) => {
   const [shrink, setShrink] = useState({
     mail: "",
     name: "",
@@ -16,14 +21,11 @@ const EditorProj = (props) => {
     proj: "",
     brief: "",
   });
-  const [description, setDescription] = useState();
-  const [title, setTitle] = useState();
-  const [category, setCategory] = useState();
+  const [description, setDescription] = useState(props.description);
+  const [title, setTitle] = useState(props.title);
+  const [category, setCategory] = useState(props.catId);
   const [image, setImage] = useState();
   const [cat, setCat] = useState();
-  // const [Alert, setAlert] = useState();
-  // const [catId, setCatId] = useState();
-  // const [editorContent, setEditorContent] = useState();
   const [loading, setLoading] = useState(false);
 
   const ShrinkName = () => {
@@ -41,7 +43,19 @@ const EditorProj = (props) => {
     setShrink("");
   };
 
-  const [editorState, setEditorState] = useState(EditorState.createEmpty());
+  const blocksFromHTML = convertFromHTML(props.content);
+
+  const [editorState, setEditorState] = useState(
+    // EditorState.createWithContent(ContentState.createFromText(props.content))
+    EditorState.createWithContent(
+      ContentState.createFromBlockArray(
+        blocksFromHTML.contentBlocks,
+        blocksFromHTML.entityMap
+      )
+    )
+  );
+
+  // const [editorState, setEditorState] = useState(EditorState.createEmpty());
   const onEditorStateChange = (editorState) => {
     setEditorState(editorState);
   };
@@ -94,7 +108,7 @@ const EditorProj = (props) => {
     myHeaders.append("Authorization", `Bearer ${token}`);
 
     var requestOptions = {
-      method: "POST",
+      method: "PATCH",
       headers: myHeaders,
       body: formData,
       redirect: "follow",
@@ -102,13 +116,13 @@ const EditorProj = (props) => {
 
     async function postImage() {
       const res = await fetch(
-        "https://qeola-api.herokuapp.com/api/v1/projects",
+        `https://qeola-api.herokuapp.com/api/v1/projects/${props.id}`,
         requestOptions
       );
       const result = await res.json();
       if (result.status === "success") {
         setLoading(false);
-        toast.success("You successfully added a new project", {
+        toast.success("You successfully changed a case study", {
           position: "top-right",
           autoClose: 8000,
           hideProgressBar: false,
@@ -137,23 +151,22 @@ const EditorProj = (props) => {
   };
   return (
     <main className="P-5">
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <section id="contact">
-        <ToastContainer
-          position="top-right"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-        />
-
         <div className="p-5 py-3">
           <div className="row justify-content-center mb-4">
             <div className="contact-header">
-              <h1 className="text-center mt-5 fw-bold">{props.title}</h1>
+              <h1 className="text-center mt-5 fw-bold">{props.header}</h1>
             </div>
             <div className="contact-form mx-auto">
               <form onSubmit={handleSubmit}>
@@ -175,6 +188,7 @@ const EditorProj = (props) => {
                     </label>
                     <br />
                     <input
+                      value={description}
                       type="name"
                       name="name"
                       placeholder="Brief description of project"
@@ -201,6 +215,7 @@ const EditorProj = (props) => {
                     </label>
                     <br />
                     <select
+                      value={category}
                       id="project-type"
                       name="project-type"
                       className="w-100 p-2 my-2 border-0 border-2 border-bottom"
@@ -230,6 +245,7 @@ const EditorProj = (props) => {
                     </label>
                     <br />
                     <input
+                      value={title}
                       type="name"
                       name="name"
                       placeholder="Title of the project"
@@ -320,4 +336,4 @@ const EditorProj = (props) => {
   );
 };
 
-export default EditorProj;
+export default EditorProjPatch;

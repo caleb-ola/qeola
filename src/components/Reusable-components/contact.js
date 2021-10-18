@@ -159,7 +159,7 @@ const Contact = (props) => {
     var myHeaders = new Headers();
     myHeaders.append(
       "Authorization",
-      `Bearer ${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxM2Y4ZGY1NGFkMzQ0ZTEyMjAxMzMyOSIsImlhdCI6MTYzMTU2MDUzNSwiZXhwIjoxNjM0MTUyNTM1fQ.iL-HU4OgINkYmaKVIGhB73FVQFnVk67pP6Fjn-zIovY"}`
+      `Bearer ${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxM2ZhNDA1Nzc2ZDE0Yjk2MDQ3ZWEwZSIsImlhdCI6MTYzNDIwNTA2MiwiZXhwIjoxNjM2Nzk3MDYyfQ.EagLv-fqrpqDQ38XW22C8-yPUXImJeLuXX7QVOTOFMc"}`
     );
     myHeaders.append("mode", `no-cors`);
 

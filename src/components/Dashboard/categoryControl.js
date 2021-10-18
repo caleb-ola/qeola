@@ -6,9 +6,9 @@ import { bindActionCreators } from "redux";
 import { actionCreators } from "../../state";
 import Add from "./add";
 import Edit from "./edit";
-import ReactNotification from "react-notifications-component";
-import "react-notifications-component/dist/theme.css";
-import { store } from "react-notifications-component";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Top from "./top";
 
 const CategoryControl = (props) => {
   const [Output, setOutput] = useState();
@@ -30,6 +30,10 @@ const CategoryControl = (props) => {
     token = Tokena.token;
   }
   const correct = "correct";
+  const { addCategory, editCategory } = bindActionCreators(
+    actionCreators,
+    dispatch
+  );
 
   const all = () => {
     axios.get("https://qeola-api.herokuapp.com/api/v1/categories").then(
@@ -43,27 +47,6 @@ const CategoryControl = (props) => {
       }
     );
   };
-  // console.log(PostsB);
-
-  const updateCategory = (id) => {
-    axios
-      .patch(
-        `https://qeola-api.herokuapp.com/api/v1/categories/${id}`,
-        { correct },
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      )
-      .then(
-        (response) => {
-          // console.log(response);
-          // response.data.data.name = "new category";
-        },
-        (error) => {
-          // console.log(error);
-        }
-      );
-  };
 
   const deleteCategory = (id) => {
     axios
@@ -74,7 +57,7 @@ const CategoryControl = (props) => {
         (response) => {
           // console.log(response);
           if (response) {
-            renderCategories();
+            renderCategories(pageNumber, itemsPerPage);
           }
         },
         (error) => {
@@ -103,19 +86,19 @@ const CategoryControl = (props) => {
                       <th>S/N</th>
                       <th>Category</th>
                       <th>Date Created</th>
-                      <th>Reset</th>
+                      <th>Edit</th>
                       <th>Delete</th>
                     </tr>
                     {response.data.data.map((item, i) => {
                       // console.log(item);
                       return (
-                        <tr>
-                          <td>{i + 1}</td>
+                        <tr key={item._id}>
+                          <td>{page * 5 - 5 + (i + 1)}</td>
                           <td className="fw-bold">{item.name}</td>
                           <td>{item.createdAt}</td>
                           <td>
                             <i
-                              onClick={() => updateCategory(item.id)}
+                              onClick={() => editCategory(item.id)}
                               class="material-icons p-1 rounded-circle"
                             >
                               settings
@@ -140,18 +123,14 @@ const CategoryControl = (props) => {
         },
         (error) => {
           // console.log(error);
-          store.addNotification({
-            title: "Sorry",
-            message: "Something went wrong, please try again",
-            type: "danger",
-            insert: "top",
-            container: "top-left",
-            animationIn: ["animate__animated", "animate__fadeIn"],
-            animationOut: ["animate__animated", "animate__fadeOut"],
-            dismiss: {
-              duration: 8000,
-              onScreen: true,
-            },
+          toast.error("Something went wrong please try again", {
+            position: "top-right",
+            autoClose: 8000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
           });
         }
       );
@@ -163,45 +142,63 @@ const CategoryControl = (props) => {
     renderCategories(selected + 1, itemsPerPage);
     // console.log(selected + 1);
   };
-  const { addCategory } = bindActionCreators(actionCreators, dispatch);
   return (
-    <main className="P-5">
-      <div className="p-5 py-3">
-        <div>
-          <input type="hidden" value={posts} />
-        </div>
-        <ReactNotification />
-        <div className="row justify-content-center mb-4">
-          <div
-            className="col-12 col-sm-6 mx-auto"
-            onClick={() => renderCategories(pageNumber, itemsPerPage)}
-          >
-            <Edit icon={"app_registration"} label={"Show all categories"} />
+    <div>
+      <Top />
+      <main className="P-5">
+        <div className="p-5 py-3">
+          <div>
+            <input type="hidden" value={posts} />
           </div>
-          <div className="col-12 col-sm-6" onClick={() => addCategory()}>
-            <Add icon={"playlist_add"} label={"Add new category"} />
-          </div>
-        </div>
-        {loading && Output}
-        {loadingB && PageCount > 1 ? (
-          <ReactPaginate
-            previousLabel="Prev"
-            nextLabel="Next"
-            pageCount={PageCount}
-            onPageChange={pageChange}
-            containerClassName={"contain"}
-            previousLinkClassName={"previous"}
-            breakClassName={"page"}
-            nextLinkClassName={"next"}
-            pageClassName={"page"}
-            disabledClassNae={"disabled"}
-            activeClassName={"active"}
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
           />
-        ) : (
-          <div></div>
-        )}{" "}
-      </div>
-    </main>
+          <div className="section-topic">
+            <h1 className="fw-bold my-3">Categories</h1>
+          </div>
+          <div className="row justify-content-start mb-4">
+            <div
+              className="col-12 col-sm-6 col-lg-4 col-xl-3"
+              onClick={() => renderCategories(pageNumber, itemsPerPage)}
+            >
+              <Edit icon={"app_registration"} label={"Category List"} />
+            </div>
+            <div
+              className="col-12 col-sm-6 col-lg-4 col-xl-3"
+              onClick={() => addCategory()}
+            >
+              <Add icon={"playlist_add"} label={"Create New Category"} />
+            </div>
+          </div>
+          {loading && Output}
+          {loadingB && PageCount > 1 ? (
+            <ReactPaginate
+              previousLabel="Prev"
+              nextLabel="Next"
+              pageCount={PageCount}
+              onPageChange={pageChange}
+              containerClassName={"contain"}
+              previousLinkClassName={"previous"}
+              breakClassName={"page"}
+              nextLinkClassName={"next"}
+              pageClassName={"page"}
+              disabledClassNae={"disabled"}
+              activeClassName={"active-paginate"}
+            />
+          ) : (
+            <div></div>
+          )}{" "}
+        </div>
+      </main>
+    </div>
   );
 };
 export default CategoryControl;

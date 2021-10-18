@@ -74,13 +74,13 @@ const Login = () => {
 
       <div className="overlayb"></div>
       <div className="container">
-        <div className="login-card mx-auto p-3 p-sm-4 rounded-3 ">
+        <div className="login-card mx-auto p-3 p-sm-5 rounded-3 ">
           <form onSubmit={Submit}>
             <div className="my-3 mb-4 text-center w-50 mx-auto">
               <img
                 src="images/logo.png"
                 alt="qeola icon"
-                className="img-fluid w-75 my-2"
+                className="img-fluid w-50 my-2"
               />
             </div>
             <h2 className="fs-3 fw-bold my-3  text-center">Login</h2>

@@ -29,7 +29,7 @@ const MoreArticles = () => {
                       }}
                     >
                       <p className="align-self-start pb-5 mb-5">
-                        {item.category.name}
+                        <em>{item.category.name}</em>
                       </p>
                       <h4 className="fs-5 fw-bold align-self-end pt-5 mt-5">
                         {item.title}

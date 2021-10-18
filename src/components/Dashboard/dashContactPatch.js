@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const DashContact = (props) => {
+const DashContactPatch = (props) => {
   const [shrink, setShrink] = useState({
     mail: "",
     name: "",
@@ -12,10 +12,11 @@ const DashContact = (props) => {
     proj: "",
     brief: "",
   });
-  const [name, setName] = useState();
-  const [category, setCategory] = useState();
-  const [image, setImage] = useState();
+  const [name, setName] = useState(props.name);
+  const [category, setCategory] = useState(props.catId);
+  const [image, setImage] = useState(props.image);
   const [cat, setCat] = useState();
+  // const [catty, setCatty] = useState();
   const [loading, setLoading] = useState(false);
 
   const ShrinkName = () => {
@@ -25,6 +26,7 @@ const DashContact = (props) => {
   const ShrinkProj = () => {
     setShrink({ mail: "", name: "", Num: "", proj: "shrink", brief: "" });
   };
+
   const ShrinkBrief = () => {
     setShrink({ mail: "", name: "", Num: "", proj: "", brief: "shrink" });
   };
@@ -63,7 +65,7 @@ const DashContact = (props) => {
     myHeaders.append("Authorization", `Bearer ${token}`);
 
     var requestOptions = {
-      method: "POST",
+      method: "PATCH",
       headers: myHeaders,
       body: formdata,
       redirect: "follow",
@@ -71,14 +73,14 @@ const DashContact = (props) => {
 
     async function postImage() {
       const res = await fetch(
-        "https://qeola-api.herokuapp.com/api/v1/clients",
+        `https://qeola-api.herokuapp.com/api/v1/clients/${props.id}`,
         requestOptions
       );
       const result = await res.json();
       // console.log(result);
       if (result.status === "success") {
         setLoading(false);
-        toast.success("You added a new client", {
+        toast.success("You changed a client's details", {
           position: "top-right",
           autoClose: 8000,
           hideProgressBar: false,
@@ -117,6 +119,7 @@ const DashContact = (props) => {
             )
           );
         });
+
         setCat(tration);
       },
       (error) => {
@@ -124,6 +127,8 @@ const DashContact = (props) => {
       }
     );
   };
+  // console.log(props.posting);
+  // console.log({ name, category, image });
   return (
     <main>
       <section id="contact" className="py-3">
@@ -164,6 +169,7 @@ const DashContact = (props) => {
                   </label>
                   <br />
                   <input
+                    value={name}
                     type="name"
                     name="name"
                     placeholder="Name of the client you want to add"
@@ -190,6 +196,7 @@ const DashContact = (props) => {
                   </label>
                   <br />
                   <select
+                    value={category}
                     id="project-type"
                     name="project-type"
                     className="w-100 p-2 my-2 border-0 border-2 border-bottom"
@@ -197,7 +204,7 @@ const DashContact = (props) => {
                     required
                     // onClick={Options}
                   >
-                    <option value="" disabled selected className="primary">
+                    <option value="" disabled className="primary">
                       Make your selection
                     </option>
                     {cat}
@@ -242,6 +249,7 @@ const DashContact = (props) => {
                           attach_file
                         </i>{" "}
                         <input
+                          // value={image}
                           type="file"
                           name="myfile"
                           style={{ display: "none" }}
@@ -278,4 +286,4 @@ const DashContact = (props) => {
   );
 };
 
-export default DashContact;
+export default DashContactPatch;

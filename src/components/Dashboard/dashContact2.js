@@ -1,8 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
-import ReactNotification from "react-notifications-component";
-import "react-notifications-component/dist/theme.css";
-import { store } from "react-notifications-component";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const DashContact2 = (props) => {
   const [shrink, setShrink] = useState({
@@ -28,18 +27,14 @@ const DashContact2 = (props) => {
           setLoading(false);
           // console.log(response);
           const data = response.data.data;
-          store.addNotification({
-            title: `SUCCESS`,
-            message: "User found",
-            type: "success",
-            insert: "top",
-            container: "top-left",
-            animationIn: ["animate__animated", "animate__fadeIn"],
-            animationOut: ["animate__animated", "animate__fadeOut"],
-            dismiss: {
-              duration: 5000,
-              onScreen: true,
-            },
+          toast.success("User's email found", {
+            position: "top-right",
+            autoClose: 8000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
           });
           setOutput(
             response && (
@@ -65,20 +60,18 @@ const DashContact2 = (props) => {
         (error) => {
           // console.log(error);
           setLoading(false);
-          store.addNotification({
-            title: "NOT FOUND",
-            message:
-              "The email is not registered to any users, please ensure you enter a registered user's email",
-            type: "danger",
-            insert: "top",
-            container: "top-left",
-            animationIn: ["animate__animated", "animate__fadeIn"],
-            animationOut: ["animate__animated", "animate__fadeOut"],
-            dismiss: {
-              duration: 8000,
-              onScreen: true,
-            },
-          });
+          toast.error(
+            "NOT FOUND. The email you entered is not registered to any user.",
+            {
+              position: "top-right",
+              autoClose: 8000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            }
+          );
         }
       );
   };
@@ -95,14 +88,24 @@ const DashContact2 = (props) => {
     <main>
       <section id="contact" className="py-3">
         <div className="container">
-          <ReactNotification />
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+          />
           <div className="contact-header position-relative py-3 mx-auto">
             {/* <div className="position-absolute">{Alert}</div> */}
-            <h1 className="fs-2 fs-sm-1 fw-bold mt-5 text-center">
+            <h1 className="fs-1 fs-sm-1 fw-bold mt-5 text-center">
               {props.title}
             </h1>
           </div>
-          <div>
+          <div className="contact-form mx-auto">
             <form onSubmit={handleSubmit}>
               <div className="row pt-4 pb-2">
                 <div

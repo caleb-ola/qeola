@@ -6,9 +6,9 @@ import { actionCreators } from "../../state";
 import Add from "./add";
 import Edit from "./edit";
 import ReactPaginate from "react-paginate";
-import ReactNotification from "react-notifications-component";
-import "react-notifications-component/dist/theme.css";
-import { store } from "react-notifications-component";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Top from "./top";
 
 const IndustryControl = (props) => {
   // const output = useSelector((state) => state.output);
@@ -67,7 +67,7 @@ const IndustryControl = (props) => {
                       // console.log(item);
                       return (
                         <tr>
-                          <td>{i + 1}</td>
+                          <td>{page * 5 - 5 + (i + 1)}</td>
                           <td className="fw-bold">{item.name}</td>
                           <td>{item.email}</td>
                           <td>{item.createdAt}</td>
@@ -82,18 +82,14 @@ const IndustryControl = (props) => {
         },
         (error) => {
           // console.log(error);
-          store.addNotification({
-            title: "Sorry",
-            message: "Something went wrong, please try again",
-            type: "danger",
-            insert: "top",
-            container: "top-left",
-            animationIn: ["animate__animated", "animate__fadeIn"],
-            animationOut: ["animate__animated", "animate__fadeOut"],
-            dismiss: {
-              duration: 8000,
-              onScreen: true,
-            },
+          toast.error("Something went wrong please try again", {
+            position: "top-right",
+            autoClose: 8000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
           });
         }
       );
@@ -106,46 +102,64 @@ const IndustryControl = (props) => {
   };
 
   return (
-    <main className="P-5">
-      <div className="p-5 py-3">
-        <div>
-          <input type="hidden" value={posts} />
-        </div>
-        <ReactNotification />
-
-        <div className="row justify-content-center mb-4">
-          <div
-            className="col-12 col-sm-6 mx-auto"
-            onClick={() => renderUsers(pageNumber, itemsPerPage)}
-          >
-            <Edit icon={"app_registration"} label={"Show all Users"} />
+    <div>
+      <Top />
+      <main className="P-5">
+        <div className="p-5 py-3">
+          <div>
+            <input type="hidden" value={posts} />
           </div>
-          <div className="col-12 col-sm-6" onClick={() => addIndustry()}>
-            <Add icon={"playlist_add"} label={"Search User by email"} />
-          </div>
-        </div>
-
-        {loading && Output}
-
-        {loadingB && PageCount > 1 ? (
-          <ReactPaginate
-            previousLabel="Prev"
-            nextLabel="Next"
-            pageCount={PageCount}
-            onPageChange={pageChange}
-            containerClassName={"contain"}
-            previousLinkClassName={"previous"}
-            breakClassName={"page"}
-            nextLinkClassName={"next"}
-            pageClassName={"page"}
-            disabledClassName={"disabled"}
-            activeClassName={"active"}
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
           />
-        ) : (
-          <div></div>
-        )}
-      </div>
-    </main>
+          <div className="section-topic">
+            <h1 className="fw-bold my-3">Users</h1>
+          </div>
+          <div className="row justify-content-start mb-4">
+            <div
+              className="col-12 col-sm-6 col-lg-4 col-xl-3"
+              onClick={() => renderUsers(pageNumber, itemsPerPage)}
+            >
+              <Edit icon={"app_registration"} label={"User List"} />
+            </div>
+            <div
+              className="col-12 col-sm-6 col-lg-4 col-xl-3"
+              onClick={() => addIndustry()}
+            >
+              <Add icon={"playlist_add"} label={"Search User (By email)"} />
+            </div>
+          </div>
+
+          {loading && Output}
+
+          {loadingB && PageCount > 1 ? (
+            <ReactPaginate
+              previousLabel="Prev"
+              nextLabel="Next"
+              pageCount={PageCount}
+              onPageChange={pageChange}
+              containerClassName={"contain"}
+              previousLinkClassName={"previous"}
+              breakClassName={"page"}
+              nextLinkClassName={"next"}
+              pageClassName={"page"}
+              disabledClassName={"disabled"}
+              activeClassName={"active-paginate"}
+            />
+          ) : (
+            <div></div>
+          )}
+        </div>
+      </main>
+    </div>
   );
 };
 export default IndustryControl;

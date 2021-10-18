@@ -6,9 +6,10 @@ import { bindActionCreators } from "redux";
 import { actionCreators } from "../../state";
 import Add from "./add";
 import Edit from "./edit";
-import ReactNotification from "react-notifications-component";
-import "react-notifications-component/dist/theme.css";
-import { store } from "react-notifications-component";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { Link } from "react-router-dom";
+import Top from "./top";
 
 const BriefControl = (props) => {
   // const output = useSelector((state) => state.output);
@@ -24,6 +25,12 @@ const BriefControl = (props) => {
   const [posts, setPosts] = useState();
   const [PostsB, setPostsB] = useState();
 
+  const [viewBriefText, setViewBriefText] = useState({
+    text: "",
+    email: "",
+    name: "",
+  });
+
   const { addBrief } = bindActionCreators(actionCreators, dispatch);
 
   let token;
@@ -36,12 +43,12 @@ const BriefControl = (props) => {
   const all = () => {
     axios.get("https://qeola-api.herokuapp.com/api/v1/briefs").then(
       (response) => {
-        // console.log({ all: response });
+        //console.log({ all: response });
         setLoadingB(true);
         setPostsB(Math.ceil(response.data.data.length / itemsPerPage));
       },
       (error) => {
-        // console.log(error);
+        //console.log(error);
       }
     );
   };
@@ -56,13 +63,25 @@ const BriefControl = (props) => {
         (response) => {
           // console.log(response);
           if (response) {
-            renderBriefs();
+            renderBriefs(pageNumber, itemsPerPage);
           }
         },
         (error) => {
           // console.log(error);
+          toast.error("Something went wrong please try again", {
+            position: "top-right",
+            autoClose: 8000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
         }
       );
+  };
+  const viewBrief = (text, email, name) => {
+    setViewBriefText({ text, email, name });
   };
   const renderBriefs = (page, limit) => {
     all();
@@ -80,31 +99,44 @@ const BriefControl = (props) => {
               response && (
                 <div style={{ overflowX: "auto" }}>
                   <table style={{ width: "100%" }} className="">
-                    <tr>
+                    <tr className="text-center">
                       <th>S/N</th>
                       <th>Brief Title</th>
+                      <th>Email</th>
                       <th>Date Created</th>
                       <th>Category</th>
-                      <th>Reset</th>
-                      <th>Delete</th>
+                      <th className="text-center">View</th>
+                      <th className="text-center">Download</th>
+                      <th className="text-center">Delete</th>
                     </tr>
                     {response.data.data.map((item, i) => {
                       // console.log(item);
                       return (
                         <tr key={item._id}>
-                          <td>{i + 1}</td>
+                          <td>{page * 5 - 5 + (i + 1)}</td>
                           <td className="fw-bold">{item.name}</td>
+                          <td className="fw-bold">{item.email}</td>
                           <td>{item.createdAt}</td>
                           <td> {item.category.name}</td>
-                          <td>
+                          <td className="text-center">
                             <i
-                              // onClick={() => updateCategory(item.id)}
+                              onClick={() =>
+                                viewBrief(item.briefText, item.email, item.name)
+                              }
                               class="material-icons p-1 rounded-circle"
+                              type="button"
+                              data-bs-toggle="modal"
+                              data-bs-target="#exampleModal"
                             >
-                              settings
+                              <i class="fas fa-binoculars"></i>
                             </i>
                           </td>
-                          <td>
+                          <td className="cursor-pointer text-center">
+                            <a href={item.briefFile}>
+                              <span class="material-icons">download</span>
+                            </a>
+                          </td>
+                          <td className="text-center">
                             <i
                               onClick={() => deleteBrief(item.id)}
                               class="material-icons p-1 rounded-circle"
@@ -122,18 +154,14 @@ const BriefControl = (props) => {
           }
         },
         (error) => {
-          store.addNotification({
-            title: "Sorry",
-            message: "Something went wrong, please try again",
-            type: "danger",
-            insert: "top",
-            container: "top-left",
-            animationIn: ["animate__animated", "animate__fadeIn"],
-            animationOut: ["animate__animated", "animate__fadeOut"],
-            dismiss: {
-              duration: 8000,
-              onScreen: true,
-            },
+          toast.error("Something went wrong please try again", {
+            position: "top-right",
+            autoClose: 8000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
           });
         }
       );
@@ -145,42 +173,105 @@ const BriefControl = (props) => {
     // console.log(selected + 1);
   };
   return (
-    <main className="P-5">
-      <div className="p-5 py-3">
-        <div>
-          <input type="hidden" value={posts} />
-          <input type="hidden" value={pageNumber} />
-        </div>
-        <ReactNotification />
-        <div className="row justify-content-center mb-4">
-          <div className="col-12 col-sm-6 mx-auto" onClick={renderBriefs}>
-            <Edit icon={"app_registration"} label={"Show all briefs"} />
-          </div>
-          <div className="col-12 col-sm-6" onClick={() => addBrief()}>
-            <Add icon={"playlist_add"} label={"Add new brief"} />
-          </div>
-        </div>
-        {loading && Output}
+    <div>
+      <Top />
 
-        {loadingB && PageCount > 1 ? (
-          <ReactPaginate
-            previousLabel="Prev"
-            nextLabel="Next"
-            pageCount={PageCount}
-            onPageChange={pageChange}
-            containerClassName={"contain"}
-            previousLinkClassName={"previous"}
-            breakClassName={"page"}
-            nextLinkClassName={"next"}
-            pageClassName={"page"}
-            disabledClassNae={"disabled"}
-            activeClassName={"active"}
+      <main className="P-5">
+        <div className="p-5 py-3">
+          <div>
+            <input type="hidden" value={posts} />
+            <input type="hidden" value={pageNumber} />
+          </div>
+          <div
+            class="modal fade"
+            id="exampleModal"
+            tabindex="-1"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable ">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h6 class="modal-title" id="exampleModalLabel">
+                    Brief from <strong>{viewBriefText.name}</strong>
+                    <br />
+                    Email:<strong> {viewBriefText.email} </strong>
+                  </h6>
+
+                  <button
+                    type="button"
+                    class="btn-close shadow-none"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div class="modal-body">{viewBriefText.text}</div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                  {/* <button type="button" class="btn btn-primary">
+                  Save changes
+                </button> */}
+                </div>
+              </div>
+            </div>
+          </div>
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
           />
-        ) : (
-          <div></div>
-        )}
-      </div>
-    </main>
+          <div className="section-topic">
+            <h1 className="fw-bold my-3">Brief</h1>
+          </div>
+
+          <div className="row justify-content-start mb-4">
+            <div
+              className="col-12 col-sm-6 col-lg-4 col-xl-3"
+              onClick={() => renderBriefs(pageNumber, itemsPerPage)}
+            >
+              <Edit icon={"app_registration"} label={"Brief List"} />
+            </div>
+            <div
+              className="col-12 col-sm-6 col-lg-4 col-xl-3"
+              onClick={() => addBrief()}
+            >
+              <Add icon={"playlist_add"} label={"Create New Brief"} />
+            </div>
+          </div>
+          {loading && Output}
+
+          {loadingB && PageCount > 1 ? (
+            <ReactPaginate
+              previousLabel="Prev"
+              nextLabel="Next"
+              pageCount={PageCount}
+              onPageChange={pageChange}
+              containerClassName={"contain"}
+              previousLinkClassName={"previous"}
+              breakClassName={"page"}
+              nextLinkClassName={"next"}
+              pageClassName={"page"}
+              disabledClassNae={"disabled"}
+              activeClassName={"active-paginate"}
+            />
+          ) : (
+            <div></div>
+          )}
+        </div>
+      </main>
+    </div>
   );
 };
 export default BriefControl;

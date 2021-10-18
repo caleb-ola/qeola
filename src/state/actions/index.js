@@ -98,6 +98,23 @@ export const addCategory = () => {
     });
   };
 };
+export const editCategory = (id) => {
+  return (dispatch) => {
+    axios.get(`https://qeola-api.herokuapp.com/api/v1/categories/${id}`).then(
+      (response) => {
+        // console.log(response);
+        dispatch({
+          type: "EDIT_CATEGORIES",
+          payload: response,
+          // func: func,
+        });
+      },
+      (error) => {
+        // console.log(error);
+      }
+    );
+  };
+};
 export const showCategories = (func) => {
   return (dispatch) => {
     axios.get("https://qeola-api.herokuapp.com/api/v1/categories").then(
@@ -133,6 +150,30 @@ export const addBlog = () => {
     });
   };
 };
+export const editBlog = (id) => {
+  return (dispatch) => {
+    axios.get(`https://qeola-api.herokuapp.com/api/v1/posts/${id}`).then(
+      (response) => {
+        // console.log(response);
+        if (response) {
+          dispatch({
+            type: "EDIT_BLOGS",
+            payload: response,
+            token: response.data.token,
+          });
+        }
+      },
+      (error) => {
+        // console.log(error);
+        dispatch({
+          type: "EDIT_BLOG",
+          payload: error,
+          data: error.response.data,
+        });
+      }
+    );
+  };
+};
 
 export const showBriefs = () => {
   return (dispatch) => {
@@ -151,6 +192,30 @@ export const addBrief = () => {
     });
   };
 };
+// export const downloadBrief = (id) => {
+//   return (dispatch) => {
+//     axios.get(`https://qeola-api.herokuapp.com/api/v1/brief/${id}`).then(
+//       (response) => {
+//         console.log(response);
+//         if (response) {
+//           dispatch({
+//             type: "DOWNLOAD_BRIEFS",
+//             payload: response,
+//             token: response.data.token,
+//           });
+//         }
+//       },
+//       (error) => {
+//         // console.log(error);
+//         dispatch({
+//           type: "EDIT_BLOG",
+//           payload: error,
+//           data: error.response.data,
+//         });
+//       }
+//     );
+//   };
+// };
 export const showCase = () => {
   return (dispatch) => {
     dispatch({
@@ -168,6 +233,31 @@ export const addCase = () => {
     });
   };
 };
+export const editCase = (id) => {
+  return (dispatch) => {
+    axios.get(`https://qeola-api.herokuapp.com/api/v1/projects/${id}`).then(
+      (response) => {
+        // console.log(response);
+        if (response) {
+          dispatch({
+            type: "EDIT_CASES",
+            payload: response,
+            token: response.data.token,
+          });
+        }
+      },
+      (error) => {
+        // console.log(error);
+        dispatch({
+          type: "EDIT_BLOG",
+          payload: error,
+          data: error.response.data,
+        });
+      }
+    );
+  };
+};
+
 export const showClients = () => {
   return (dispatch) => {
     dispatch({
@@ -185,6 +275,23 @@ export const addClient = () => {
       type: "ADD_CLIENT",
       payload: url,
     });
+  };
+};
+export const editClient = (id) => {
+  return (dispatch) => {
+    axios.get(`https://qeola-api.herokuapp.com/api/v1/clients/${id}`).then(
+      (response) => {
+        // console.log(response);
+        dispatch({
+          type: "EDIT_CLIENTS",
+          payload: response,
+          // func: func,
+        });
+      },
+      (error) => {
+        // console.log(error);
+      }
+    );
   };
 };
 

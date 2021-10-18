@@ -2,13 +2,19 @@ import { useEffect, useState } from "react";
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import draftToHtml from "draftjs-to-html";
-import { EditorState, convertToRaw } from "draft-js";
+// import htmlToDraft from "html-to-draftjs";
+import {
+  EditorState,
+  convertToRaw,
+  ContentState,
+  convertFromHTML,
+} from "draft-js";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const EditorProj = (props) => {
+const EditorialPatch = (props) => {
   const [shrink, setShrink] = useState({
     mail: "",
     name: "",
@@ -16,14 +22,14 @@ const EditorProj = (props) => {
     proj: "",
     brief: "",
   });
-  const [description, setDescription] = useState();
-  const [title, setTitle] = useState();
-  const [category, setCategory] = useState();
-  const [image, setImage] = useState();
+  const [author, setAuthor] = useState(props.author);
+  const [title, setTitle] = useState(props.title);
+  const [category, setCategory] = useState(props.catId);
+  const [image, setImage] = useState(props.image);
   const [cat, setCat] = useState();
-  // const [Alert, setAlert] = useState();
   // const [catId, setCatId] = useState();
   // const [editorContent, setEditorContent] = useState();
+  // const [Alert, setAlert] = useState();
   const [loading, setLoading] = useState(false);
 
   const ShrinkName = () => {
@@ -41,18 +47,42 @@ const EditorProj = (props) => {
     setShrink("");
   };
 
-  const [editorState, setEditorState] = useState(EditorState.createEmpty());
+  const blocksFromHTML = convertFromHTML(props.content);
+  // const state = ContentState.createFromBlockArray(
+  //   blocksFromHTML.contentBlocks,
+  //   blocksFromHTML.entityMap
+  // );
+
+  // this.state = {
+  //   editorState: EditorState.createWithContent(
+  //     ContentState.createFromBlockArray(
+  //       blocksFromHTML.contentBlocks,
+  //       blocksFromHTML.entityMap
+  //     )
+  //   ),
+  // };
+
+  const [editorState, setEditorState] = useState(
+    // EditorState.createWithContent(ContentState.createFromText(props.content))
+    EditorState.createWithContent(
+      ContentState.createFromBlockArray(
+        blocksFromHTML.contentBlocks,
+        blocksFromHTML.entityMap
+      )
+    )
+  );
   const onEditorStateChange = (editorState) => {
     setEditorState(editorState);
   };
+  // const editorCont = editorState.getCurrentContent().getPlainText();
   const content = draftToHtml(convertToRaw(editorState.getCurrentContent()));
-
   useEffect(() => {
     const timer = setTimeout(() => {
       Options();
     }, 1000);
     return () => clearTimeout(timer);
   }, []);
+
   const Options = () => {
     axios.get("https://qeola-api.herokuapp.com/api/v1/categories").then(
       (response) => {
@@ -73,7 +103,7 @@ const EditorProj = (props) => {
       }
     );
   };
-  // console.log(description, title, category, image, content);
+  // console.log(author, title, category, image, content);
   let token = "";
   const Tokena = useSelector((state) => state.output);
   if (Tokena) {
@@ -83,18 +113,21 @@ const EditorProj = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+
     const formData = new FormData();
-    formData.append("image", image, image.name);
+    formData.append("image", image, image.file);
     formData.append("title", title);
     formData.append("content", content);
     formData.append("category", category);
-    formData.append("description", description);
+    formData.append("author", author);
+
+    // console.log(JSON.stringify(formData));
 
     var myHeaders = new Headers();
     myHeaders.append("Authorization", `Bearer ${token}`);
 
     var requestOptions = {
-      method: "POST",
+      method: "PATCH",
       headers: myHeaders,
       body: formData,
       redirect: "follow",
@@ -102,13 +135,14 @@ const EditorProj = (props) => {
 
     async function postImage() {
       const res = await fetch(
-        "https://qeola-api.herokuapp.com/api/v1/projects",
+        `https://qeola-api.herokuapp.com/api/v1/posts/${props.id}`,
         requestOptions
       );
       const result = await res.json();
+      // console.log(result);
       if (result.status === "success") {
         setLoading(false);
-        toast.success("You successfully added a new project", {
+        toast.success("You successfully changed a post", {
           position: "top-right",
           autoClose: 8000,
           hideProgressBar: false,
@@ -129,12 +163,12 @@ const EditorProj = (props) => {
           progress: undefined,
         });
       }
-
       return result;
     }
 
     await postImage();
   };
+
   return (
     <main className="P-5">
       <section id="contact">
@@ -148,14 +182,13 @@ const EditorProj = (props) => {
           pauseOnFocusLoss
           draggable
           pauseOnHover
-        />
-
+        />{" "}
         <div className="p-5 py-3">
           <div className="row justify-content-center mb-4">
             <div className="contact-header">
-              <h1 className="text-center mt-5 fw-bold">{props.title}</h1>
+              <h1 className="text-center mt-5 fw-bold">{props.header}</h1>
             </div>
-            <div className="contact-form mx-auto">
+            <div className="contact-form">
               <form onSubmit={handleSubmit}>
                 <div className="row pt-4 pb-2">
                   <div
@@ -164,22 +197,23 @@ const EditorProj = (props) => {
                     onBlur={Enlarge}
                   >
                     <label
-                      htmlFor="name"
+                      for="name"
                       className={
                         shrink.name === "shrink"
                           ? `fs-6 fw-bold ${shrink.name}`
                           : `fs-6 fw-bold`
                       }
                     >
-                      Description*
+                      Author*
                     </label>
                     <br />
                     <input
+                      value={author}
                       type="name"
                       name="name"
-                      placeholder="Brief description of project"
+                      placeholder="Name of Author"
                       className="w-100 p-2 my-1 border-0 border-2 border-bottom"
-                      onChange={(e) => setDescription(e.target.value)}
+                      onChange={(e) => setAuthor(e.target.value)}
                       required
                     />
                   </div>
@@ -190,7 +224,7 @@ const EditorProj = (props) => {
                     onBlur={Enlarge}
                   >
                     <label
-                      htmlFor="project-type"
+                      for="project-type"
                       className={
                         shrink.proj === "shrink"
                           ? `fs-6 fw-bold ${shrink.proj}`
@@ -201,6 +235,7 @@ const EditorProj = (props) => {
                     </label>
                     <br />
                     <select
+                      value={category}
                       id="project-type"
                       name="project-type"
                       className="w-100 p-2 my-2 border-0 border-2 border-bottom"
@@ -219,7 +254,7 @@ const EditorProj = (props) => {
                     onBlur={Enlarge}
                   >
                     <label
-                      htmlFor="name"
+                      for="name"
                       className={
                         shrink.name === "shrink"
                           ? `fs-6 fw-bold ${shrink.name}`
@@ -230,9 +265,10 @@ const EditorProj = (props) => {
                     </label>
                     <br />
                     <input
+                      value={title}
                       type="name"
                       name="name"
-                      placeholder="Title of the project"
+                      placeholder="Title of the post"
                       className="w-100 p-2 my-1 border-0 border-2 border-bottom"
                       onChange={(e) => setTitle(e.target.value)}
                       required
@@ -244,7 +280,7 @@ const EditorProj = (props) => {
                     onBlur={Enlarge}
                   >
                     <label
-                      htmlFor="project-brief"
+                      for="project-brief"
                       className={
                         shrink.brief === "shrink"
                           ? `fs-6 fw-bold ${shrink.brief}`
@@ -259,9 +295,10 @@ const EditorProj = (props) => {
                         type="text"
                         id="project-brief"
                         className="form-control rounded-0"
-                        placeholder={`Attach the cover Image here`}
+                        placeholder={`Attach the client's logo here `}
                         aria-label="Text input with attach button "
                         onChange={(e) => setImage(e.target.value)}
+                        required
                         disabled
                       />
                       <button
@@ -306,7 +343,7 @@ const EditorProj = (props) => {
                         aria-hidden="true"
                       ></span>
                     ) : (
-                      "Submit project"
+                      "Post article"
                     )}
                   </button>
                 </div>
@@ -320,4 +357,4 @@ const EditorProj = (props) => {
   );
 };
 
-export default EditorProj;
+export default EditorialPatch;

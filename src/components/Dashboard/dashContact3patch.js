@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const DashContact3 = (props) => {
+const DashContact3Patch = (props) => {
   const [shrink, setShrink] = useState({
     mail: "",
     name: "",
@@ -13,9 +13,8 @@ const DashContact3 = (props) => {
     proj: "",
     brief: "",
   });
-  const [name, setName] = useState();
+  const [name, setName] = useState(props.category);
   const [loading, setLoading] = useState(false);
-  // const [button, setButton] = useState(props.btn);
 
   const ShrinkName = () => {
     setShrink({ mail: "", name: "shrink", Num: "", proj: "", brief: "" });
@@ -35,16 +34,15 @@ const DashContact3 = (props) => {
     e.preventDefault();
     setLoading(true);
     axios
-      .post(
-        "https://qeola-api.herokuapp.com/api/v1/categories",
+      .patch(
+        `https://qeola-api.herokuapp.com/api/v1/categories/${props.id}`,
         { name },
         { headers: { Authorization: `Bearer ${token}` } }
       )
       .then(
         (response) => {
-          // console.log(response);
           setLoading(false);
-          toast.success("You have successfully added a new category", {
+          toast.success("You have successfully changed a category name. ", {
             position: "top-right",
             autoClose: 8000,
             hideProgressBar: false,
@@ -113,6 +111,7 @@ const DashContact3 = (props) => {
                     name="name"
                     placeholder="Name of the category you want to add"
                     className="w-100 p-2 my-1 border-0 border-2 border-bottom"
+                    value={name}
                     onChange={(e) => setName(e.target.value)}
                   />
                 </div>
@@ -132,9 +131,6 @@ const DashContact3 = (props) => {
                       props.btn
                     )}
                   </button>
-                  {/* <Button variant="contained" size="large" type="submit">
-                    {loading ? <CircularProgress /> : button}
-                  </Button> */}
                 </div>
               </div>
             </form>
@@ -145,4 +141,4 @@ const DashContact3 = (props) => {
   );
 };
 
-export default DashContact3;
+export default DashContact3Patch;

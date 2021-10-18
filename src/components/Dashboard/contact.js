@@ -2,9 +2,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import "./contact.css";
-import ReactNotification from "react-notifications-component";
-import "react-notifications-component/dist/theme.css";
-import { store } from "react-notifications-component";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Contact = (props) => {
   const [shrink, setShrink] = useState({
@@ -112,33 +111,25 @@ const Contact = (props) => {
       // console.log(result);
       if (result.status === "success") {
         setLoading(false);
-        store.addNotification({
-          title: `Success`,
-          message: "You sent a new brief",
-          type: "success",
-          insert: "top",
-          container: "top-left",
-          animationIn: ["animate__animated", "animate__fadeIn"],
-          animationOut: ["animate__animated", "animate__fadeOut"],
-          dismiss: {
-            duration: 8000,
-            onScreen: true,
-          },
+        toast.success("You submitted a new brief", {
+          position: "top-right",
+          autoClose: 8000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
         });
       } else if (result.status !== "success") {
         setLoading(false);
-        store.addNotification({
-          title: `Sorry, check again`,
-          message: "Something went wrong please try again",
-          type: "danger",
-          insert: "top",
-          container: "top-left",
-          animationIn: ["animate__animated", "animate__fadeIn"],
-          animationOut: ["animate__animated", "animate__fadeOut"],
-          dismiss: {
-            duration: 8000,
-            onScreen: true,
-          },
+        toast.error("Something went wrong please try again", {
+          position: "top-right",
+          autoClose: 8000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
         });
       }
       return result;
@@ -151,9 +142,19 @@ const Contact = (props) => {
     <main>
       <section id="contact" className="py-3">
         <div className="container">
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+          />{" "}
           <div className="contact-header py-3 mx-auto">
-            <ReactNotification />
-            <h1 className="fs-2 fw-bold mt-5 text-center">{props.title}</h1>
+            <h1 className="fs-1 fw-bold mt-5 text-center">{props.title}</h1>
           </div>
           <div className="contact-form mx-auto">
             <form onSubmit={handleSubmit}>

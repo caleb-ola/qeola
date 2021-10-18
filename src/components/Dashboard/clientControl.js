@@ -6,9 +6,9 @@ import { actionCreators } from "../../state";
 import Add from "./add";
 import Edit from "./edit";
 import ReactPaginate from "react-paginate";
-import ReactNotification from "react-notifications-component";
-import "react-notifications-component/dist/theme.css";
-import { store } from "react-notifications-component";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Top from "./top";
 
 const ClientControl = () => {
   const dispatch = useDispatch();
@@ -23,7 +23,10 @@ const ClientControl = () => {
   const [posts, setPosts] = useState();
   const [PostsB, setPostsB] = useState();
 
-  const { addClient } = bindActionCreators(actionCreators, dispatch);
+  const { addClient, editClient } = bindActionCreators(
+    actionCreators,
+    dispatch
+  );
 
   let token;
 
@@ -84,19 +87,19 @@ const ClientControl = () => {
                       <th>Client name</th>
                       <th>Date Created</th>
                       <th>Category</th>
-                      <th>Reset</th>
+                      <th>Edit</th>
                       <th>Delete</th>
                     </tr>
                     {response.data.data.map((item, i) => {
                       return (
                         <tr>
-                          <td>{i + 1}</td>
+                          <td>{page * 5 - 5 + (i + 1)}</td>
                           <td className="fw-bold">{item.name}</td>
                           <td>{item.createdAt}</td>
                           <td>{item.category.name}</td>
                           <td>
                             <i
-                              // onClick={() => updateCategory(item.id)}
+                              onClick={() => editClient(item.id)}
                               class="material-icons p-1 rounded-circle"
                             >
                               settings
@@ -120,18 +123,14 @@ const ClientControl = () => {
           }
         },
         (error) => {
-          store.addNotification({
-            title: "Sorry",
-            message: "Something went wrong, please try again",
-            type: "danger",
-            insert: "top",
-            container: "top-left",
-            animationIn: ["animate__animated", "animate__fadeIn"],
-            animationOut: ["animate__animated", "animate__fadeOut"],
-            dismiss: {
-              duration: 8000,
-              onScreen: true,
-            },
+          toast.error("Something went wrong please try again", {
+            position: "top-right",
+            autoClose: 8000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
           });
         }
       );
@@ -144,44 +143,64 @@ const ClientControl = () => {
   };
 
   return (
-    <main className="P-5">
-      <div className="p-5 py-3">
-        <div>
-          <input type="hidden" value={posts} />
-        </div>
-        <ReactNotification />
-        <div className="row justify-content-center mb-4">
-          <div
-            className="col-12 col-sm-6 mx-auto"
-            onClick={() => renderClients(pageNumber, itemsPerPage)}
-          >
-            <Edit icon={"app_registration"} label={"Show all clients"} />
-          </div>
-          <div className="col-12 col-sm-6" onClick={() => addClient()}>
-            <Add icon={"playlist_add"} label={"Add new client"} />
-          </div>
-        </div>
-        {loading && Output}
-
-        {loadingB && PageCount > 1 ? (
-          <ReactPaginate
-            previousLabel="Prev"
-            nextLabel="Next"
-            pageCount={PageCount}
-            onPageChange={pageChange}
-            containerClassName={"contain"}
-            previousLinkClassName={"previous"}
-            breakClassName={"page"}
-            nextLinkClassName={"next"}
-            pageClassName={"page"}
-            disabledClassName={"disabled"}
-            activeClassName={"active-paginate"}
+    <div>
+      <Top />
+      <main className="P-5">
+        <div className="p-5 py-3">
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
           />
-        ) : (
-          <div></div>
-        )}
-      </div>
-    </main>
+          <div>
+            <input type="hidden" value={posts} />
+          </div>
+          <div className="section-topic">
+            <h1 className="fw-bold my-3">Clients</h1>
+          </div>
+
+          <div className="row justify-content-start mb-4">
+            <div
+              className="col-12 col-sm-6 col-lg-4 col-xl-3"
+              onClick={() => renderClients(pageNumber, itemsPerPage)}
+            >
+              <Edit icon={"app_registration"} label={"Client List"} />
+            </div>
+            <div
+              className="col-12 col-sm-6 col-lg-4 col-xl-3"
+              onClick={() => addClient()}
+            >
+              <Add icon={"playlist_add"} label={"Create New Client"} />
+            </div>
+          </div>
+          {loading && Output}
+
+          {loadingB && PageCount > 1 ? (
+            <ReactPaginate
+              previousLabel="Prev"
+              nextLabel="Next"
+              pageCount={PageCount}
+              onPageChange={pageChange}
+              containerClassName={"contain"}
+              previousLinkClassName={"previous"}
+              breakClassName={"page"}
+              nextLinkClassName={"next"}
+              pageClassName={"page"}
+              disabledClassName={"disabled"}
+              activeClassName={"active-paginate"}
+            />
+          ) : (
+            <div></div>
+          )}
+        </div>
+      </main>
+    </div>
   );
 };
 export default ClientControl;
