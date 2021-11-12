@@ -17,7 +17,7 @@ const ProjectRow = (props) => {
             <h2 className="card-title fw-bold fs-3 fs-md-2 m-0 py-2 py-sm-3">
               {props.title}
             </h2>
-            <p className="card-text m-0 py-1 py-sm-2">{props.content}</p>
+            <p className="card-text m-0 py-1 ">{props.content}</p>
             {/* <Link
               to="/project"
               className="text-decoration-none"

@@ -20,7 +20,7 @@ const ProjectRow2 = (props) => {
             <h2 className="card-title fw-bold fs-3 fs-md-2 py-2">
               {props.title}
             </h2>
-            <p className="card-text">{props.content}</p>
+            <p className="card-text m-0 py-1">{props.content}</p>
             {/* <Link
               to="/project"
               className="btn more-clients-btn shadow-none p-0 text-decoration-none"
