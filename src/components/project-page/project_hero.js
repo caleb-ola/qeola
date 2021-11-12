@@ -25,14 +25,15 @@ const ProjectHero = (props) => {
         backgroundImage: `url(${props.image})`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
+        backgroundPosition: "center",
         height: "500px",
       }}
     >
       <div className="overlayb">
         <div className="container">
-          <div className="hero-text mx-auto ms-md-0 align-text-center justify-content-center text-center text-md-start">
+          <div className="hero-text mx-auto ms-md-0 align-text-center justify-content-center text-start text-md-start">
             <h1 className="fw-bold fs-1">{props.title}</h1>
-            <p className="btn hero-para p-0 m-0 my-2 text-center text-md-start">
+            <p className="btn hero-para project-hero-desc p-0 m-0 my-2 text-start text-md-start ">
               {props.description}
               {/* Developing a brand identity for a venture buider{" "} */}
               {/* <i class="fas fa-arrow-right m-2"></i> */}

@@ -342,7 +342,7 @@ const Editorial = (props) => {
                       history: { inDropdown: true },
                       image: {
                         uploadCallback: uploadImageCallBack,
-                        alt: { present: false, mandatory: false },
+                        alt: { present: true, mandatory: false },
                       },
                     }}
                   />

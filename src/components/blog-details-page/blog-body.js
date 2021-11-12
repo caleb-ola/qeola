@@ -3,7 +3,7 @@ const BlogBody = (props) => {
     return { __html: props.content };
   };
   return (
-    <section id="blog-body" className="">
+    <section id="blog-body" className="blog-body">
       <div className="container">
         <div className="blog-passage">
           <div className="blog-details-header text-start my-3 ">

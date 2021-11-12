@@ -7,11 +7,11 @@ const ProjBody = (props) => {
   };
 
   return (
-    <section id="project-body" className="">
+    <section id="project-body" className="project-body">
       <div className="container">
         <div className="row justify-content-center">
           <div
-            className="text-Justify pt-5 pb-3 mt-md-4"
+            className="text-Justify pt-5 pb-3 mt-md-4 proj-body"
             dangerouslySetInnerHTML={createMarkup()}
           />
         </div>

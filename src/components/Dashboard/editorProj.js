@@ -80,6 +80,18 @@ const EditorProj = (props) => {
     token = Tokena.token;
   }
 
+  const uploadImageCallBack = (file) => {
+    return new Promise((resolve, reject) => {
+      if (file) {
+        let reader = new FileReader();
+        reader.onload = (e) => {
+          resolve({ data: { link: e.target.result } });
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -291,6 +303,24 @@ const EditorProj = (props) => {
                     wrapperClassName="wrapperClassName"
                     editorClassName="editorClassName"
                     onEditorStateChange={onEditorStateChange}
+                    toolbar={{
+                      inline: { inDropdown: true },
+                      list: { inDropdown: true },
+                      indent: { inDropdown: true },
+                      textAlign: { inDropdown: true },
+                      link: { inDropdown: true },
+                      history: { inDropdown: true },
+                      inputAccept:
+                        "image/gif,image/jpeg,image/jpg,image/png,image/svg",
+                      image: {
+                        uploadCallback: uploadImageCallBack,
+                        alt: { present: true, mandatory: false },
+                        defaultSize: {
+                          height: "400px",
+                          width: "70%",
+                        },
+                      },
+                    }}
                   />
                 </div>
 

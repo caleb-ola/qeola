@@ -351,7 +351,7 @@ const EditorialPatch = (props) => {
                         "image/gif,image/jpeg,image/jpg,image/png,image/svg",
                       image: {
                         uploadCallback: uploadImageCallBack,
-                        alt: { present: false, mandatory: false },
+                        alt: { present: true, mandatory: false },
                         defaultSize: {
                           height: "400px",
                           width: "70%",
