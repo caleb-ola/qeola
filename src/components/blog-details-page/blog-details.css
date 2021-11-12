@@ -46,14 +46,14 @@
 }
 #blog-body.blog-body .blog-passage img {
   padding: 0px 0px;
-  margin: 0px auto;
+  margin: 10px auto;
   object-fit: contain;
   height: 75% !important;
   width: 100%;
   border-radius: 10px;
 }
-#blog-body.blog-body .blog-passage h3 {
-  margin: 10px auto;
+#blog-body.blog-body .blog-passage strong {
+  margin: 15px 0px 10px;
 }
 
 @media only screen and (min-width: 768px) {

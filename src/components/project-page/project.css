@@ -32,14 +32,13 @@
 }
 #project-body.project-body img {
   padding: 0px 0px;
-  margin: 0px auto;
+  margin: 10px auto;
   object-fit: contain;
   height: 75% !important;
   width: 100%;
 }
-#project-body.project-body h3 {
-  text-align: start;
-  margin: 10px 0px;
+#project-body.project-body strong {
+  margin: 15px 0px 10px;
 }
 @media only screen and (min-width: 768px) {
   #project-body .proj-body {
@@ -54,7 +53,7 @@
     width: 70%;
   }
   #project-body.project-body img {
-    margin: 5px auto;
+    margin: 15px auto;
   }
 }
 
