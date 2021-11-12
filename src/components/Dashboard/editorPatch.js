@@ -110,6 +110,18 @@ const EditorialPatch = (props) => {
     token = Tokena.token;
   }
 
+  const uploadImageCallBack = (file) => {
+    return new Promise((resolve, reject) => {
+      if (file) {
+        let reader = new FileReader();
+        reader.onload = (e) => {
+          resolve({ data: { link: e.target.result } });
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -197,7 +209,7 @@ const EditorialPatch = (props) => {
                     onBlur={Enlarge}
                   >
                     <label
-                      for="name"
+                      htmlFor="name"
                       className={
                         shrink.name === "shrink"
                           ? `fs-6 fw-bold ${shrink.name}`
@@ -224,7 +236,7 @@ const EditorialPatch = (props) => {
                     onBlur={Enlarge}
                   >
                     <label
-                      for="project-type"
+                      htmlFor="project-type"
                       className={
                         shrink.proj === "shrink"
                           ? `fs-6 fw-bold ${shrink.proj}`
@@ -238,12 +250,13 @@ const EditorialPatch = (props) => {
                       value={category}
                       id="project-type"
                       name="project-type"
+                      defaultValue="DEFAULT"
                       className="w-100 p-2 my-2 border-0 border-2 border-bottom"
                       onChange={(e) => setCategory(e.target.value)}
                       required
                     >
-                      <option value="" disabled selected className="primary">
-                        Make your selection
+                      <option value="DEFAULT" disabled>
+                        Choose a category
                       </option>
                       {cat}
                     </select>
@@ -254,7 +267,7 @@ const EditorialPatch = (props) => {
                     onBlur={Enlarge}
                   >
                     <label
-                      for="name"
+                      htmlFor="name"
                       className={
                         shrink.name === "shrink"
                           ? `fs-6 fw-bold ${shrink.name}`
@@ -280,7 +293,7 @@ const EditorialPatch = (props) => {
                     onBlur={Enlarge}
                   >
                     <label
-                      for="project-brief"
+                      htmlFor="project-brief"
                       className={
                         shrink.brief === "shrink"
                           ? `fs-6 fw-bold ${shrink.brief}`
@@ -328,6 +341,23 @@ const EditorialPatch = (props) => {
                     wrapperClassName="wrapperClassName"
                     editorClassName="editorClassName"
                     onEditorStateChange={onEditorStateChange}
+                    toolbar={{
+                      inline: { inDropdown: true },
+                      list: { inDropdown: true },
+                      textAlign: { inDropdown: true },
+                      link: { inDropdown: true },
+                      history: { inDropdown: true },
+                      inputAccept:
+                        "image/gif,image/jpeg,image/jpg,image/png,image/svg",
+                      image: {
+                        uploadCallback: uploadImageCallBack,
+                        alt: { present: false, mandatory: false },
+                        defaultSize: {
+                          height: "400px",
+                          width: "70%",
+                        },
+                      },
+                    }}
                   />
                 </div>
 

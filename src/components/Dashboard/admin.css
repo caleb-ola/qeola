@@ -132,7 +132,7 @@ table tr span:hover {
   color: #df0064;
 }
 
-tr:nth-child(even) {
+tbody tr:nth-child(odd) {
   background-color: #dddddd;
 }
 .wrapperClassName {

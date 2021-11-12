@@ -13,7 +13,7 @@ const Clients = () => {
       <OtherHero
         title={"Our Clients"}
         text={
-          "Tempor cupidatat nulla mollit fugiat elit et eiusmod qui aliqua ad ut sint Lorem."
+          "Catch a glimpse of what we can do for you from clients we have worked with."
         }
       />
       <Selection />

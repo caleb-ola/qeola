@@ -57,23 +57,27 @@ const IndustryControl = (props) => {
               response && (
                 <div style={{ overflowX: "auto" }}>
                   <table style={{ width: "100%" }} className="">
-                    <tr>
-                      <th>S/N</th>
-                      <th>Name</th>
-                      <th>Email</th>
-                      <th>Date Registered</th>
-                    </tr>
-                    {response.data.data.map((item, i) => {
-                      // console.log(item);
-                      return (
-                        <tr>
-                          <td>{page * 5 - 5 + (i + 1)}</td>
-                          <td className="fw-bold">{item.name}</td>
-                          <td>{item.email}</td>
-                          <td>{item.createdAt}</td>
-                        </tr>
-                      );
-                    })}
+                    <thead>
+                      <tr>
+                        <th>S/N</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Date Registered</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {response.data.data.map((item, i) => {
+                        // console.log(item);
+                        return (
+                          <tr>
+                            <td>{page * 5 - 5 + (i + 1)}</td>
+                            <td className="fw-bold">{item.name}</td>
+                            <td>{item.email}</td>
+                            <td>{item.createdAt}</td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
                   </table>
                 </div>
               )

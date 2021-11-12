@@ -64,7 +64,7 @@ const Project = (props) => {
               // console.log({ win: i, len: arr.length - 1 });
               return (
                 item._id === props.match.params.id && (
-                  <div className="text-center my-5 py-5">
+                  <div className="text-center my-5 py-5" key={i}>
                     <Cta3
                       pathB={`/project/${
                         i === arr.length - 1 ? arr[0].id : arr[i + 1].id

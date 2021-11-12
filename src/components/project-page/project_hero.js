@@ -28,7 +28,7 @@ const ProjectHero = (props) => {
         height: "500px",
       }}
     >
-      <div className="">
+      <div className="overlayb">
         <div className="container">
           <div className="hero-text mx-auto ms-md-0 align-text-center justify-content-center text-center text-md-start">
             <h1 className="fw-bold fs-1">{props.title}</h1>

@@ -23,7 +23,7 @@ const MainSpace = (props) => {
   const [pageNumber, setPageNumber] = useState(1);
   const itemsPerPage = 5;
 
-  const [posts, setPosts] = useState();
+  const [posts, setPosts] = useState("");
   const [PostsB, setPostsB] = useState();
 
   let token;
@@ -81,46 +81,50 @@ const MainSpace = (props) => {
               response && (
                 <div style={{ overflowX: "auto" }}>
                   <table style={{ width: "100%" }} className="">
-                    <tr>
-                      <th>S/N</th>
-                      <th>Title</th>
-                      <th>Author</th>
-                      <th>Date Created</th>
-                      <th>Category</th>
-                      <th className="text-center">Edit</th>
-                      <th className="text-center">Delete</th>
-                    </tr>
-                    {response.data.data.map((item, i) => {
-                      // console.log(item);
-                      return (
-                        <tr key={item._id}>
-                          <td>{page * 5 - 5 + (i + 1)}</td>
-                          <td className="fw-bold">{item.title}</td>
-                          <td>{item.title !== null && item.author}</td>
-                          <td>{item.createdAt}</td>
-                          <td>
-                            {" "}
-                            {item.category !== null && item.category.name}
-                          </td>
-                          <td className="text-center">
-                            <i
-                              onClick={() => editBlog(item.id)}
-                              class="material-icons p-1 rounded-circle"
-                            >
-                              settings
-                            </i>
-                          </td>
-                          <td className="text-center">
-                            <i
-                              onClick={() => deletePost(item.id)}
-                              class="material-icons p-1 rounded-circle"
-                            >
-                              delete
-                            </i>
-                          </td>
-                        </tr>
-                      );
-                    })}
+                    <thead>
+                      <tr>
+                        <th>S/N</th>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Date Created</th>
+                        <th>Category</th>
+                        <th className="text-center">Edit</th>
+                        <th className="text-center">Delete</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {response.data.data.map((item, i) => {
+                        // console.log(item);
+                        return (
+                          <tr key={item._id}>
+                            <td>{page * 5 - 5 + (i + 1)}</td>
+                            <td className="fw-bold">{item.title}</td>
+                            <td>{item.title !== null && item.author}</td>
+                            <td>{item.createdAt}</td>
+                            <td>
+                              {" "}
+                              {item.category !== null && item.category.name}
+                            </td>
+                            <td className="text-center">
+                              <i
+                                onClick={() => editBlog(item.id)}
+                                className="material-icons p-1 rounded-circle"
+                              >
+                                settings
+                              </i>
+                            </td>
+                            <td className="text-center">
+                              <i
+                                onClick={() => deletePost(item.id)}
+                                className="material-icons p-1 rounded-circle"
+                              >
+                                delete
+                              </i>
+                            </td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
                   </table>
                 </div>
               )

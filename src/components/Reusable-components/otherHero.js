@@ -13,7 +13,7 @@ const OtherHero = (props) => {
             <br />
             {props.titleb}
           </h1>
-          <p className={props.text ? "mt-2 mb-3" : "mt-2 mb-3 d-none"}>
+          <p className={props.text ? "mt-2 mb-3 fs-5" : "mt-2 mb-3 d-none"}>
             {props.text}
           </p>
           {/* <Link

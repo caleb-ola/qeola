@@ -12,9 +12,9 @@ const Blog = () => {
     <div>
       <NavBar2 />
       <OtherHero
-        title="Big Header Text"
-        titleb="Stays Here"
-        text="Eiusmod elit dolor adipisicing sit incididunt officia labore officia."
+        title="Qeola Musings"
+        // titleb="Stays Here"
+        text="Thought pieces from the industry "
       />
       <BlogSelection />
       {/* <Pagination /> */}

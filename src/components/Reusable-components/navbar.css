@@ -201,6 +201,20 @@ nav div ul li a.cta:hover {
   transform: rotate(-135deg);
 }
 
+.nav-linkage {
+  margin-left: 10px;
+}
+
+@media only screen and (min-width: 575px) {
+  .nav-linkage {
+    margin-left: 26px;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .nav-linkage {
+    margin-left: 10px;
+  }
+}
 @media only screen and (min-width: 1024px) {
   nav div ul li a.proj.active {
     font-weight: 600;

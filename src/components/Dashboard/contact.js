@@ -165,7 +165,7 @@ const Contact = (props) => {
                   onBlur={Enlarge}
                 >
                   <label
-                    for="email"
+                    htmlFor="email"
                     className={
                       shrink.mail === "shrink"
                         ? `fs-6 fw-bold ${shrink.mail}`
@@ -190,7 +190,7 @@ const Contact = (props) => {
                   onBlur={Enlarge}
                 >
                   <label
-                    for="name"
+                    htmlFor="name"
                     className={
                       shrink.name === "shrink"
                         ? `fs-6 fw-bold ${shrink.name}`
@@ -216,7 +216,7 @@ const Contact = (props) => {
                   onBlur={Enlarge}
                 >
                   <label
-                    for="number"
+                    htmlFor="number"
                     className={
                       shrink.Num === "shrink"
                         ? `fs-6 fw-bold ${shrink.Num}`
@@ -241,7 +241,7 @@ const Contact = (props) => {
                   onBlur={Enlarge}
                 >
                   <label
-                    for="project-type"
+                    htmlFor="project-type"
                     className={
                       shrink.proj === "shrink"
                         ? `fs-6 fw-bold ${shrink.proj}`
@@ -254,11 +254,12 @@ const Contact = (props) => {
                   <select
                     id="project-type"
                     name="project-type"
+                    defaultValue="DEFAULT"
                     className="w-100 p-2 my-2 border-0 border-2 border-bottom"
                     onChange={(e) => setCategory(e.target.value)}
                   >
-                    <option value="" disabled selected className="primary">
-                      Make your selection
+                    <option value="DEFAULT" disabled>
+                      Choose a category
                     </option>
                     {cat}
                   </select>
@@ -270,7 +271,7 @@ const Contact = (props) => {
                   onBlur={Enlarge}
                 >
                   <label
-                    for="project-brief"
+                    htmlFor="project-brief"
                     className={
                       shrink.brief === "shrink"
                         ? `fs-6 fw-bold ${shrink.brief}`

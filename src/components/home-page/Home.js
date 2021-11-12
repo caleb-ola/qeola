@@ -2,10 +2,9 @@ import Header from "../Reusable-components/navbar";
 import Hero from "./hero";
 import MoreClients from "./more_clients";
 import Projects from "./projects";
-import Industries from "./industries";
-// import Contact from "./contact";
 import Contact from "../Reusable-components/contact";
 import Footer from "../Reusable-components/footer";
+import Services from "./services";
 
 const Home = () => {
   return (
@@ -14,7 +13,7 @@ const Home = () => {
       <Hero />
       <MoreClients />
       <Projects />
-      <Industries />
+      <Services />
       <Contact
         title={
           "This is your chance to not only build your dreams but build a future."

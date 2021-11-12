@@ -8,7 +8,6 @@ import Add from "./add";
 import Edit from "./edit";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Link } from "react-router-dom";
 import Top from "./top";
 
 const BriefControl = (props) => {
@@ -22,7 +21,7 @@ const BriefControl = (props) => {
   const [pageNumber, setPageNumber] = useState(1);
   const itemsPerPage = 5;
 
-  const [posts, setPosts] = useState();
+  const [posts, setPosts] = useState("");
   const [PostsB, setPostsB] = useState();
 
   const [viewBriefText, setViewBriefText] = useState({
@@ -99,54 +98,62 @@ const BriefControl = (props) => {
               response && (
                 <div style={{ overflowX: "auto" }}>
                   <table style={{ width: "100%" }} className="">
-                    <tr className="text-center">
-                      <th>S/N</th>
-                      <th>Brief Title</th>
-                      <th>Email</th>
-                      <th>Date Created</th>
-                      <th>Category</th>
-                      <th className="text-center">View</th>
-                      <th className="text-center">Download</th>
-                      <th className="text-center">Delete</th>
-                    </tr>
-                    {response.data.data.map((item, i) => {
-                      // console.log(item);
-                      return (
-                        <tr key={item._id}>
-                          <td>{page * 5 - 5 + (i + 1)}</td>
-                          <td className="fw-bold">{item.name}</td>
-                          <td className="fw-bold">{item.email}</td>
-                          <td>{item.createdAt}</td>
-                          <td> {item.category.name}</td>
-                          <td className="text-center">
-                            <i
-                              onClick={() =>
-                                viewBrief(item.briefText, item.email, item.name)
-                              }
-                              class="material-icons p-1 rounded-circle"
-                              type="button"
-                              data-bs-toggle="modal"
-                              data-bs-target="#exampleModal"
-                            >
-                              <i class="fas fa-binoculars"></i>
-                            </i>
-                          </td>
-                          <td className="cursor-pointer text-center">
-                            <a href={item.briefFile}>
-                              <span class="material-icons">download</span>
-                            </a>
-                          </td>
-                          <td className="text-center">
-                            <i
-                              onClick={() => deleteBrief(item.id)}
-                              class="material-icons p-1 rounded-circle"
-                            >
-                              delete
-                            </i>
-                          </td>
-                        </tr>
-                      );
-                    })}
+                    <thead>
+                      <tr className="text-center">
+                        <th>S/N</th>
+                        <th>Brief Title</th>
+                        <th>Email</th>
+                        <th>Date Created</th>
+                        <th>Category</th>
+                        <th className="text-center">View</th>
+                        <th className="text-center">Download</th>
+                        <th className="text-center">Delete</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {response.data.data.map((item, i) => {
+                        // console.log(item);
+                        return (
+                          <tr key={item._id}>
+                            <td>{page * 5 - 5 + (i + 1)}</td>
+                            <td className="fw-bold">{item.name}</td>
+                            <td className="fw-bold">{item.email}</td>
+                            <td>{item.createdAt}</td>
+                            <td> {item.category.name}</td>
+                            <td className="text-center">
+                              <i
+                                onClick={() =>
+                                  viewBrief(
+                                    item.briefText,
+                                    item.email,
+                                    item.name
+                                  )
+                                }
+                                class="material-icons p-1 rounded-circle"
+                                type="button"
+                                data-bs-toggle="modal"
+                                data-bs-target="#exampleModal"
+                              >
+                                <i class="fas fa-binoculars"></i>
+                              </i>
+                            </td>
+                            <td className="cursor-pointer text-center">
+                              <a href={item.briefFile}>
+                                <span className="material-icons">download</span>
+                              </a>
+                            </td>
+                            <td className="text-center">
+                              <i
+                                onClick={() => deleteBrief(item.id)}
+                                className="material-icons p-1 rounded-circle"
+                              >
+                                delete
+                              </i>
+                            </td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
                   </table>
                 </div>
               )
@@ -183,16 +190,16 @@ const BriefControl = (props) => {
             <input type="hidden" value={pageNumber} />
           </div>
           <div
-            class="modal fade"
+            className="modal fade"
             id="exampleModal"
-            tabindex="-1"
+            tabIndex="-1"
             aria-labelledby="exampleModalLabel"
             aria-hidden="true"
           >
-            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable ">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h6 class="modal-title" id="exampleModalLabel">
+            <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable ">
+              <div className="modal-content">
+                <div className="modal-header">
+                  <h6 className="modal-title" id="exampleModalLabel">
                     Brief from <strong>{viewBriefText.name}</strong>
                     <br />
                     Email:<strong> {viewBriefText.email} </strong>
@@ -200,21 +207,21 @@ const BriefControl = (props) => {
 
                   <button
                     type="button"
-                    class="btn-close shadow-none"
+                    className="btn-close shadow-none"
                     data-bs-dismiss="modal"
                     aria-label="Close"
                   ></button>
                 </div>
-                <div class="modal-body">{viewBriefText.text}</div>
-                <div class="modal-footer">
+                <div className="modal-body">{viewBriefText.text}</div>
+                <div className="modal-footer">
                   <button
                     type="button"
-                    class="btn btn-secondary"
+                    className="btn btn-secondary"
                     data-bs-dismiss="modal"
                   >
                     Close
                   </button>
-                  {/* <button type="button" class="btn btn-primary">
+                  {/* <button type="button" className="btn btn-primary">
                   Save changes
                 </button> */}
                 </div>

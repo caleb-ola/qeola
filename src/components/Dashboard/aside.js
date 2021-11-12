@@ -194,7 +194,7 @@ const Aside = ({ setToken }) => {
         }
         onClick={activeIndustry}
       >
-        <i class="fas fa-users me-2 p-0 ms-0"></i>Users
+        <i className="fas fa-users me-2 p-0 ms-0"></i>Users
       </button>
       {/* <a
           className={
@@ -215,7 +215,7 @@ const Aside = ({ setToken }) => {
         onClick={activeCategory}
       >
         {/* <i className="fas fa-medal me-2 p-0 ms-0"></i>Category */}
-        <span class="material-icons me-2 p-0 ms-0">widgets</span> Category
+        <span className="material-icons me-2 p-0 ms-0">widgets</span> Category
       </button>
       <Link
         to="/"

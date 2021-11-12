@@ -158,7 +158,7 @@ const NavBar2 = () => {
                   <button
                     to=""
                     style={{ cursor: "pointer" }}
-                    className="nav-link px-0 btn shadow-none"
+                    className="nav-link px-0 btn shadow-none nav-linkage"
                     onClick={OpenNav}
                   >
                     Menu &#9776;

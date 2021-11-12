@@ -173,7 +173,7 @@ const Header = () => {
                   </Link> */}
                   <Link
                     style={{ cursor: "pointer" }}
-                    className="nav-link proj px-0"
+                    className="nav-link proj px-0 nav-linkage"
                     onClick={OpenNav}
                     to="#"
                   >

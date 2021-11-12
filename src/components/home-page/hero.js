@@ -1,5 +1,5 @@
-import ReactPlayer from "react-player";
-import HeroVideo from "./vid.mp4";
+// import ReactPlayer from "react-player";
+// import HeroVideo from "./vid.mp4";
 import ReactTypingEffect from "react-typing-effect";
 
 import "./hero.css";
@@ -11,15 +11,22 @@ const Hero = () => {
 
   return (
     // <header style={{ backgroundImage: `url("images/Home/vid.mp4")` }}></header>
-    <div className="hero-container">
-      <ReactPlayer
+    <div
+      className="hero-container"
+      style={{
+        backgroundImage: `url("images/hero.jpg")`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
+      {/* <ReactPlayer
         url={HeroVideo}
         playing
         loop
         muted
         width="100%"
         height="100%"
-      />
+      /> */}
       <div className="overlay">
         <div className="container">
           <div className="hero-text mx-auto ms-md-0 align-text-center justify-content-center text-center text-md-start">

@@ -82,40 +82,44 @@ const ClientControl = () => {
               response && (
                 <div style={{ overflowX: "auto" }}>
                   <table style={{ width: "100%" }} className="">
-                    <tr>
-                      <th>S/N</th>
-                      <th>Client name</th>
-                      <th>Date Created</th>
-                      <th>Category</th>
-                      <th>Edit</th>
-                      <th>Delete</th>
-                    </tr>
-                    {response.data.data.map((item, i) => {
-                      return (
-                        <tr>
-                          <td>{page * 5 - 5 + (i + 1)}</td>
-                          <td className="fw-bold">{item.name}</td>
-                          <td>{item.createdAt}</td>
-                          <td>{item.category.name}</td>
-                          <td>
-                            <i
-                              onClick={() => editClient(item.id)}
-                              class="material-icons p-1 rounded-circle"
-                            >
-                              settings
-                            </i>
-                          </td>
-                          <td>
-                            <i
-                              onClick={() => deleteClient(item.id)}
-                              class="material-icons p-1 rounded-circle delete-icon-btn"
-                            >
-                              delete
-                            </i>
-                          </td>
-                        </tr>
-                      );
-                    })}
+                    <thead>
+                      <tr>
+                        <th>S/N</th>
+                        <th>Client name</th>
+                        <th>Date Created</th>
+                        <th>Category</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {response.data.data.map((item, i) => {
+                        return (
+                          <tr>
+                            <td>{page * 5 - 5 + (i + 1)}</td>
+                            <td className="fw-bold">{item.name}</td>
+                            <td>{item.createdAt}</td>
+                            <td>{item.category.name}</td>
+                            <td>
+                              <i
+                                onClick={() => editClient(item.id)}
+                                class="material-icons p-1 rounded-circle"
+                              >
+                                settings
+                              </i>
+                            </td>
+                            <td>
+                              <i
+                                onClick={() => deleteClient(item.id)}
+                                class="material-icons p-1 rounded-circle delete-icon-btn"
+                              >
+                                delete
+                              </i>
+                            </td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
                   </table>
                 </div>
               )

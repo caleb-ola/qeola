@@ -8,9 +8,9 @@ const Industries = () => {
     <div>
       <NavBar2 />
       <OtherHero
-        title={"Industries We"}
-        titleb={"Have Served"}
-        text="Deserunt labore officia ut proident nisi fugiat voluptate aliquip aliquip laboris."
+        title={"Industries We Have Served"}
+        // titleb={""}
+        text="We’ve built amazing products  and have worked with organisations from a range of different industries."
       />
       <IndustrySelection />
       <Footer />

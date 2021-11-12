@@ -12,7 +12,7 @@ const BlogSelection = () => {
   // PAGINATION
   const [loadingB, setLoadingB] = useState(false);
   const [pageNumber, setPageNumber] = useState(1);
-  const [page, setPage] = useState();
+  // const [page, setPage] = useState();
   const itemsPerPage = 5;
   const [PostsB, setPostsB] = useState();
 
@@ -189,7 +189,7 @@ const BlogSelection = () => {
   const PageCount = PostsB && PostsB;
   const pageChange = ({ selected }) => {
     setPageNumber(selected);
-    setPage(selected + 1);
+    // setPage(selected + 1);
     AllTopics(selected + 1, 5);
   };
   // console.log(page);
