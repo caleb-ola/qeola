@@ -5,7 +5,7 @@ const ServiceCard = (props) => {
   return (
     <div
       id="service-card"
-      className="card text-center py-4 px-1 px-md-0 px-lg-2 px-xl-3  border-0  mx-4"
+      className="card text-center py-4 px-1 px-md-0 px-lg-2 px-xl-3 border-0  mx-5 my-3 mt-1"
       style={{ height: "22rem" }}
     >
       <div className="service icon container mt-2">

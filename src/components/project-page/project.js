@@ -13,9 +13,11 @@ import Cta3 from "../Reusable-components/cta3";
 const Project = (props) => {
   const [hero, setHero] = useState();
   const [next, setNext] = useState();
+  const [loading, setLoading] = useState(false);
   // const [prev, setPrev] = useState();
   // let nxt;
   useEffect(() => {
+    setLoading(true);
     // console.log({ next });
     // setPrev(
     //   axios.get(`https://qeola-api.herokuapp.com/api/v1/projects`).then(
@@ -36,6 +38,7 @@ const Project = (props) => {
       )
       .then(
         (response) => {
+          setLoading(false);
           // console.log(response);
           setHero(
             <div>
@@ -53,6 +56,7 @@ const Project = (props) => {
           );
         },
         (error) => {
+          setLoading(false);
           // console.log(error);
         }
       );
@@ -125,6 +129,11 @@ const Project = (props) => {
   }, []);
   return (
     <div>
+      {loading && (
+        <div className="overlayc d-flex justify-content-center align-items-center">
+          <div className="loader"></div>
+        </div>
+      )}
       <Header />
       {hero}
       {next}

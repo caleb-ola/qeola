@@ -5,7 +5,7 @@ const Services = () => {
   return (
     <section id="industries" className=" industries py-5 text-center mb-2">
       <div className="container ">
-        <div className="Section-header py-5">
+        <div className="Section-header py-4">
           <h1 className="fs-1 fs-sm-1 fw-bold">Our Services</h1>
         </div>
         <div className="row justify-content-center">

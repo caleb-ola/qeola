@@ -210,7 +210,7 @@ const Contact = (props) => {
   //console.log({ brief, name, category, email, phone, briefTxt });
 
   return (
-    <section id="contact" className="py-3">
+    <section id="contact" className="py-4">
       <div className="container">
         <ToastContainer
           position="top-right"
@@ -244,7 +244,7 @@ const Contact = (props) => {
                       : `fs-6 fw-bold `
                   }
                 >
-                  Email Address*
+                  Email Address <span className="asterics">*</span>
                 </label>
                 <br />
                 <input
@@ -272,7 +272,7 @@ const Contact = (props) => {
                       : `fs-6 fw-bold`
                   }
                 >
-                  Name*
+                  Name <span className="asterics">*</span>
                 </label>
                 <br />
                 <input
@@ -302,7 +302,7 @@ const Contact = (props) => {
                       : `fs-6 fw-bold`
                   }
                 >
-                  Phone Number*
+                  Phone Number <span className="asterics">*</span>
                 </label>
                 <br />
                 <input
@@ -331,7 +331,7 @@ const Contact = (props) => {
                       : `fs-6 fw-bold`
                   }
                 >
-                  Project Type*
+                  Project Type <span className="asterics">*</span>
                 </label>
                 <br />
                 <select
@@ -366,7 +366,7 @@ const Contact = (props) => {
                       : `fs-6 fw-bold `
                   }
                 >
-                  Project Brief*
+                  Project Brief <span className="asterics">*</span>
                 </label>
                 <br />
                 <div className="input-group my-1 ">

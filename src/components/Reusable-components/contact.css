@@ -25,7 +25,7 @@
 }
 #contact .border-blue {
   border: 0 0 1px 0 !important;
-  border-color: #ce055f !important;
+  border-color: #fe0072 !important;
 }
 
 #contact .shrink {
@@ -35,6 +35,9 @@
   animation-duration: 4s;
   animation-iteration-count: 1;
   animation-timing-function: ease;
+}
+.asterics {
+  color: #fe0072 !important;
 }
 @keyframes shrink {
   0% {

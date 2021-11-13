@@ -4,7 +4,7 @@ import "./project_row.css";
 
 const ProjectRow = (props) => {
   return (
-    <div className="row align-items-center justify-contents-center text-center text-md-start  my-3 p-0 py-3">
+    <div className="row align-items-center justify-contents-center text-center text-md-start  my-3 my-md-5 p-0 py-3 py-md-4">
       <div className="col-md-4 order-1 order-sm-0">
         <div
           className={

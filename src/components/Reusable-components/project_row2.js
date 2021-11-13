@@ -4,7 +4,7 @@ import "./project_row.css";
 
 const ProjectRow2 = (props) => {
   return (
-    <div className="row align-items-center justify-contents-center text-center text-md-start  my-md-5 p-0 mx-auto">
+    <div className="row align-items-center justify-contents-center text-center text-md-start  my-3 my-md-5 p-0 mx-auto py-3 py-md-4">
       <div className="col-md-8">
         <img src={props.image} alt="Project" className="img-fluid rounded-3" />
       </div>

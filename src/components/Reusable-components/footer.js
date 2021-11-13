@@ -1,13 +1,16 @@
+import { useState } from "react";
 import "./footer.css";
 
 const Footer = () => {
   const date = new Date();
   const year = date.getFullYear();
+  const [email, setEmail] = useState("");
+  // console.log(email);
 
   return (
     <footer id="footer" className="pt-4 pb-2 pt-sm-5 pb-sm-4 mt-5 ">
       <div className="container  my-3 my-sm-4">
-        <div className="row align-items-center text-center text-sm-start">
+        <div className="row  text-center text-sm-start">
           <div className="col-12  col-lg-8">
             <div className="row">
               <div className="col-12 col-sm-6 my-3 my-sm-4">
@@ -64,14 +67,19 @@ const Footer = () => {
               Button
             </button>
           </div> */}
-          <div className="col-12 col-lg-4 px-3 px-sm-3 subscribe">
-            <div className="input-group mb-3 rounded-pill">
+          <div className="col-12 col-lg-4 px-3 px-sm-3 subscribe my-3 my-sm-4">
+            <p className="my-1 fs-6">
+              <small>Address</small>
+            </p>
+            <div className="input-group mb-3 rounded-pill py-2">
               <input
                 type="text"
+                value={email}
                 className="form-control p-3  fs-6 border-end-0"
                 placeholder="yourname@xyx.com"
                 aria-label="Recipient's username"
                 aria-describedby="button-addon2"
+                onChange={(e) => setEmail(e.target.value)}
               />
               <button
                 className="btn border border-2 border-start-0 pe-4"
