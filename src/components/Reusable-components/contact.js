@@ -180,7 +180,7 @@ const Contact = (props) => {
 
       if (result.status === "success") {
         setLoading(false);
-        toast.success("Thank you. You have successfully sent us your brief.", {
+        toast.success("Thank you, you have successfully sent us your brief.", {
           position: "top-right",
           autoClose: 8000,
           hideProgressBar: false,

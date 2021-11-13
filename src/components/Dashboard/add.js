@@ -2,7 +2,7 @@ const Add = (props) => {
   return (
     <div>
       <button
-        className="card cardb border-0  text-center  m-3 ms-5 "
+        className="card cardb border-0  text-center m-3 ms-0 ms-md-5  "
         style={{ width: "16rem", textDecoration: "none" }}
       >
         <div className="card-body ">
