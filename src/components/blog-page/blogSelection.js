@@ -11,6 +11,7 @@ const BlogSelection = () => {
 
   // PAGINATION
   const [loadingB, setLoadingB] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [pageNumber, setPageNumber] = useState(1);
   // const [page, setPage] = useState();
   const itemsPerPage = 5;
@@ -29,6 +30,7 @@ const BlogSelection = () => {
   const url = "https://qeola-api.herokuapp.com/api/v1/posts?page=1&limit=5";
 
   useEffect(() => {
+    setLoading(true);
     all();
     axios.get("https://qeola-api.herokuapp.com/api/v1/categories").then(
       (response) => {
@@ -44,6 +46,7 @@ const BlogSelection = () => {
       )
       .then(
         (response) => {
+          setLoading(false);
           // console.log(response);
           setTopics(
             response &&
@@ -65,6 +68,7 @@ const BlogSelection = () => {
           );
         },
         (error) => {
+          setLoading(false);
           // console.log(error);
         }
       );
@@ -195,6 +199,11 @@ const BlogSelection = () => {
   // console.log(page);
   return (
     <section id="blog-selection">
+      {loading && (
+        <div className="overlayc d-flex justify-content-center align-items-center">
+          <div className="loader"></div>
+        </div>
+      )}
       <div className="container">
         <div className="containing mx-auto">
           <div className="my-5 pt-5">

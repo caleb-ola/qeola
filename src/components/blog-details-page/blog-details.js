@@ -9,14 +9,17 @@ import { useEffect, useState } from "react";
 
 const BlogDetails = (props) => {
   const [body, setBody] = useState();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
     axios
       .get(
         `https://qeola-api.herokuapp.com/api/v1/posts/${props.match.params.id}`
       )
       .then(
         (response) => {
+          setLoading(false);
           // console.log(response);
           setBody(
             <BlogBody
@@ -29,6 +32,7 @@ const BlogDetails = (props) => {
           );
         },
         (error) => {
+          setLoading(false);
           // console.log(error);
         }
       );
@@ -36,6 +40,11 @@ const BlogDetails = (props) => {
 
   return (
     <div>
+      {loading && (
+        <div className="overlayc d-flex justify-content-center align-items-center">
+          <div className="loader"></div>
+        </div>
+      )}
       <NavBar2 />
       {body}
       <MoreArticles />

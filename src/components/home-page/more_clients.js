@@ -6,14 +6,16 @@ import { useEffect, useState } from "react";
 const MoreClients = () => {
   const [client, setClient] = useState();
   // const [appState, setAppState] = useState();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
     const url = "https://qeola-api.herokuapp.com/api/v1/clients?page=1&limit=5";
 
     axios.get(url).then(
       (response) => {
         // console.log(response);
-
+        setLoading(false);
         setClient(
           response &&
             response.data.data.map((item, i) => {
@@ -33,12 +35,18 @@ const MoreClients = () => {
         );
       },
       (error) => {
+        setLoading(false);
         // console.log(error);
       }
     );
   }, []);
   return (
     <section id="more-clients" className="my-4">
+      {loading && (
+        <div className="overlayc d-flex justify-content-center align-items-center">
+          <div className="loader"></div>
+        </div>
+      )}
       <div className="container">
         <div className="row py-2 align-content-center justify-content-center">
           {/* {appState} */}

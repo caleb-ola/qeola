@@ -10,13 +10,16 @@ import "./projects.css";
 
 const Projects = () => {
   const [project, setProject] = useState();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
     const url =
       "https://qeola-api.herokuapp.com/api/v1/projects?page=1&limit=3";
 
     axios.get(url).then(
       (response) => {
+        setLoading(false);
         // console.log(response);
 
         setProject(
@@ -43,6 +46,8 @@ const Projects = () => {
         );
       },
       (error) => {
+        setLoading(false);
+
         // console.log(error);
       }
     );
@@ -50,6 +55,11 @@ const Projects = () => {
 
   return (
     <section id="projects" className="py-4 py-sm-5">
+      {loading && (
+        <div className="overlayc d-flex justify-content-center align-items-center">
+          <div className="loader"></div>
+        </div>
+      )}
       <div className="container">
         {project}
         {/* <ProjectRow2

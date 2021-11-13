@@ -9,6 +9,7 @@ import EmptyState from "../Reusable-components/empty_state";
 
 const CaseSelection = () => {
   const [selectCat, setSelectCat] = useState();
+  const [loading, setLoading] = useState(false);
   // const [empty, setEmpty] = useState();
   // const [activeCat, setActiveCat] = useState("");
   // let arry;
@@ -27,8 +28,10 @@ const CaseSelection = () => {
   const url = "https://qeola-api.herokuapp.com/api/v1/projects?page=1&limit=5";
 
   useEffect(() => {
+    setLoading(true);
     axios.get(url).then(
       (response) => {
+        setLoading(false);
         // console.log(response);
         setSturdies(
           response &&
@@ -56,6 +59,7 @@ const CaseSelection = () => {
         );
       },
       (error) => {
+        setLoading(false);
         // console.log(error);
       }
     );
@@ -283,6 +287,11 @@ const CaseSelection = () => {
   return (
     <div>
       <section id="case-study">
+        {loading && (
+          <div className="overlayc d-flex justify-content-center align-items-center">
+            <div className="loader"></div>
+          </div>
+        )}
         <div className="container">
           <div className="my-5 pt-5">
             <button
