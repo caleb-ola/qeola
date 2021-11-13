@@ -9,17 +9,17 @@ const Footer = () => {
   const date = new Date();
   const year = date.getFullYear();
   const [email, setEmail] = useState("");
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(true);
   // console.log(email);
 
   const subcribeUser = (e) => {
     e.preventDefault();
-    setLoading(true);
+    // setLoading(true);
     axios
       .post("https://qeola-api.herokuapp.com/api/v1/users/subscribe", { email })
       .then(
         (response) => {
-          setLoading(false);
+          // setLoading(false);
           toast.success(
             "Thank you for subscribing to our mailing list. Expect amazing content from us soon.",
             {
@@ -34,7 +34,7 @@ const Footer = () => {
           );
         },
         (error) => {
-          setLoading(false);
+          // setLoading(false);
           toast.error("Something went wrong please try again", {
             position: "top-right",
             autoClose: 8000,
@@ -51,11 +51,11 @@ const Footer = () => {
   return (
     <footer id="footer" className="pt-4 pb-2 pt-sm-5 pb-sm-4 mt-5 ">
       <div className="container  my-3 my-sm-4">
-        {loading && (
+        {/* {loading && (
           <div className="overlayc d-flex justify-content-center align-items-center">
             <div className="loader"></div>
           </div>
-        )}
+        )} */}
         <ToastContainer
           position="top-right"
           autoClose={5000}

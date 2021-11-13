@@ -25,7 +25,8 @@ const MoreArticles = () => {
                       style={{
                         backgroundImage: `url(${item.image})`,
                         backgroundSize: "cover",
-                        minHeight: "240px",
+                        backgroundPosition: "center",
+                        height: "260px",
                       }}
                     >
                       <p className="align-self-start pb-5 mb-5">
