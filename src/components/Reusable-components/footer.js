@@ -161,7 +161,7 @@ const Footer = () => {
             className="col-12 col-lg-4 px-3 px-sm-3 subscribe my-3 my-sm-4"
           >
             <p className="my-1 fs-6">
-              <small>Address</small>
+              <small>Subscribe to our newsletter</small>
             </p>
             <div className="input-group mb-3 rounded-pill py-2">
               <input
