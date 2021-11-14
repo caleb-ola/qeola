@@ -37,22 +37,23 @@
 .more-articles a {
   color: #fff;
 }
-#blog-body.blog-body .blog-passage p {
+#blog-body .blog-passageb p {
   /* color: #696a6d; */
   /* width: 90%; */
   /* line-height: normal; */
   padding: 0px 0px;
   margin: 5px 0px;
 }
-#blog-body.blog-body .blog-passage img {
+#blog-body .blog-passageb img {
   padding: 0px 0px;
   margin: 10px auto;
   object-fit: contain;
-  height: 75% !important;
-  width: 100%;
+  height: 500px !important;
+  width: 100% !important;
   border-radius: 10px;
+  text-align: center;
 }
-#blog-body.blog-body .blog-passage strong {
+#blog-body .blog-passageb strong {
   margin: 15px 0px 10px;
 }
 .loader {

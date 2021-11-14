@@ -89,6 +89,12 @@
   color: #fe0072;
   font-weight: bold;
 }
+#topic .blog-post-desc {
+  z-index: 11;
+}
+.blog-post-desc {
+  z-index: 12;
+}
 
 @media only screen and (min-width: 768px) {
   #blog-selection .containing {

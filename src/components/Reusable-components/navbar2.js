@@ -68,10 +68,31 @@ const NavBar2 = () => {
                 BLOG
               </Link>
             </div>
-            <div className="row d-inline-block my-2 fs-4 text-center mt-auto ">
-              <i className="fab fa-behance d-inline mx-2 social-icons"></i>
-              <i className="fab fa-instagram d-inline mx-2 social-icons"></i>
-              <i className="fab fa-twitter d-inline mx-2 social-icons"></i>
+            <div className="row d-inline-block my-2 fs-3  mt-auto mb-4 text-center text-lg-start w-50 mx-auto">
+              <a
+                href="https://www.facebook.com/officialqeola/"
+                className="d-inline"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <i className="fab fa-facebook-square d-inline mx-2 p-2 fs-2 social-icons"></i>
+              </a>
+              <a
+                href="https://www.instagram.com/officialqeola/"
+                className="d-inline"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <i className="fab fa-instagram d-inline mx-2 p-2 fs-2 social-icons"></i>
+              </a>
+              <a
+                href="https://www.linkedin.com/company/qeola"
+                className="d-inline"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <i className="fab fa-linkedin d-inline mx-2 p-2 fs-2 social-icons"></i>
+              </a>
             </div>
           </div>
         </div>

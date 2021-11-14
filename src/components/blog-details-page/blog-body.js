@@ -11,11 +11,6 @@ const BlogBody = (props) => {
               <small>{props.category}</small>
             </p>
             <h1 className="fw-bold fs-1">{props.title} </h1>
-            <p>
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation.
-            </p>
             <p className="author fw-bold pb-4">
               <small>By {props.author}</small>
             </p>
@@ -35,7 +30,7 @@ const BlogBody = (props) => {
         />
       </div>
       <div className="container my-5">
-        <div className="blog-passage">
+        <div className="blog-passageb">
           <div dangerouslySetInnerHTML={createMarkup()} />
         </div>
       </div>

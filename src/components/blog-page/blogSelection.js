@@ -27,7 +27,7 @@ const BlogSelection = () => {
 
   const [topics, setTopics] = useState();
 
-  const url = "https://qeola-api.herokuapp.com/api/v1/posts?page=1&limit=5";
+  const url = "https://qeola-api.herokuapp.com/api/v1/posts";
 
   useEffect(() => {
     setLoading(true);

@@ -99,10 +99,39 @@ const Footer = () => {
                   <small>Follow us</small>
                 </p>
                 <div className="row d-inline-block py-1 fs-6">
-                  <i className="fab fs-4 fa-behance d-inline mx-1"></i>
-                  <i className="fab fs-4 fa-instagram d-inline mx-1"></i>
-                  <i className="fab fs-4 fa-twitter d-inline mx-1"></i>
-                  <i className="fab fs-4 fa-linkedin d-inline mx-1"></i>
+                  <a
+                    href="https://www.facebook.com/officialqeola/"
+                    className="text-decoration-none"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <i className="fab fs-4 fa-facebook-square d-inline mx-1"></i>
+                  </a>
+                  <a
+                    href="https://www.instagram.com/officialqeola/"
+                    className="text-decoration-none"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <i className="fab fs-4 fa-instagram d-inline mx-1"></i>
+                  </a>
+                  <a
+                    href="https://twitter.com/officialqeola?t=ULeCqB5FyBZ_yjrfaW_AEw&s=09"
+                    className="text-decoration-none"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <i className="fab fs-4 fa-twitter d-inline mx-1"></i>
+                  </a>
+                  <a
+                    href="https://www.linkedin.com/company/qeola"
+                    className="text-decoration-none"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {" "}
+                    <i className="fab fs-4 fa-linkedin d-inline mx-1"></i>
+                  </a>
                 </div>
               </div>
             </div>
