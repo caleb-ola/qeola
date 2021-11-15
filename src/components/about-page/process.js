@@ -18,7 +18,7 @@ const Process = () => {
               image={"brief.png"}
               image2={"brief_hover.png"}
               title={"Your Brief"}
-              text={"We combine strategic planning, design craftmanship"}
+              text={"Detailing the entire scope of your project."}
             />
           </div>
           <div className="col-12 col-lg-3 col-md-6">
@@ -26,7 +26,9 @@ const Process = () => {
               image={"build.png"}
               image2={"build_hover.png"}
               title={"We Build"}
-              text={"We combine strategic planning, design craftmanship"}
+              text={
+                "In line with global best practices and settling for nothing short of excellence."
+              }
             />
           </div>
           <div className="col-12 col-lg-3 col-md-6">
@@ -34,7 +36,7 @@ const Process = () => {
               image={"approve.png"}
               image2={"approve_hover.png"}
               title={"You Approve"}
-              text={"We combine strategic planning, design craftmanship"}
+              text={"That all project specifics have been satisfied."}
             />
           </div>
           <div className="col-12 col-lg-3 col-md-6">
@@ -42,7 +44,7 @@ const Process = () => {
               image={"launch.png"}
               image2={"launch_hover.png"}
               title={"Ready to Launch"}
-              text={"We combine strategic planning, design craftmanship"}
+              text={"We move!!!"}
             />
           </div>
         </div>

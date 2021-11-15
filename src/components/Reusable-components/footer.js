@@ -49,7 +49,7 @@ const Footer = () => {
   };
 
   return (
-    <footer id="footer" className="pt-4 pb-2 pt-sm-5 pb-sm-4 mt-5 ">
+    <footer id="footer" className="pt-5 pb-2 pt-sm-5 pb-sm-4  ">
       <div className="container  my-3 my-sm-4">
         {/* {loading && (
           <div className="overlayc d-flex justify-content-center align-items-center">

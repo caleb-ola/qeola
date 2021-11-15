@@ -22,7 +22,7 @@ const About = () => {
       />
       <Process />
       <Quote />
-      <Media />
+      {/* <Media /> */}
       <Footer />
     </div>
   );
