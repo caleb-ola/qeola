@@ -343,6 +343,10 @@ const Editorial = (props) => {
                       image: {
                         uploadCallback: uploadImageCallBack,
                         alt: { present: true, mandatory: false },
+                        defaultSize: {
+                          height: "450px",
+                          width: "100%",
+                        },
                       },
                     }}
                   />
